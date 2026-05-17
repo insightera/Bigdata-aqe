@@ -1,0 +1,11 @@
+.env
+lib/*.jar
+jars/*.jar
+metrics/*.json
+!metrics/.gitkeep
+data/staging/*.csv
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+superset_home/

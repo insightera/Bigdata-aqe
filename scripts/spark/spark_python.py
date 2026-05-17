@@ -30,6 +30,6 @@ def apply_cluster_resource_configs(builder, *, app_name: str = "lakehouse"):
         .config("spark.executor.memory", executor_mem)
         .config("spark.driver.memory", driver_mem)
         .config("spark.cores.max", str(int(instances) * 1))
-        .config("spark.sql.shuffle.partitions", os.environ.get("SPARK_SHUFFLE_PARTITIONS", "8"))
+        .config("spark.sql.shuffle.partitions", os.environ.get("SPARK_SHUFFLE_PARTITIONS", "200"))
         .config("spark.ui.showConsoleProgress", "true")
     )

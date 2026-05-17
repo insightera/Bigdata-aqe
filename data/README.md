@@ -1,4 +1,4 @@
-# Data Pipeline ITERA — Medallion Architecture + Metadata Governance
+# Data Pipeline ITERA — Medallion Lakehouse (AQE)
 
 ## Kasus: Dashboard IKU Pimpinan ITERA
 
@@ -6,48 +6,19 @@
 
 ## 1. Gambaran Arsitektur
 
-Pipeline ini mengikuti arsitektur **Medallion (Staging → Bronze → Silver → Gold)** dengan **metadata governance** terpusat di **Apache Atlas**. Setiap layer menghasilkan metadata yang dicatat ke Atlas secara paralel, sesuai diagram `Bigdata-pipeline-Metadata.jpg`.
+Pipeline ini mengikuti arsitektur **Medallion (Staging → Bronze → Silver → Gold)** dengan eksperimen **Adaptive Query Execution (AQE)** di layer Silver. Konsumsi analitik: **Trino** + **Superset**; monitoring: **Grafana**.
 
 ```
 [Sumber Data]
-     │  CSV (SIAK, SIMPEG, SIPPMA, SIM Kerjasama, SIM Keuangan, BAN-PT)
+     │  CSV sintetis / staging (12 tabel domain ITERA)
      ▼
-┌──────────┐     ┌──────────────┐     ┌──────────────┐
-│ Staging  │ ──→ │ Bronze Layer │ ──→ │ Silver Layer │
-│ (CSV)    │     │ (Iceberg)    │     │ (Enriched)   │
-└──────────┘     └──────┬───────┘     └──────┬───────┘
-                        │                     │
-                   metadata B            metadata S
-                   ┌─────────┐          ┌──────────────┐
-                   │Raw Tech │          │Clean Metadata │
-                   │Lineage  │          │Quality        │
-                   │Profiling│          │Business       │
-                   │Classif. │          │Compliance     │
-                   └────┬────┘          └──────┬───────┘
-                        │                      │
-                        ▼                      ▼
-                 ┌──────────────────────────────────┐
-                 │       Apache Atlas REST API      │
-                 │   (HBase + Solr + JanusGraph)    │
-                 └──────────────┬───────────────────┘
-                                │
-                                ▼
-┌──────────────┐     ┌──────────────────┐
-│  Gold Layer  │ ──→ │  Portal Data     │
-│ (Star Schema)│     │  Catalog (Next.js)│
-└──────┬───────┘     └──────────────────┘
-       │
-  metadata G
-  ┌──────────┐
-  │Business  │
-  │KPI       │
-  │AI        │
-  │Consumption│
-  │Adv.Lineage│
-  └──────────┘
-       │
-       ▼
-  Dashboard Pimpinan (IKU)
+┌──────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│ Staging  │ ──→ │ Bronze       │ ──→ │ Silver (AQE) │ ──→ │ Gold (IKU)   │
+│ (CSV)    │     │ (Iceberg)    │     │ (Enriched)   │     │ (Star schema)│
+└──────────┘     └──────────────┘     └──────────────┘     └──────┬───────┘
+                                                                   ▼
+                                                    Trino → Superset (IKU)
+                                                    Grafana (metrik AQE)
 ```
 
 ---
@@ -61,13 +32,10 @@ Pipeline ini mengikuti arsitektur **Medallion (Staging → Bronze → Silver →
 | **Processing** | Apache Spark + PySpark | 3.5.1 | ETL engine untuk transformasi antar layer |
 | **Metastore** | Apache Hive Metastore | 4.0.0 | Catalog tabel Iceberg |
 | **Orchestration** | Apache Airflow | 2.9.1 | DAG orchestrator pipeline per layer |
-| **Metadata** | Apache Atlas | 2.3.0 | Metadata management, lineage, classification |
-| **Graph Storage** | Apache HBase | 2.1 | Backend JanusGraph untuk Atlas lineage graph |
-| **Search Index** | Apache Solr | 8.11.2 | Full-text search untuk Atlas discovery |
-| **Messaging** | Apache Kafka (Confluent) | 7.5.0 | Notifikasi entitas Atlas |
-| **Coordination** | Apache ZooKeeper | 7.5.0 | Koordinasi Kafka dan HBase |
-| **Database** | PostgreSQL | 15-alpine | Backend Hive Metastore, Airflow, Iceberg REST |
-| **Catalog Portal** | Next.js + React + Bootstrap | 16 / 19.2 / 5.3 | Frontend Data Catalog Management |
+| **Query** | Trino | 435 | SQL interaktif pada Gold/Silver |
+| **BI** | Apache Superset | 4.0.x | Dashboard KPI IKU |
+| **Monitoring** | Grafana + Prometheus | 11 / 2.52 | Metrik pipeline & eksperimen AQE |
+| **Database** | PostgreSQL | 15-alpine | Metastore, Airflow, Superset, Iceberg REST |
 | **Notebook** | Jupyter + PySpark | latest | Eksplorasi data interaktif |
 | **Containerization** | Docker + Docker Compose | 24.x / v2 | Orkestrasi seluruh layanan |
 
@@ -100,7 +68,7 @@ Semua sumber data disimpan sebagai **CSV** (simulasi batch dari sistem informasi
 > ETL: `scripts/spark/staging_to_bronze.py` via PySpark.
 > DAG: `scripts/dags/staging_bronze_pipeline.py`.
 
-**Metadata yang dicatat ke Atlas (layer B):**
+**Karakteristik layer Bronze:**
 1. Raw Technical Metadata — skema, tipe kolom, lokasi S3, format
 2. Raw Lineage — staging CSV → bronze Iceberg table
 3. Raw Data Profiling — row_count, null_count, distinct_count, completeness
@@ -294,7 +262,7 @@ Semua sumber data disimpan sebagai **CSV** (simulasi batch dari sistem informasi
 | **QUARANTINE** | 60% — 79% | Flag untuk review, lanjut dengan peringatan |
 | **REJECT** | < 60% | Ditolak — tidak diproses |
 
-**Metadata yang dicatat ke Atlas (layer S):**
+**Karakteristik layer Silver:**
 1. Clean Metadata — skema setelah transformasi
 2. Quality Metadata — quality_score, status (PASS/QUARANTINE)
 3. Transformation Lineage — multi-source bronze → silver
@@ -321,7 +289,7 @@ Semua sumber data disimpan sebagai **CSV** (simulasi batch dari sistem informasi
 > DAG: `scripts/dags/silver_gold_pipeline.py`.
 > Storage: `lakehouse.gold.*` Iceberg tables di MinIO (`s3a://warehouse/gold/`).
 
-**Metadata yang dicatat ke Atlas (layer G):**
+**Karakteristik layer Gold:**
 1. Business Metadata — KPI definitions, star schema relationships, ownership
 2. KPI Metadata — target Renstra per tahun, capaian aktual, formula, status
 3. AI Metadata — ML readiness, feature store candidates, suggested models
@@ -544,7 +512,7 @@ Semua sumber data disimpan sebagai **CSV** (simulasi batch dari sistem informasi
 
 ## 6. Metadata per Layer (sesuai diagram arsitektur)
 
-| Layer | Repositori | Metadata | Atlas Classifications |
+| Layer | Repositori | Metadata | Label / klasifikasi |
 |-------|-----------|----------|----------------------|
 | **Bronze (B)** | Raw Technical | 1. Raw Technical Metadata<br>2. Raw Lineage<br>3. Raw Data Profiling<br>4. Raw Classification | `Staging_Layer`, `Bronze_Layer`, `PII` |
 | **Silver (S)** | Clean + Quality | 1. Clean Metadata<br>2. Quality Metadata<br>3. Transformation Lineage<br>4. Business Metadata<br>5. Compliance Metadata | `Silver_Layer`, `Quality_Pass`, `Quality_Quarantine` |
@@ -610,49 +578,23 @@ lakehouse
 
 ## 8. Pipeline & Script
 
-| Pipeline | ETL Script | Atlas Script | Airflow DAG |
-|----------|-----------|-------------|-------------|
-| **Staging → Bronze** | `scripts/spark/staging_to_bronze.py` | `scripts/atlas/register_bronze_metadata.py` | `scripts/dags/staging_bronze_pipeline.py` |
-| **Bronze → Silver** | `scripts/spark/bronze_to_silver.py` | `scripts/atlas/register_silver_metadata.py` | `scripts/dags/bronze_silver_pipeline.py` |
-| **Silver → Gold** | `scripts/spark/silver_to_gold.py` | `scripts/atlas/register_gold_metadata.py` | `scripts/dags/silver_gold_pipeline.py` |
+| Pipeline | ETL Script | Airflow DAG |
+|----------|-----------|-------------|
+| **Staging → Bronze** | `scripts/spark/staging_to_bronze.py` | `scripts/dags/staging_bronze_pipeline.py` |
+| **Bronze → Silver** | `scripts/spark/bronze_to_silver.py` | `scripts/dags/bronze_silver_pipeline.py` |
+| **Silver → Gold** | `scripts/spark/silver_to_gold.py` | `scripts/dags/silver_gold_pipeline.py` |
 
-**Generator data sintetis:** `scripts/generate_bronze_data.py` — menghasilkan 12 CSV untuk staging layer.
+**Generator data:** `scripts/generate_bronze_data.py` — 12 CSV staging (profil `aqe` untuk volume besar).
 
----
-
-## 9. Atlas Data Catalog Summary
-
-```
-Atlas Entities:
-  Staging:  12 lakehouse_dataset (CSV sources)
-  Bronze:   12 lakehouse_dataset (Iceberg tables)
-  Silver:    6 lakehouse_dataset (Enriched tables)
-  Gold:     15 lakehouse_dataset (5 dim + 10 fact)
-  Total:   ~45 entities
-
-Lineage Processes:
-  staging → bronze:   12 lakehouse_etl_process
-  bronze → silver:     6 lakehouse_etl_process
-  silver → gold:     ~13 lakehouse_etl_process
-  Total:             ~31 processes
-
-Classifications (11):
-  PII, Staging_Layer, Bronze_Layer, Silver_Layer, Gold_Layer,
-  Quality_Pass, Quality_Quarantine, KPI_Metric,
-  Star_Schema_Dimension, Star_Schema_Fact, Executive_Dashboard
-```
+**AQE:** `scripts/spark/aqe_config.py` — skenario OFF/ON pada pipeline Silver; metrik di `metrics/`.
 
 ---
 
-## 10. Catatan Implementasi
+## 9. Catatan Implementasi
 
-- Semua data disimpan sebagai **Apache Iceberg** tables di **MinIO** (S3-compatible), bukan file Parquet langsung
-- Iceberg menyediakan fitur **ACID transactions**, **time travel**, dan **schema evolution**
-- **Hive Metastore** (backed by PostgreSQL) menjadi catalog untuk Iceberg tables
-- **PySpark 3.5.1** digunakan sebagai engine ETL di semua pipeline
-- **Apache Airflow 2.9.1** mengorkestrasi setiap pipeline sebagai DAG terpisah
-- **Apache Atlas 2.3.0** menjadi metadata backbone — menyimpan entity, classification, lineage, dan mendukung search via **Solr** serta graph via **JanusGraph** (HBase)
-- **Data Catalog Portal** (Next.js 16) menjadi antarmuka visual untuk discovery, lineage, dan KPI dashboard
-- File CSV di staging layer mensimulasikan data dari sistem informasi akademik ITERA
-- Quality check di Silver menggunakan completeness-based scoring: PASS ≥80%, QUARANTINE 60-79%, REJECT <60%
-- Gold layer menggunakan **star schema** (5 dimensi + 10 fakta IKU) untuk OLAP query Dashboard Pimpinan
+- Semua data disimpan sebagai **Apache Iceberg** di **MinIO** (`s3a://warehouse/`)
+- **Hive Metastore** + **Iceberg REST** sebagai katalog tabel
+- **PySpark 3.5.1** + **Airflow 2.9.1** untuk ETL terorkestrasi
+- **Trino** + **Superset** untuk konsumsi Gold; **Grafana** untuk monitoring
+- Quality check Silver: PASS ≥80%, QUARANTINE 60–79%, REJECT <60%
+- Gold: star schema 5 dimensi + 10 fakta IKU

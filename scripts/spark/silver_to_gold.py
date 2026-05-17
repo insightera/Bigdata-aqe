@@ -13,6 +13,7 @@ Target IKU dari Renstra ITERA 2020-2024.
 
 import json
 import logging
+import os
 from datetime import datetime
 
 from pyspark.sql import DataFrame, SparkSession
@@ -501,7 +502,7 @@ IKU_VALUE_COLUMNS = {
 
 
 def _sample_kpi_from_fact(df: DataFrame, table_name: str) -> dict:
-    """Rata-rata institusi untuk ditampilkan di KPI Dashboard / Atlas profiling."""
+    """Rata-rata institusi untuk KPI Dashboard (Superset)."""
     value_col = IKU_VALUE_COLUMNS.get(table_name)
     if not value_col or value_col not in df.columns:
         return {}
@@ -580,8 +581,11 @@ GOLD_TABLES = [
 ]
 
 
-def run_silver_to_gold() -> dict:
+def run_silver_to_gold(aqe_context: str | None = None) -> dict:
     """Entry-point: build star schema Gold layer."""
+    from spark.pipeline_metrics import persist_pipeline_run_metrics, utc_now
+
+    started_at = utc_now()
     spark = get_spark_session()
 
     try:
@@ -648,6 +652,23 @@ def run_silver_to_gold() -> dict:
         total_rows = sum(r.get("row_count", 0) for r in results.values() if r.get("written"))
         logger.info("\n✅ Gold complete: %d/%d tables, %s total rows",
                      written, len(results), f"{total_rows:,}")
+
+        ended_at = utc_now()
+        ctx = aqe_context or os.environ.get("SPARK_AQE_SCENARIO", "unknown")
+        metrics_path = persist_pipeline_run_metrics(
+            pipeline="silver_to_gold",
+            results=results,
+            started_at=started_at,
+            ended_at=ended_at,
+            scenario=ctx.upper() if ctx else None,
+            extra={"aqe_context_silver": ctx},
+        )
+        logger.info("Pipeline metrics → %s", metrics_path)
+        results["_pipeline_meta"] = {
+            "metrics_file": str(metrics_path),
+            "duration_sec": round((ended_at - started_at).total_seconds(), 3),
+            "aqe_context_silver": ctx,
+        }
         return results
 
     finally:

@@ -196,12 +196,17 @@ def process_table(spark, table_name: str) -> dict | None:
 
 def run_staging_to_bronze() -> dict:
     """Entry-point utama — proses semua tabel, return profiling dict."""
+    from spark.pipeline_metrics import persist_pipeline_run_metrics, utc_now
+
+    started_at = utc_now()
     spark = get_spark_session()
+    metrics_path = None
     try:
         results = {}
         for table_name in TABLES:
             profiling = process_table(spark, table_name)
             if profiling:
+                profiling["written"] = True
                 results[table_name] = profiling
 
         total_rows = sum(p["row_count"] for p in results.values())
@@ -209,6 +214,18 @@ def run_staging_to_bronze() -> dict:
             "Pipeline complete: %d tables, %s total rows",
             len(results), f"{total_rows:,}",
         )
+        ended_at = utc_now()
+        metrics_path = persist_pipeline_run_metrics(
+            pipeline="staging_to_bronze",
+            results=results,
+            started_at=started_at,
+            ended_at=ended_at,
+        )
+        logger.info("Pipeline metrics → %s", metrics_path)
+        results["_pipeline_meta"] = {
+            "metrics_file": str(metrics_path),
+            "duration_sec": round((ended_at - started_at).total_seconds(), 3),
+        }
         return results
     finally:
         try:

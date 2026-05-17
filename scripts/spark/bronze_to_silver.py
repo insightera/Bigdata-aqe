@@ -24,10 +24,19 @@ Tabel Silver yang dihasilkan:
 
 import json
 import logging
+import os
 from datetime import date, datetime
 
 from pyspark.sql import DataFrame, SparkSession
 
+from spark.aqe_config import (
+    app_name_with_aqe,
+    apply_aqe_configs,
+    persist_aqe_run_metrics,
+    read_applied_aqe_configs,
+    resolve_aqe_scenario,
+    _utc_now,
+)
 from spark.spark_python import apply_cluster_resource_configs, apply_pyspark_python_configs
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
@@ -55,10 +64,11 @@ def _resolve_jars() -> str:
     return ""
 
 
-def get_spark_session():
+def get_spark_session(aqe_scenario: str | None = None):
     import os
     import socket
 
+    scenario = resolve_aqe_scenario(aqe_scenario)
     spark_master = os.environ.get("SPARK_MASTER", "spark://spark-master:7077")
 
     try:
@@ -71,7 +81,7 @@ def get_spark_session():
 
     builder = (
         SparkSession.builder
-        .appName("bronze_to_silver")
+        .appName(app_name_with_aqe("bronze_to_silver", scenario))
         .master(spark_master)
         .config(
             "spark.sql.extensions",
@@ -106,6 +116,7 @@ def get_spark_session():
         )
 
     builder = apply_cluster_resource_configs(builder, app_name="bronze_to_silver")
+    builder = apply_aqe_configs(builder, scenario)
     return apply_pyspark_python_configs(builder).getOrCreate()
 
 
@@ -518,9 +529,15 @@ SILVER_TRANSFORMS = [
 ]
 
 
-def run_bronze_to_silver() -> dict:
+def run_bronze_to_silver(aqe_scenario: str | None = None) -> dict:
     """Entry-point: proses semua tabel Bronze → Silver."""
-    spark = get_spark_session()
+    scenario = resolve_aqe_scenario(aqe_scenario)
+    os.environ["SPARK_AQE_SCENARIO"] = scenario
+    started_at = _utc_now()
+    logger.info("Starting Bronze → Silver | AQE scenario=%s", scenario)
+
+    spark = get_spark_session(scenario)
+    applied_configs = read_applied_aqe_configs(spark)
 
     try:
         spark.sql("CREATE NAMESPACE IF NOT EXISTS silver")
@@ -580,9 +597,24 @@ def run_bronze_to_silver() -> dict:
         )
         written_count = sum(1 for r in results.values() if r.get("written"))
         logger.info(
-            "\nPipeline complete: %d/%d tables written, %s total rows",
-            written_count, len(SILVER_TRANSFORMS), f"{total_rows:,}",
+            "\nPipeline complete: %d/%d tables written, %s total rows | AQE=%s",
+            written_count, len(SILVER_TRANSFORMS), f"{total_rows:,}", scenario,
         )
+        ended_at = _utc_now()
+        metrics_path = persist_aqe_run_metrics(
+            pipeline="bronze_to_silver",
+            scenario=scenario,
+            results=results,
+            spark_configs=applied_configs,
+            started_at=started_at,
+            ended_at=ended_at,
+        )
+        results["_aqe_meta"] = {
+            "scenario": scenario,
+            "metrics_file": str(metrics_path),
+            "duration_sec": round((ended_at - started_at).total_seconds(), 3),
+            "spark_configs": applied_configs,
+        }
         return results
 
     finally:
@@ -590,9 +622,25 @@ def run_bronze_to_silver() -> dict:
 
 
 if __name__ == "__main__":
+    import argparse
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s — %(message)s",
     )
-    results = run_bronze_to_silver()
-    print(json.dumps(results, indent=2, default=str))
+    parser = argparse.ArgumentParser(description="Bronze → Silver ETL (AQE)")
+    parser.add_argument(
+        "--aqe-scenario",
+        choices=["OFF", "ON", "off", "on"],
+        default=os.environ.get("SPARK_AQE_SCENARIO", "OFF"),
+        help="Skenario AQE: OFF (baseline) atau ON (adaptive)",
+    )
+    parser.add_argument(
+        "--metrics-dir",
+        default=os.environ.get("AQE_METRICS_DIR", "metrics"),
+        help="Direktori output JSON metrik eksperimen",
+    )
+    args = parser.parse_args()
+    os.environ["AQE_METRICS_DIR"] = args.metrics_dir
+    out = run_bronze_to_silver(aqe_scenario=args.aqe_scenario)
+    print(json.dumps(out, indent=2, default=str))

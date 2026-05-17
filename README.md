@@ -51,7 +51,7 @@ Narasi arsitektur lengkap: [`docs/README.md`](docs/README.md). Kerangka metodolo
 
 Diagram berikut menggambarkan alur Medallion, **Spark SQL Engine** dengan dua skenario (AQE OFF / ON), workload query eksperimen, serta lapisan metrik dan konsumsi (Trino, Superset, Grafana).
 
-![Arsitektur Data Lakehouse Medallion dengan eksperimen AQE](./Data-lakehouse-AQE.png)
+![Arsitektur Data Lakehouse Medallion dengan eksperimen AQE](./pipeline-aqe.png)
 
 **Ringkasan (BAB IV 4.1.1)**
 
@@ -81,7 +81,7 @@ Diagram berikut menggambarkan alur Medallion, **Spark SQL Engine** dengan dua sk
 1. **Studi literatur** — AQE Spark 3.x, partition skew, DPP, dan lakehouse Medallion.
 2. **Perancangan arsitektur** — Sesuai `pipeline-aqe.png` dan [`docs/README.md`](docs/README.md).
 3. **Implementasi lingkungan** — Stack kontainer: MinIO, Spark, Hive Metastore, Airflow, Trino, Superset, Grafana (+ Prometheus); `docker-compose.yml` disusun mengikuti panduan ini.
-4. **Persiapan dataset** — Data sintetis ITERA (CSV staging); variasi skala dan skew bila diperlukan.
+4. **Persiapan dataset** — Generate CSV staging dengan `scripts/generate_bronze_data.py` (profil `aqe`, skew); lihat **§9**.
 5. **Pipeline Medallion** — Tiga tahap ETL (Staging→Bronze→Silver→Gold) dengan konfigurasi Spark terkontrol.
 6. **Eksperimen AQE** — Jalankan workload yang sama pada **AQE OFF** dan **AQE ON**; kumpulkan metrik dari Spark UI / event log dan Grafana.
 7. **Analisis** — Perbandingan runtime, distribusi partisi, efektivitas DPP/coalescing/skew, dampak per layer dan format data.
@@ -103,13 +103,14 @@ Diagram berikut menggambarkan alur Medallion, **Spark SQL Engine** dengan dua sk
 | **Prometheus** | Scraping metrik cluster/Spark exporter (untuk Grafana). |
 | **PostgreSQL** | Metastore Hive, metadata Superset, metadata Airflow. |
 
-> **Catatan:** Repositori mungkin masih memuat artefak stack metadata lama (Atlas, Solr, portal Next.js). Stack **target penelitian AQE** tidak memakai Apache Atlas. Setelah `docker-compose.yml` diperbarui, layanan Atlas tidak lagi dijalankan.
 
 ---
 
 ## 4. Kerangka BAB IV — Hasil dan Pembahasan
 
 Template isi BAB IV; isi angka dan tangkapan layar dari lingkungan eksperimen Anda.
+
+**Alur eksperimen (produksi pipeline, uji AQE OFF/ON, pencatatan metodologi & hasil):** [`docs/eksperimen/README.md`](docs/eksperimen/README.md) · template: [`docs/eksperimen/templates/`](docs/eksperimen/templates/) · acuan outline: [`rancangan-metodologi-dan-hasil-pembahasan.md`](rancangan-metodologi-dan-hasil-pembahasan.md).
 
 ### 4.1 Hasil
 
@@ -166,7 +167,7 @@ Jalankan set query yang sama pada **AQE OFF** dan **AQE ON**:
 | **Aggregation** | `GROUP BY`, rollup/cube | Coalescing, partisi |
 | **Filtering** | Filter selektif, range | DPP, I/O reduction |
 
-Skrip benchmark dan konfigurasi: lihat panduan [`docs/bronze-to-silver/README.md`](docs/bronze-to-silver/README.md) (Silver = layer utama AQE) dan rencana skrip di `scripts/benchmark/` (akan ditambahkan bersama docker-compose).
+Skrip benchmark otomatis: [`scripts/benchmark/README.md`](scripts/benchmark/README.md) — workload W1–W6, perbandingan OFF/ON, agregasi `experiment_summary_*.json`, ekspor Grafana. Orkestrator: `run_experiment.py` atau DAG Airflow `aqe_full_experiment`.
 
 ---
 
@@ -194,7 +195,7 @@ spark.sql.adaptive.advisoryPartitionSizeInBytes=64MB
 spark.sql.shuffle.partitions=200
 ```
 
-Parameter disetel lewat `conf/spark-defaults.conf`, variabel lingkungan Airflow (`SPARK_AQE_SCENARIO`), atau argumen `spark-submit`. Detail operasional: panduan pipeline di folder `docs/`.
+Parameter **Silver** diterapkan otomatis lewat `scripts/spark/aqe_config.py` saat DAG `bronze_to_silver_pipeline` dijalankan (`dag_run.conf`: `{"aqe_scenario": "ON"|"OFF"}`). File metrik eksperimen ditulis ke folder `metrics/`. Detail: [`docs/bronze-to-silver/README.md`](docs/bronze-to-silver/README.md).
 
 ---
 
@@ -225,12 +226,94 @@ Sumber → Staging → [CSV | Parquet] → Bronze → Silver (AQE) → Gold
 
 ---
 
-## 9. Stack layanan (rencana) dan menjalankan
+## 9. Generator data staging (`scripts/generate_bronze_data.py`)
 
-Port berikut adalah **rencana** setelah `docker-compose.yml` diselaraskan dengan penelitian AQE (rentang 15xxx–22xxx, sama seperti konvensi repo).
+Sebelum menjalankan pipeline, buat CSV sintetis domain ITERA di `data/staging/`. Skrip ini mendukung **volume besar** dan **injeksi skew** pada `prodi_id` agar join di Silver memicu shuffle dan uji **skew join** AQE.
 
-| Service | Fungsi | Port host (rencana) |
-|---------|--------|---------------------|
+### 9.1 Profil volume (`--profile`)
+
+| Profil | Mahasiswa | Perkiraan total baris | Skew default |
+|--------|-----------|------------------------|--------------|
+| `dev` | 50.000 | ~77 ribu | tidak (`--no-skew`) |
+| **`aqe`** (default) | **1.000.000** | **~1,5–2,5 juta** | 75% baris → `prodi_id=IF` |
+| `aqe-large` | 2.000.000 | ~3 juta+ | 80% → `IF` |
+
+Tabel turunan (lulusan, MBKM, kegiatan/penelitian dosen, dll.) ikut membesar sehingga beban join/agregasi di Silver meningkat.
+
+### 9.2 Cara pakai
+
+Jalankan dari **root repositori**:
+
+```bash
+# Default penelitian AQE (~1M mahasiswa, skew 75% ke prodi Informatika)
+python3 scripts/generate_bronze_data.py --mode full
+
+# Lihat rencana volume tanpa menulis file
+python3 scripts/generate_bronze_data.py --profile aqe --dry-run
+
+# Uji cepat pipeline (~77 ribu baris, tanpa skew)
+python3 scripts/generate_bronze_data.py --profile dev --no-skew
+
+# Stress test cluster kuat
+python3 scripts/generate_bronze_data.py --profile aqe-large
+
+# Perbesar lagi: ~2M mahasiswa
+python3 scripts/generate_bronze_data.py --profile aqe --scale 2.0
+
+# Skew lebih ekstrem (uji skew join)
+python3 scripts/generate_bronze_data.py --profile aqe --skew-fraction 0.85
+
+# Tambah batch incremental (setelah full)
+python3 scripts/generate_bronze_data.py --mode append --batch-size 5000
+```
+
+### 9.3 Opsi CLI utama
+
+| Opsi | Keterangan |
+|------|------------|
+| `--mode full` | Overwrite semua CSV di `data/staging/` (default) |
+| `--mode append` | Tambah batch baru ke CSV yang ada |
+| `--profile dev\|aqe\|aqe-large` | Preset jumlah baris (default: `aqe`) |
+| `--scale N` | Pengali di atas profil (mis. `aqe` + `2.0` → ~2M mahasiswa) |
+| `--skew-prodi IF` | Hot key untuk join (default: Informatika) |
+| `--skew-fraction 0.75` | Fraksi baris ke prodi skew (0–1) |
+| `--no-skew` | Distribusi prodi merata |
+| `--dry-run` | Tampilkan rencana volume, tanpa menulis file |
+| `--output-dir PATH` | Ganti folder output (default: `data/staging/`) |
+| `--seed 42` | Seed acak (reproduksibel pada `--mode full`) |
+
+### 9.4 Output dan langkah berikutnya
+
+Setelah selesai, skrip menampilkan **jumlah baris per file** dan **ukuran disk (MB)**. Contoh file:
+
+```
+data/staging/
+├── raw_mahasiswa.csv      # volume utama
+├── raw_dosen.csv
+├── raw_lulusan.csv
+├── raw_mbkm.csv
+├── … (12 file CSV domain ITERA)
+└── raw_prodi.csv
+```
+
+**Persyaratan perkiraan:**
+
+| Profil | Waktu generate | Disk CSV (perkiraan) | RAM Docker disarankan |
+|--------|----------------|----------------------|------------------------|
+| `dev` | < 1 menit | ~10 MB | 8 GB |
+| `aqe` | beberapa menit | ~150–400 MB | 12 GB+ |
+| `aqe-large` | 10+ menit | ~600 MB–1 GB+ | 16 GB+ |
+
+Lalu jalankan pipeline: **Staging → Bronze** → **Bronze → Silver (AQE OFF/ON)** → **Silver → Gold**. Detail: [`docs/staging-to-bronze/README.md`](docs/staging-to-bronze/README.md).
+
+---
+
+## 10. Stack layanan dan menjalankan
+
+Port host default (rentang 15xxx–22xxx). Override lewat `.env` — salin dari [`.env.example`](.env.example).
+
+| Service | Container | Port host |
+|---------|-----------|-----------|
 | Spark Master + Workers | ETL + eksperimen AQE | **18080** (UI), **17077** (RPC) |
 | MinIO | S3 API + console | **19000**, **19001** |
 | Hive Metastore | Katalog Iceberg | **19083** |
@@ -244,13 +327,14 @@ Port berikut adalah **rencana** setelah `docker-compose.yml` diselaraskan dengan
 
 Port final diset di `.env` / `docker-compose.yml` (variabel `LHAQE_*` atau setara) agar tidak bentrok dengan layanan lain di host.
 
-**Menjalankan (setelah compose diperbarui):**
+**Menjalankan:**
 
 ```bash
 chmod +x start.sh
 ./start.sh
-# atau manual bertahap: postgres → minio → hive → spark → airflow → trino → superset → grafana
 ```
+
+Atau manual: `docker compose up -d` (lihat urutan di `start.sh`).
 
 **Kredensial default (dev):**
 
@@ -264,16 +348,17 @@ chmod +x start.sh
 
 ---
 
-## 10. Pipeline Medallion (implementasi)
+## 11. Pipeline Medallion (implementasi)
 
-### 10.1 Pipeline 1: Staging → Bronze
+### 11.1 Pipeline 1: Staging → Bronze
 
+- `scripts/generate_bronze_data.py` — generate CSV ke `data/staging/` (**§9**)
 - `scripts/spark/staging_to_bronze.py` — CSV → Iceberg (Parquet)
 - `scripts/dags/staging_bronze_pipeline.py` — Airflow DAG
 
 **Panduan:** [`docs/staging-to-bronze/README.md`](docs/staging-to-bronze/README.md)
 
-### 10.2 Pipeline 2: Bronze → Silver (layer AQE utama)
+### 11.2 Pipeline 2: Bronze → Silver (layer AQE utama)
 
 - `scripts/spark/bronze_to_silver.py` — cleaning, join, quality
 - `scripts/dags/bronze_silver_pipeline.py` — Airflow DAG
@@ -281,31 +366,24 @@ chmod +x start.sh
 
 **Panduan:** [`docs/bronze-to-silver/README.md`](docs/bronze-to-silver/README.md)
 
-### 10.3 Pipeline 3: Silver → Gold
+### 11.3 Pipeline 3: Silver → Gold
 
 - `scripts/spark/silver_to_gold.py` — star schema (5 dim + 10 fakta IKU)
 - `scripts/dags/silver_gold_pipeline.py` — Airflow DAG
 
 **Panduan:** [`docs/silver-to-gold/README.md`](docs/silver-to-gold/README.md)
 
-### 10.4 Konsumsi: Trino + Superset
+### 11.4 Konsumsi: Trino + Superset
 
-- **Trino:** konektor Hive/Iceberg ke `lakehouse.gold.*`; jalankan workload BI dan query ad-hoc untuk mengukur waktu respons pasca-AQE di Silver.
-- **Superset:** dataset dari Trino; dashboard KPI IKU (`fact_rekap_iku_institusi`, dll.) dan panel perbandingan runtime eksperimen (data dari tabel/log hasil benchmark).
+**Panduan lengkap:** [`docs/gold-to-serving/README.md`](docs/gold-to-serving/README.md) — star schema (ROLAP), koneksi Trino, dataset Superset, dashboard IKU.
 
-### 10.5 Monitoring: Grafana
+### 11.5 Monitoring: Grafana
 
-Dashboard rencana:
-
-- Runtime: execution time, throughput per skenario
-- Shuffle: read/write bytes, spill
-- Partisi: histogram ukuran partisi, CV, Gini
-- AQE: DPP reduction %, coalescing ratio, indikator skew join
-- Resource: CPU, memori executor (dari Prometheus/node exporter)
+**Panduan lengkap:** [`docs/monitoring-grafana/README.md`](docs/monitoring-grafana/README.md) — metrik runtime, shuffle, partisi, resource, efektivitas AQE (selaras §11 [`docs/README.md`](docs/README.md)).
 
 ---
 
-## 11. Metrik evaluasi (ringkas)
+## 12. Metrik evaluasi (ringkas)
 
 | Kategori | Metrik |
 |----------|--------|
@@ -319,14 +397,18 @@ Sumber data: Spark UI (aplikasi selesai), Spark event log, log pipeline Airflow,
 
 ---
 
-## 12. Berkas pendukung di repositori
+## 13. Berkas pendukung di repositori
 
 | Berkas | Keterangan |
 |--------|------------|
-| `Data-lakehouse-AQE.png` | Diagram arsitektur penelitian AQE |
+| `pipeline-aqe.png` | Diagram arsitektur penelitian AQE |
 | `docs/README.md` | Narasi alur arsitektur dan komponen AQE |
 | `rancangan-metodologi-dan-hasil-pembahasan.md` | Outline metodologi & BAB IV |
-| `docker-compose.yml` | Stack layanan — **akan diselaraskan** (Trino, Superset, Grafana; tanpa Atlas) |
+| `docker-compose.yml` | Stack AQE: Spark, MinIO, Hive, Airflow, Trino, Superset, Grafana, Prometheus |
+| `.env.example` | Override port `LHAQE_*` |
+| `trino/etc/` | Katalog Trino → Iceberg/Hive Metastore |
+| `monitoring/` | Prometheus + provisioning Grafana |
+| `superset/` | Image Superset + driver Trino |
 | `conf/spark-defaults.conf` | Konfigurasi Spark + skenario AQE |
 | `scripts/dags/` | DAG Airflow per tahap Medallion |
 | `scripts/spark/` | ETL PySpark |
@@ -334,10 +416,42 @@ Sumber data: Spark UI (aplikasi selesai), Spark event log, log pipeline Airflow,
 
 ---
 
-## 13. Langkah berikutnya (untuk Anda)
+## 14. Struktur repositori (produksi)
 
-1. Baca [`docs/README.md`](docs/README.md) lalu panduan per pipeline di `docs/*/README.md`.
-2. Susun `docker-compose.yml` sesuai tabel §9 (Spark, MinIO, Hive, Airflow, Trino, Superset, Grafana, Prometheus — **tanpa** Atlas/HBase/Solr/Kafka metadata).
-3. Tambahkan skrip benchmark AQE (`scripts/benchmark/`) dan dashboard Grafana/Superset sebagai artefak hasil.
+```
+├── docker-compose.yml    # Stack: Spark, MinIO, Hive, Airflow, Trino, Superset, Grafana
+├── start.sh
+├── conf/                 # Spark, Hive, Hadoop
+├── trino/etc/            # Katalog query
+├── superset/             # Image + config BI
+├── monitoring/           # Prometheus + Grafana
+├── airflow/              # Image Airflow + PySpark
+├── scripts/
+│   ├── generate_bronze_data.py
+│   ├── dags/             # 3 DAG Medallion
+│   └── spark/            # ETL + aqe_config.py
+├── data/staging/         # CSV input (generate, tidak di-commit)
+├── metrics/              # Hasil metrik AQE (generate)
+├── lib/                  # JAR (download via start.sh)
+├── notebooks/
+├── scripts/
+│   ├── benchmark/        # Workload, compare, aggregate, metrics exporter
+│   ├── spark/            # ETL + aqe_config + pipeline_metrics
+│   └── dags/             # Airflow (termasuk aqe_full_experiment)
+└── docs/                 # Panduan pipeline + serving + monitoring
+    ├── eksperimen/       # Alur produksi, uji AQE, pencatatan BAB III–IV
+    ├── gold-to-serving/  # Trino → Superset (OLAP)
+    └── monitoring-grafana/
+```
+
+---
+
+## 15. Langkah berikutnya (untuk Anda)
+
+1. `./start.sh` — naikkan stack §10.
+2. Generate data: **§9** (`python3 scripts/generate_bronze_data.py --mode full`).
+3. Trigger pipeline Airflow (lihat output `start.sh`).
+4. Hubungkan Superset ke Trino (`trino://admin@trino:8080/lakehouse` dari dalam jaringan Docker).
+5. Jalankan eksperimen penuh: `scripts/benchmark/run_experiment.py` atau DAG `aqe_full_experiment`; pantau dashboard Grafana **Lakehouse AQE Experiment**.
 
 ---

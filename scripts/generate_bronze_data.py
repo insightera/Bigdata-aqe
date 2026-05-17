@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
 """
-Bronze Data Generator — ITERA Metadata Lakehouse
+Bronze Data Generator — ITERA Data Lakehouse (AQE)
 ==================================================
-Membuat data sintetis skala big-data untuk 12 tabel Bronze (Station 1).
-Mendukung mode:
-  --mode full     : generate semua data dari awal (overwrite)
-  --mode append   : tambahkan batch baru ke CSV yang sudah ada (incremental)
+Membuat data sintetis skala besar untuk pipeline Medallion dan eksperimen
+Adaptive Query Execution (shuffle, join, agregasi, skew join).
+
+Mode:
+  --mode full    : generate semua CSV dari awal (overwrite)
+  --mode append  : tambah batch baru (incremental)
+
+Profil volume (--profile):
+  dev        : ~80 ribu baris  — uji cepat pipeline
+  aqe        : ~1,5–2,5 juta baris — default penelitian AQE (disarankan)
+  aqe-large  : ~10+ juta baris — stress test cluster kuat
 
 Contoh:
-  python generate_bronze_data.py --mode full --scale 1.0
-  python generate_bronze_data.py --mode append --batch-size 500
-
-Scale 1.0 menghasilkan ~100 ribu baris total. Naikkan ke 5.0 atau 10.0
-untuk stress-test pipeline.
+  python generate_bronze_data.py --mode full
+  python generate_bronze_data.py --profile aqe-large
+  python generate_bronze_data.py --profile aqe --scale 2.0
+  python generate_bronze_data.py --profile aqe --skew-fraction 0.85
+  python generate_bronze_data.py --mode append --batch-size 5000
 """
 
 import argparse
@@ -156,6 +163,46 @@ KOMPETISI = [
     "National Bridge Competition", "Geospatial Hackathon",
 ]
 
+# Base row counts per profile (dikalikan --scale). Mahasiswa = pemicu volume utama.
+VOLUME_PROFILES: dict[str, dict[str, int | float]] = {
+    "dev": {
+        "mahasiswa": 50_000,
+        "dosen": 800,
+        "kerjasama": 400,
+        "prestasi": 5_000,
+        "kegiatan_avg": 3.0,
+        "penelitian_avg": 2.5,
+        "pengabdian_avg": 1.5,
+        "lulusan_pct": 0.35,
+        "mbkm_pct": 0.25,
+        "default_skew_fraction": 0.0,
+    },
+    "aqe": {
+        "mahasiswa": 1_000_000,
+        "dosen": 8_000,
+        "kerjasama": 4_000,
+        "prestasi": 100_000,
+        "kegiatan_avg": 4.0,
+        "penelitian_avg": 3.0,
+        "pengabdian_avg": 2.0,
+        "lulusan_pct": 0.35,
+        "mbkm_pct": 0.28,
+        "default_skew_fraction": 0.75,
+    },
+    "aqe-large": {
+        "mahasiswa": 2_000_000,
+        "dosen": 12_000,
+        "kerjasama": 8_000,
+        "prestasi": 200_000,
+        "kegiatan_avg": 5.0,
+        "penelitian_avg": 3.5,
+        "pengabdian_avg": 2.5,
+        "lulusan_pct": 0.35,
+        "mbkm_pct": 0.30,
+        "default_skew_fraction": 0.80,
+    },
+}
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -191,7 +238,27 @@ def _write_csv(filepath: Path, rows: list[dict], append: bool = False):
         if write_header:
             writer.writeheader()
         writer.writerows(rows)
-    print(f"  {'Appended' if append else 'Wrote'} {len(rows):>7,} rows → {filepath.name}")
+    size_mb = filepath.stat().st_size / (1024 * 1024)
+    print(
+        f"  {'Appended' if append else 'Wrote'} {len(rows):>9,} rows "
+        f"({size_mb:>7.1f} MB) → {filepath.name}"
+    )
+
+
+def _pick_prodi(
+    skew_prodi: str | None,
+    skew_fraction: float,
+) -> str:
+    """Pilih prodi_id; injeksi skew untuk uji AQE skew join."""
+    if skew_prodi and skew_fraction > 0 and random.random() < skew_fraction:
+        return skew_prodi
+    return random.choice(PRODI_S1_IDS)
+
+
+def _resolve_volume(profile: str, scale: float) -> dict[str, float]:
+    """Hitung target baris dari profil × scale."""
+    base = VOLUME_PROFILES[profile]
+    return {k: (v * scale if k != "default_skew_fraction" else v) for k, v in base.items()}
 
 # ---------------------------------------------------------------------------
 # Generators (setiap fungsi mengembalikan list[dict])
@@ -205,12 +272,17 @@ def gen_prodi(scale: float) -> list[dict]:
     ]
 
 
-def gen_mahasiswa(n: int, angkatan_range: tuple[int, int]) -> list[dict]:
+def gen_mahasiswa(
+    n: int,
+    angkatan_range: tuple[int, int],
+    skew_prodi: str | None = None,
+    skew_fraction: float = 0.0,
+) -> list[dict]:
     ts = _now_ts()
     rows = []
     for i in range(n):
         angkatan = random.randint(*angkatan_range)
-        prodi = random.choice(PRODI_S1_IDS)
+        prodi = _pick_prodi(skew_prodi, skew_fraction)
         jurusan = next(p["jurusan_id"] for p in PRODI_MASTER if p["prodi_id"] == prodi)
         sks_total = random.randint(0, 144) if angkatan < 2024 else random.randint(0, 48)
         rows.append({
@@ -256,11 +328,15 @@ def gen_lulusan(mahasiswa_rows: list[dict], pct: float = 0.35) -> list[dict]:
     return rows
 
 
-def gen_dosen(n: int) -> list[dict]:
+def gen_dosen(
+    n: int,
+    skew_prodi: str | None = None,
+    skew_fraction: float = 0.0,
+) -> list[dict]:
     ts = _now_ts()
     rows = []
     for i in range(n):
-        prodi = random.choice(PRODI_IDS)
+        prodi = _pick_prodi(skew_prodi, skew_fraction * 0.6)
         jurusan = next(p["jurusan_id"] for p in PRODI_MASTER if p["prodi_id"] == prodi)
         pend = random.choices(PENDIDIKAN, weights=[60, 40], k=1)[0]
         rows.append({
@@ -462,26 +538,48 @@ def gen_prestasi(mahasiswa_rows: list[dict], dosen_rows: list[dict], n: int) -> 
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="ITERA Bronze Data Generator")
+    profile_names = ", ".join(VOLUME_PROFILES)
+    parser = argparse.ArgumentParser(description="ITERA Bronze Data Generator (AQE)")
     parser.add_argument(
         "--mode", choices=["full", "append"], default="full",
         help="full = overwrite semua CSV; append = tambah batch baru",
     )
     parser.add_argument(
-        "--scale", type=float, default=1.0,
-        help="Multiplier jumlah baris (1.0 ≈ 100k total, 5.0 ≈ 500k)",
+        "--profile", choices=list(VOLUME_PROFILES), default="aqe",
+        help=f"Preset volume data ({profile_names}); default: aqe",
     )
     parser.add_argument(
-        "--batch-size", type=int, default=500,
+        "--scale", type=float, default=1.0,
+        help="Pengali tambahan di atas --profile (mis. profile aqe + scale 2 = ~1M mahasiswa)",
+    )
+    parser.add_argument(
+        "--batch-size", type=int, default=5_000,
         help="Jumlah mahasiswa baru per batch (mode append)",
     )
     parser.add_argument(
         "--output-dir", type=str, default=None,
-        help="Direktori output (default: data/bronze/ relatif ke script)",
+        help="Direktori output (default: data/staging/)",
     )
     parser.add_argument(
         "--seed", type=int, default=42,
         help="Random seed untuk reprodusibilitas",
+    )
+    parser.add_argument(
+        "--skew-prodi", type=str, default="IF",
+        help="prodi_id yang dipakai sebagai hot key skew (default: IF / Informatika)",
+    )
+    parser.add_argument(
+        "--skew-fraction", type=float, default=None,
+        metavar="P",
+        help="Fraksi baris ke prodi skew (0–1). Default: dari profil (aqe=0.75)",
+    )
+    parser.add_argument(
+        "--no-skew", action="store_true",
+        help="Distribusi prodi merata (nonaktifkan skew join sintetis)",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Tampilkan rencana volume tanpa menulis CSV",
     )
     args = parser.parse_args()
 
@@ -494,54 +592,92 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     append = args.mode == "append"
-    s = args.scale
+    vol = _resolve_volume(args.profile, args.scale)
+    skew_fraction = 0.0 if args.no_skew else (
+        args.skew_fraction if args.skew_fraction is not None else float(vol["default_skew_fraction"])
+    )
+    skew_prodi = None if args.no_skew else args.skew_prodi
+    if skew_prodi and skew_prodi not in PRODI_IDS:
+        parser.error(f"--skew-prodi '{skew_prodi}' tidak ada. Pilihan: {', '.join(PRODI_IDS)}")
 
     print(f"\n{'='*60}")
-    print(f"  ITERA Bronze Data Generator — mode={args.mode} scale={s}")
+    print(f"  ITERA Bronze Data Generator (AQE)")
+    print(f"  mode={args.mode}  profile={args.profile}  scale={args.scale}")
+    print(f"  skew: prodi={skew_prodi or '-'}  fraction={skew_fraction:.2f}")
     print(f"  Output: {out}")
     print(f"{'='*60}\n")
 
     # --- raw_prodi (master, selalu overwrite) ---
-    prodi_rows = gen_prodi(s)
-    _write_csv(out / "raw_prodi.csv", prodi_rows, append=False)
+    prodi_rows = gen_prodi(args.scale)
 
     if args.mode == "full":
-        n_mhs = int(50_000 * s)
-        n_dosen = int(800 * s)
-        n_kerjasama = int(400 * s)
-        n_prestasi = int(5_000 * s)
-        angkatan = (2018, 2025)
-        tahun_keuangan = (2020, 2025)
+        n_mhs = int(vol["mahasiswa"])
+        n_dosen = int(vol["dosen"])
+        n_kerjasama = int(vol["kerjasama"])
+        n_prestasi = int(vol["prestasi"])
+        kegiatan_avg = float(vol["kegiatan_avg"])
+        penelitian_avg = float(vol["penelitian_avg"])
+        pengabdian_avg = float(vol["pengabdian_avg"])
+        lulusan_pct = float(vol["lulusan_pct"])
+        mbkm_pct = float(vol["mbkm_pct"])
+        angkatan = (2016, 2025)
+        tahun_keuangan = (2018, 2025)
     else:
         n_mhs = args.batch_size
-        n_dosen = max(10, args.batch_size // 50)
-        n_kerjasama = max(5, args.batch_size // 100)
-        n_prestasi = max(20, args.batch_size // 25)
+        n_dosen = max(50, args.batch_size // 40)
+        n_kerjasama = max(10, args.batch_size // 80)
+        n_prestasi = max(100, args.batch_size // 10)
+        kegiatan_avg = 3.0
+        penelitian_avg = 2.5
+        pengabdian_avg = 1.5
+        lulusan_pct = 0.35
+        mbkm_pct = 0.25
         angkatan = (2024, 2025)
         tahun_keuangan = (2025, 2025)
 
+    est_derived = int(n_dosen * kegiatan_avg) + int(n_dosen * penelitian_avg) + int(n_dosen * pengabdian_avg)
+    est_total = (
+        len(prodi_rows) + n_mhs + int(n_mhs * lulusan_pct * 0.5) + n_dosen + est_derived
+        + n_kerjasama + int(n_mhs * mbkm_pct * 0.4) + n_prestasi + 500
+    )
+    print("  Rencana volume (perkiraan):")
+    print(f"    raw_mahasiswa      : {n_mhs:>10,}")
+    print(f"    raw_dosen          : {n_dosen:>10,}")
+    print(f"    raw_prestasi       : {n_prestasi:>10,}")
+    print(f"    derived (dosen×avg): {est_derived:>10,}  (kegiatan+penelitian+pengabdian)")
+    print(f"    total perkiraan    : {est_total:>10,} baris")
+    if skew_fraction > 0:
+        print(f"    hot key join       : ~{skew_fraction*100:.0f}% baris → prodi_id={skew_prodi}")
+    print()
+
+    if args.dry_run:
+        print("  (--dry-run: tidak menulis file)\n")
+        return
+
+    _write_csv(out / "raw_prodi.csv", prodi_rows, append=False)
+
     # --- raw_mahasiswa ---
-    mhs = gen_mahasiswa(n_mhs, angkatan)
+    mhs = gen_mahasiswa(n_mhs, angkatan, skew_prodi=skew_prodi, skew_fraction=skew_fraction)
     _write_csv(out / "raw_mahasiswa.csv", mhs, append=append)
 
     # --- raw_lulusan ---
-    lulusan = gen_lulusan(mhs, pct=0.35)
+    lulusan = gen_lulusan(mhs, pct=lulusan_pct)
     _write_csv(out / "raw_lulusan.csv", lulusan, append=append)
 
     # --- raw_dosen ---
-    dosen = gen_dosen(n_dosen)
+    dosen = gen_dosen(n_dosen, skew_prodi=skew_prodi, skew_fraction=skew_fraction)
     _write_csv(out / "raw_dosen.csv", dosen, append=append)
 
     # --- raw_kegiatan_dosen ---
-    kegiatan = gen_kegiatan_dosen(dosen, avg_per_dosen=3.0)
+    kegiatan = gen_kegiatan_dosen(dosen, avg_per_dosen=kegiatan_avg)
     _write_csv(out / "raw_kegiatan_dosen.csv", kegiatan, append=append)
 
     # --- raw_penelitian ---
-    penelitian = gen_penelitian(dosen, avg=2.5)
+    penelitian = gen_penelitian(dosen, avg=penelitian_avg)
     _write_csv(out / "raw_penelitian.csv", penelitian, append=append)
 
     # --- raw_pengabdian ---
-    pengabdian = gen_pengabdian(dosen, avg=1.5)
+    pengabdian = gen_pengabdian(dosen, avg=pengabdian_avg)
     _write_csv(out / "raw_pengabdian.csv", pengabdian, append=append)
 
     # --- raw_kerjasama ---
@@ -549,7 +685,7 @@ def main():
     _write_csv(out / "raw_kerjasama.csv", kerjasama, append=append)
 
     # --- raw_mbkm ---
-    mbkm = gen_mbkm(mhs, pct=0.25)
+    mbkm = gen_mbkm(mhs, pct=mbkm_pct)
     _write_csv(out / "raw_mbkm.csv", mbkm, append=append)
 
     # --- raw_akreditasi ---
@@ -564,14 +700,31 @@ def main():
     prestasi = gen_prestasi(mhs, dosen, n_prestasi)
     _write_csv(out / "raw_prestasi_mahasiswa.csv", prestasi, append=append)
 
-    total = (
-        len(prodi_rows) + len(mhs) + len(lulusan) + len(dosen) +
-        len(kegiatan) + len(penelitian) + len(pengabdian) +
-        len(kerjasama) + len(mbkm) + len(akreditasi) +
-        len(keuangan) + len(prestasi)
-    )
-    print(f"\n✅ Total baris dihasilkan: {total:,}")
-    print(f"   File CSV di: {out}/\n")
+    counts = {
+        "raw_prodi.csv": len(prodi_rows),
+        "raw_mahasiswa.csv": len(mhs),
+        "raw_lulusan.csv": len(lulusan),
+        "raw_dosen.csv": len(dosen),
+        "raw_kegiatan_dosen.csv": len(kegiatan),
+        "raw_penelitian.csv": len(penelitian),
+        "raw_pengabdian.csv": len(pengabdian),
+        "raw_kerjasama.csv": len(kerjasama),
+        "raw_mbkm.csv": len(mbkm),
+        "raw_akreditasi.csv": len(akreditasi),
+        "raw_keuangan.csv": len(keuangan),
+        "raw_prestasi_mahasiswa.csv": len(prestasi),
+    }
+    total = sum(counts.values())
+    total_bytes = sum((out / name).stat().st_size for name in counts if (out / name).exists())
+
+    print(f"\n{'='*60}")
+    print(f"  ✅ Total baris: {total:,}  |  disk: {total_bytes / (1024**2):.1f} MB")
+    print(f"  profile={args.profile}  scale={args.scale}  skew_fraction={skew_fraction}")
+    for name, n in sorted(counts.items(), key=lambda x: -x[1]):
+        print(f"    {n:>10,}  {name}")
+    print(f"\n  File CSV: {out}/")
+    print(f"  Langkah berikutnya: pipeline staging → bronze → silver (AQE OFF/ON)")
+    print(f"{'='*60}\n")
 
 
 if __name__ == "__main__":

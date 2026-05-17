@@ -37,35 +37,30 @@ Set skenario lewat **salah satu** mekanisme (pilih satu agar konsisten):
 
 Salin blok **Scenario A** atau **Scenario B** dari [`../../README.md`](../../README.md) §6.
 
-### B. Variabel lingkungan Airflow
+### B. Airflow DAG (`bronze_to_silver_pipeline`)
 
-Di DAG `bronze_silver_pipeline.py` (rencana):
-
-```python
-# conf DAG run
-aqe_scenario = "{{ dag_run.conf.get('aqe_scenario', 'OFF') }}"
-```
-
-Trigger eksplisit:
+Skenario dibaca dari **`dag_run.conf.aqe_scenario`** atau env **`SPARK_AQE_SCENARIO`** (default `OFF`).
+Konfigurasi diterapkan lewat `scripts/spark/aqe_config.py` → `get_spark_session()`.
 
 ```bash
-# Baseline
-docker exec <airflow-scheduler> airflow dags trigger bronze_to_silver_pipeline \
+# Baseline (AQE OFF)
+docker exec lhaqe-airflow-scheduler airflow dags trigger bronze_to_silver_pipeline \
   --conf '{"aqe_scenario": "OFF"}'
 
-# AQE aktif
-docker exec <airflow-scheduler> airflow dags trigger bronze_to_silver_pipeline \
+# Eksperimen (AQE ON)
+docker exec lhaqe-airflow-scheduler airflow dags trigger bronze_to_silver_pipeline \
   --conf '{"aqe_scenario": "ON"}'
 ```
 
-### C. `spark-submit` / argumen PySpark
+Setelah run, metrik JSON ada di `metrics/bronze_to_silver_aqe_{OFF|ON}_<timestamp>.json`
+(volume `./metrics` di host).
+
+### C. CLI langsung (tanpa Airflow)
 
 ```bash
-spark-submit \
-  --conf spark.sql.adaptive.enabled=true \
-  --conf spark.sql.adaptive.coalescePartitions.enabled=true \
-  --conf spark.sql.adaptive.skewJoin.enabled=true \
-  scripts/spark/bronze_to_silver.py
+SPARK_AQE_SCENARIO=ON python3 scripts/spark/bronze_to_silver.py --aqe-scenario ON
+# atau
+python3 scripts/spark/bronze_to_silver.py --aqe-scenario OFF --metrics-dir metrics
 ```
 
 ### Parameter kunci

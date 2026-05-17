@@ -252,17 +252,19 @@ Karena data telah melalui optimasi AQE pada layer sebelumnya, query pada Gold La
 
 Data pada Gold Layer diakses melalui:
 
-* Query Engine,
-* BI tools,
-* dan Dashboard Visualization.
+* **Trino** (query engine SQL),
+* **Apache Superset** (BI & dashboard),
+* dan visualisasi KPI.
 
 Dashboard digunakan untuk:
 
-* monitoring KPI,
-* visualisasi hasil analitik,
+* monitoring KPI IKU,
+* visualisasi hasil analitik (star schema),
 * serta penyajian insight bisnis.
 
-Selain sebagai media konsumsi data, dashboard juga digunakan untuk menampilkan hasil evaluasi eksperimen AQE.
+Model OLAP: **star schema** (ROLAP) — Trino mengeksekusi SQL ke tabel Iceberg Gold; Superset menjadi lapisan presentasi.
+
+**Panduan operasional:** [`gold-to-serving/README.md`](gold-to-serving/README.md)
 
 ---
 
@@ -311,6 +313,8 @@ Metrik yang dikumpulkan meliputi:
 * coalescing ratio,
 * skew reduction.
 
+**Panduan operasional:** [`monitoring-grafana/README.md`](monitoring-grafana/README.md) (Grafana + Prometheus, Spark UI, file `metrics/*.json`).
+
 ---
 
 # 12. Evaluasi dan Analisis Hasil Eksperimen
@@ -330,3 +334,5 @@ Analisis dilakukan berdasarkan:
 * serta pengaruh format data terhadap performa pipeline.
 
 Hasil evaluasi ini digunakan untuk menentukan sejauh mana Adaptive Query Execution mampu meningkatkan efisiensi dan performa pipeline Data Lakehouse pada lingkungan big data terdistribusi.
+
+**Panduan operasional (produksi, pengujian, pencatatan):** [`eksperimen/README.md`](eksperimen/README.md) — alur fase 0–8, perintah, pemetaan ke [`rancangan-metodologi-dan-hasil-pembahasan.md`](../rancangan-metodologi-dan-hasil-pembahasan.md), dan template pencatatan di [`eksperimen/templates/`](eksperimen/templates/).

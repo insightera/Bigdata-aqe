@@ -85,7 +85,7 @@ docker exec <airflow-scheduler> airflow dags trigger silver_to_gold_pipeline
 | `verify_gold_tables` | `COUNT(*)`, sanity check FK |
 | `record_gold_metrics` | Waktu pipeline, baris per fact (log / JSON untuk Grafana) |
 
-> **Tidak ada** registrasi Apache Atlas. Metadata bisnis KPI disajikan lewat **Superset** (dataset + chart), bukan katalog Atlas.
+Metadata bisnis KPI disajikan lewat **Superset** (dataset + chart).
 
 ---
 
@@ -138,7 +138,7 @@ Setelah Superset running:
    - Per prodi: drill-down `dim_prodi`
    - Panel eksperimen (opsional): tabel hasil benchmark AQE dari view `metrics.aqe_results` jika diekspor ke Postgres/Trino
 
-Superset menggantikan peran **portal katalog / BI** pada diagram lama; tidak memerlukan Atlas.
+Superset sebagai antarmuka BI dan dashboard KPI.
 
 ---
 
@@ -205,4 +205,6 @@ scripts/
 └── dags/silver_gold_pipeline.py
 ```
 
-**Dokumen terkait:** [`../README.md`](../README.md) (arsitektur AQE), [`../../README.md`](../../README.md) (ringkasan penelitian & metrik).
+**Langkah berikutnya:** [`../gold-to-serving/README.md`](../gold-to-serving/README.md) — Trino + Superset (OLAP).
+
+**Dokumen terkait:** [`../README.md`](../README.md) · [`../../README.md`](../../README.md)

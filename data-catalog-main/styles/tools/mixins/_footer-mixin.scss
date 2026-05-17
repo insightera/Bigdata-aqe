@@ -1,9 +1,0 @@
-//
-//  Footer Mixins
-//
-
-@mixin footer-modern() {
-	@include media-breakpoint-up($modern-design-breakpoint) {
-		@content;
-	}
-}

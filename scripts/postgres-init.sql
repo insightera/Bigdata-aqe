@@ -7,5 +7,7 @@ GRANT ALL PRIVILEGES ON DATABASE airflow_db TO admin;
 CREATE DATABASE iceberg_catalog;
 GRANT ALL PRIVILEGES ON DATABASE iceberg_catalog TO admin;
 
--- Pastikan metastore_db ada
--- Sudah dibuat via POSTGRES_DB env var
+CREATE DATABASE superset_db;
+GRANT ALL PRIVILEGES ON DATABASE superset_db TO admin;
+
+-- metastore_db = default dari POSTGRES_DB

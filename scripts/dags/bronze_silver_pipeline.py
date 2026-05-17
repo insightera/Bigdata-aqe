@@ -1,39 +1,37 @@
 """
-DAG: Bronze → Silver Pipeline + Metadata Enrichment
-=====================================================
-Pipeline kedua dalam arsitektur Medallion Metadata Lakehouse:
+DAG: Bronze → Silver Pipeline (layer utama eksperimen AQE)
+==========================================================
+Transformasi Bronze → Silver dengan konfigurasi Spark:
 
-  ┌──────────┐    ┌──────────────┐    ┌───────────────────┐    ┌───────────┐
-  │ Quality  │ →  │ Spark+Iceberg│ →  │ Metadata          │ →  │ Atlas     │
-  │ Check    │    │ Clean+Enrich │    │ Enrichment        │    │ Registry  │
-  └──────────┘    └──────────────┘    └───────────────────┘    └───────────┘
-   bronze           silver              1. Clean Metadata       auto
-   tables           tables              2. Quality Metadata     catalog
-                                        3. Transform Lineage
-                                        4. Business Metadata
-                                        5. Compliance Metadata
+  SPARK_AQE_SCENARIO=OFF  → baseline (AQE disabled)
+  SPARK_AQE_SCENARIO=ON   → Adaptive Query Execution aktif
 
-Sesuai diagram: Bronze → Extract → Table 2 → Silver → metadata enrichment → S → Atlas API
-
-Quality threshold:
-  ≥ 80%  → PASS (tulis ke Silver)
-  60-79% → QUARANTINE (tulis ke Silver, flagged)
-  < 60%  → REJECT (skip)
+Trigger dengan conf JSON:
+  {"aqe_scenario": "ON"}
+  {"aqe_scenario": "OFF"}
 """
 
 import json
 import logging
+import os
 import sys
 from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
 
 sys.path.insert(0, "/opt/airflow/scripts")
 
-ATLAS_URL = "http://atlas:21000"
-ATLAS_AUTH = ("admin", "admin")
+
+def _resolve_scenario_from_context(context) -> str:
+    from spark.aqe_config import resolve_aqe_scenario
+
+    dag_run = context.get("dag_run")
+    conf_scenario = None
+    if dag_run and getattr(dag_run, "conf", None):
+        conf_scenario = dag_run.conf.get("aqe_scenario")
+    return resolve_aqe_scenario(conf_scenario or os.environ.get("SPARK_AQE_SCENARIO"))
+
 
 default_args = {
     "owner": "data-engineering",
@@ -43,13 +41,18 @@ default_args = {
 }
 
 
-# ─── Task 1: Quality check + transform Bronze → Silver ─────────────────────
-
 def run_spark_bronze_to_silver(**context):
+    scenario = _resolve_scenario_from_context(context)
+    os.environ["SPARK_AQE_SCENARIO"] = scenario
+    logging.info("Bronze → Silver | SPARK_AQE_SCENARIO=%s", scenario)
+
     from spark.bronze_to_silver import run_bronze_to_silver
 
-    profiling_results = run_bronze_to_silver()
+    profiling_results = run_bronze_to_silver(aqe_scenario=scenario)
 
+    aqe_meta = profiling_results.pop("_aqe_meta", {})
+    context["ti"].xcom_push(key="aqe_scenario", value=scenario)
+    context["ti"].xcom_push(key="aqe_meta", value=aqe_meta)
     context["ti"].xcom_push(key="silver_profiling", value=profiling_results)
 
     written = sum(1 for r in profiling_results.values() if r.get("written"))
@@ -57,15 +60,20 @@ def run_spark_bronze_to_silver(**context):
         r.get("row_count", 0) for r in profiling_results.values() if r.get("written")
     )
     logging.info(
-        "Silver layer complete: %d/%d tables written, %s total rows",
-        written, len(profiling_results), f"{total_rows:,}",
+        "Silver complete | AQE=%s | %d/%d tables | %s rows | duration=%ss | metrics=%s",
+        scenario,
+        written,
+        len(profiling_results),
+        f"{total_rows:,}",
+        aqe_meta.get("duration_sec", "?"),
+        aqe_meta.get("metrics_file", "?"),
     )
 
     quality_summary = {}
     for name, prof in profiling_results.items():
         q = prof.get("quality", {})
         quality_summary[name] = {
-            "status": q.get("source_status", prof.get("quality", {}).get("status", "?")),
+            "status": q.get("source_status", q.get("status", "?")),
             "score": q.get("source_score", q.get("quality_score", 0)),
             "written": prof.get("written", False),
         }
@@ -74,40 +82,20 @@ def run_spark_bronze_to_silver(**context):
     return written
 
 
-# ─── Task 2: Register Silver metadata enrichment ke Atlas ──────────────────
-
-def register_silver_atlas_metadata(**context):
-    from atlas.register_silver_metadata import register_all_silver_metadata
-
-    profiling = context["ti"].xcom_pull(
-        task_ids="bronze_to_silver", key="silver_profiling"
-    )
-    if not profiling:
-        raise ValueError("No profiling data from bronze_to_silver task")
-
-    success = register_all_silver_metadata(
-        profiling_results=profiling,
-        atlas_url=ATLAS_URL,
-        atlas_user=ATLAS_AUTH[0],
-        atlas_pass=ATLAS_AUTH[1],
-    )
-
-    context["ti"].xcom_push(key="atlas_success", value=success)
-    logging.info("Silver Atlas registration: %s", "OK" if success else "partial")
-
-
-# ─── Task 3: Log quality report ────────────────────────────────────────────
-
 def log_quality_report(**context):
-    quality = context["ti"].xcom_pull(
-        task_ids="bronze_to_silver", key="quality_summary"
-    )
-    profiling = context["ti"].xcom_pull(
-        task_ids="bronze_to_silver", key="silver_profiling"
-    )
+    scenario = context["ti"].xcom_pull(task_ids="bronze_to_silver", key="aqe_scenario") or "?"
+    aqe_meta = context["ti"].xcom_pull(task_ids="bronze_to_silver", key="aqe_meta") or {}
+    quality = context["ti"].xcom_pull(task_ids="bronze_to_silver", key="quality_summary")
+    profiling = context["ti"].xcom_pull(task_ids="bronze_to_silver", key="silver_profiling")
 
     logging.info("\n" + "=" * 60)
     logging.info("  QUALITY REPORT — Bronze → Silver")
+    logging.info("  AQE scenario: %s", scenario)
+    if aqe_meta.get("spark_configs"):
+        logging.info("  Spark adaptive.enabled: %s", aqe_meta["spark_configs"].get(
+            "spark.sql.adaptive.enabled"
+        ))
+    logging.info("  Metrics file: %s", aqe_meta.get("metrics_file", "—"))
     logging.info("=" * 60)
 
     for name, q in (quality or {}).items():
@@ -120,33 +108,32 @@ def log_quality_report(**context):
             "\n  %s %s"
             "\n    Score: %.1f%%  |  Status: %s  |  Written: %s"
             "\n    Rows: %s  |  Transformations: %d",
-            status_icon, name,
-            q.get("score", 0), q.get("status", "?"), q.get("written", False),
-            f"{prof.get('row_count', 0):,}", len(transforms),
+            status_icon,
+            name,
+            q.get("score", 0),
+            q.get("status", "?"),
+            q.get("written", False),
+            f"{prof.get('row_count', 0):,}",
+            len(transforms),
         )
 
 
-# ─── DAG definition ─────────────────────────────────────────────────────────
-
 with DAG(
     dag_id="bronze_to_silver_pipeline",
-    description="Bronze → Silver + quality check + metadata enrichment → Atlas",
+    description="Bronze → Silver — eksperimen AQE (OFF vs ON via dag_run.conf)",
     default_args=default_args,
     start_date=datetime(2024, 1, 1),
     schedule_interval=None,
     catchup=False,
-    tags=["lakehouse", "metadata", "iceberg", "atlas", "silver", "quality", "pipeline"],
+    max_active_runs=1,
+    params={"aqe_scenario": "OFF"},
+    tags=["lakehouse", "aqe", "iceberg", "silver", "quality", "pipeline"],
 ) as dag:
 
     spark_etl = PythonOperator(
         task_id="bronze_to_silver",
         python_callable=run_spark_bronze_to_silver,
-        execution_timeout=timedelta(minutes=30),
-    )
-
-    atlas_register = PythonOperator(
-        task_id="register_silver_metadata",
-        python_callable=register_silver_atlas_metadata,
+        execution_timeout=timedelta(hours=2),
     )
 
     quality_report = PythonOperator(
@@ -154,46 +141,4 @@ with DAG(
         python_callable=log_quality_report,
     )
 
-    verify_atlas = BashOperator(
-        task_id="verify_silver_atlas",
-        bash_command="""
-        set -e
-        echo "── Silver Atlas Verification ──"
-
-        echo ""
-        echo "Silver entities:"
-        RESULT=$(curl -sf -u "admin:admin" \
-          "http://atlas:21000/api/atlas/v2/search/basic" \
-          -H "Content-Type: application/json" \
-          -d '{"typeName":"lakehouse_dataset","classification":"Silver_Layer","excludeDeletedEntities":true,"limit":50}' \
-          2>/dev/null) || { echo "⚠️  Atlas not responding"; exit 0; }
-
-        COUNT=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('approximateCount',0))")
-        echo "✅ Silver entities: $COUNT"
-
-        echo ""
-        echo "Bronze→Silver lineage:"
-        LINEAGE=$(curl -sf -u "admin:admin" \
-          "http://atlas:21000/api/atlas/v2/search/basic" \
-          -H "Content-Type: application/json" \
-          -d '{"query":"bronze_to_silver","typeName":"lakehouse_etl_process","limit":50}' \
-          2>/dev/null) || { echo "⚠️  Lineage check skipped"; exit 0; }
-
-        LCOUNT=$(echo "$LINEAGE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('approximateCount',0))")
-        echo "✅ Bronze→Silver lineage processes: $LCOUNT"
-
-        echo ""
-        echo "All lakehouse entities:"
-        ALL=$(curl -sf -u "admin:admin" \
-          "http://atlas:21000/api/atlas/v2/search/basic" \
-          -H "Content-Type: application/json" \
-          -d '{"typeName":"lakehouse_dataset","excludeDeletedEntities":true,"limit":100}' \
-          2>/dev/null) || exit 0
-
-        TOTAL=$(echo "$ALL" | python3 -c "import sys,json; print(json.load(sys.stdin).get('approximateCount',0))")
-        echo "✅ Total lakehouse_dataset entities (staging+bronze+silver): $TOTAL"
-        """,
-    )
-
-    spark_etl >> [atlas_register, quality_report]
-    atlas_register >> verify_atlas
+    spark_etl >> quality_report

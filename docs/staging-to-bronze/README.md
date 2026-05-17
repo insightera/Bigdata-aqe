@@ -28,8 +28,6 @@ Stack **target penelitian AQE** (setelah `docker-compose.yml` diperbarui):
 docker compose up -d
 ```
 
-> Jika stack lama (Atlas/Solr) masih ada di compose, abaikan layanan tersebut — tidak dipakai dalam penelitian AQE.
-
 ---
 
 ## Langkah 1: Generate data staging (CSV)
@@ -37,11 +35,20 @@ docker compose up -d
 Dari root repositori:
 
 ```bash
-# Data awal (~78 ribu baris)
-python3 scripts/generate_bronze_data.py --mode full --scale 1.0
+# Default penelitian AQE (~1M mahasiswa, ~1,5–2,5 juta baris total, skew 75% ke prodi IF)
+python3 scripts/generate_bronze_data.py --mode full
 
-# Skala lebih besar / stress test
-python3 scripts/generate_bronze_data.py --mode full --scale 5.0
+# Uji cepat (~77 ribu baris)
+python3 scripts/generate_bronze_data.py --profile dev --no-skew
+
+# Stress test (~3 juta baris)
+python3 scripts/generate_bronze_data.py --profile aqe-large
+
+# Perbesar lagi: profile aqe × scale 2 → ~2M mahasiswa
+python3 scripts/generate_bronze_data.py --profile aqe --scale 2.0
+
+# Lihat rencana volume tanpa menulis file
+python3 scripts/generate_bronze_data.py --profile aqe --dry-run
 ```
 
 Output di `data/staging/`:
@@ -114,10 +121,6 @@ Verifikasi:
 - Spark UI: aplikasi completed
 - MinIO: `warehouse/bronze/` terisi file Parquet
 
-### Task 3 (opsional): `record_bronze_metrics`
-
-Catat waktu task, jumlah baris, ukuran data ke log Airflow atau file metrik (`metrics/bronze_ingest.json`) untuk Grafana nanti — **bukan** registrasi Atlas.
-
 ---
 
 ## Verifikasi hasil
@@ -185,7 +188,7 @@ conf/
 ├── spark-defaults.conf      # override skenario AQE per lingkungan
 └── core-site.xml
 data/staging/                # CSV input
-docker-compose.yml           # target: tanpa Atlas
+docker-compose.yml
 ```
 
 **Langkah berikutnya:** [`../bronze-to-silver/README.md`](../bronze-to-silver/README.md) — layer utama eksperimen **AQE OFF vs ON**.

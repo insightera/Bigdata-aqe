@@ -1,0 +1,65 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": {
+        "defaults": { "unit": "percent", "decimals": 1 },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 0 },
+      "id": 1,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Silver Pipeline Speedup (AQE ON vs OFF)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "lakehouse_aqe_silver_speedup_percent",
+          "legendFormat": "speedup %"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 16, "x": 8, "y": 0 },
+      "id": 2,
+      "title": "Pipeline Duration (seconds)",
+      "type": "bargauge",
+      "targets": [
+        {
+          "expr": "lakehouse_pipeline_duration_seconds",
+          "legendFormat": "{{pipeline}} {{aqe_scenario}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "gridPos": { "h": 10, "w": 24, "x": 0, "y": 8 },
+      "id": 3,
+      "title": "Workload Duration — Spark & Trino",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "lakehouse_workload_duration_seconds",
+          "legendFormat": "{{workload_id}} {{engine}} {{aqe_scenario}}"
+        }
+      ]
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": ["lakehouse", "aqe", "experiment"],
+  "templating": { "list": [] },
+  "time": { "from": "now-6h", "to": "now" },
+  "timezone": "browser",
+  "title": "Lakehouse AQE Experiment",
+  "uid": "lakehouse-aqe-experiment",
+  "version": 1
+}

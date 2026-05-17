@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ============================================================
-#  Lakehouse Metadata Pipeline — Full Startup Script
-#  Stack: Spark | Airflow | MinIO | Atlas | Hive | Iceberg
-#         Jupyter | Data Catalog Portal (Next.js)
+#  Data Lakehouse AQE — Full Startup Script
+#  Stack: Spark | Airflow | MinIO | Hive | Iceberg | Trino
+#         Superset | Grafana | Prometheus | Jupyter
 # ============================================================
 
 set -e
@@ -19,7 +19,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
 STEP=0
-TOTAL=10
+TOTAL=8
 
 step() {
   STEP=$((STEP + 1))
@@ -42,16 +42,6 @@ wait_healthy() {
   echo -e "  ${YELLOW}⚠️  $name timeout after ${max}s (continuing)${NC}"
 }
 
-wait_running() {
-  local name="$1" max="${2:-30}" i=0
-  while [ $i -lt $max ]; do
-    running=$(docker inspect --format='{{.State.Running}}' "$name" 2>/dev/null || echo "false")
-    [ "$running" = "true" ] && echo -e "  ${GREEN}✅ $name running${NC}" && return 0
-    sleep 3; i=$((i + 3))
-  done
-  echo -e "  ${YELLOW}⚠️  $name not running after ${max}s${NC}"
-}
-
 print_banner() {
   echo -e "${CYAN}"
   cat << 'EOF'
@@ -61,29 +51,23 @@ print_banner() {
   ██║     ██╔══██║██╔═██╗ ██╔══╝  ██╔══██║██║   ██║██║   ██║╚════██║██╔══╝
   ███████╗██║  ██║██║  ██╗███████╗██║  ██║╚██████╔╝╚██████╔╝███████║███████╗
   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-              Data Lakehouse — Metadata Pipeline + Data Catalog
+              Data Lakehouse — Adaptive Query Execution (AQE)
 EOF
   echo -e "${NC}"
 }
 
-# ────────────────────────────────────────────────────────────
-
 print_banner
 
-# ── 1. Pre-flight checks ───────────────────────────────────
 step "Pre-flight checks"
 if ! command -v docker &>/dev/null; then
-  echo -e "${RED}Docker not found! Install Docker first.${NC}"; exit 1
+  echo -e "${RED}Docker not found.${NC}"; exit 1
 fi
-if ! docker compose version &>/dev/null 2>&1; then
-  echo -e "${RED}Docker Compose not found!${NC}"; exit 1
-fi
+docker compose version &>/dev/null || { echo -e "${RED}Docker Compose not found.${NC}"; exit 1; }
 echo -e "  ${GREEN}✅ Docker + Compose OK${NC}"
-echo -e "  ${YELLOW}Recommended: 8GB+ RAM, 15GB+ disk${NC}"
+echo -e "  ${YELLOW}Recommended: 12GB+ RAM, 20GB+ disk (profil data aqe)${NC}"
 
-# ── 2. Download required JARs ──────────────────────────────
-step "Downloading required JARs (Hive + Spark)"
-mkdir -p lib
+step "Downloading required JARs"
+mkdir -p lib metrics
 JARS=(
   "postgresql-42.6.0.jar|https://repo1.maven.org/maven2/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar"
   "hadoop-aws-3.3.4.jar|https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar"
@@ -96,129 +80,81 @@ for entry in "${JARS[@]}"; do
     echo -e "  Downloading $jar ..."
     curl -fSL -o "lib/$jar" "$url"
   else
-    echo -e "  ${GREEN}✓${NC} $jar (cached)"
+    echo -e "  ${GREEN}✓${NC} $jar"
   fi
 done
-echo -e "  ${GREEN}✅ All JARs ready${NC}"
 
-# ── 3. Build custom images ─────────────────────────────────
-step "Building custom Docker images (Airflow)"
-docker compose build airflow-init airflow-webserver airflow-scheduler 2>&1 | tail -5
-echo -e "  ${GREEN}✅ Airflow image built${NC}"
+step "Building custom images (Airflow, Superset)"
+docker compose build airflow-init airflow-webserver airflow-scheduler superset-init superset 2>&1 | tail -8
+echo -e "  ${GREEN}✅ Images built${NC}"
 
-# ── 4. Pull remaining images ──────────────────────────────
-step "Pulling Docker images"
-docker compose pull 2>&1 | grep -E "Pulling|Pull|complete|error" || true
-echo -e "  ${GREEN}✅ Images ready${NC}"
+step "Pulling base images"
+docker compose pull 2>&1 | grep -E "Pull|complete|error" || true
 
-# ── 5. Infrastructure layer ───────────────────────────────
-step "Starting infrastructure (PostgreSQL, ZooKeeper, Kafka)"
-docker compose up -d postgres zookeeper kafka
-wait_healthy lhmeta-postgres 30
-wait_healthy lhmeta-zookeeper 30
-wait_healthy lhmeta-kafka 40
-
-echo -e "  Creating required databases..."
-docker exec lhmeta-postgres psql -U admin -d postgres -c "CREATE DATABASE metastore_db;" 2>/dev/null || true
-docker exec lhmeta-postgres psql -U admin -d postgres -c "CREATE DATABASE iceberg_catalog;" 2>/dev/null || true
-docker exec lhmeta-postgres psql -U admin -d postgres -c "CREATE DATABASE airflow_db;" 2>/dev/null || true
-echo -e "  ${GREEN}✅ Databases: metastore_db, iceberg_catalog, airflow_db${NC}"
-
-# ── 6. Storage + Catalog backends ─────────────────────────
-step "Starting HBase, Solr, MinIO"
-docker compose up -d hbase solr minio
-sleep 10
+step "Starting infrastructure (PostgreSQL, MinIO)"
+docker compose up -d postgres minio
+wait_healthy lhaqe-postgres 30
+wait_healthy lhaqe-minio 30
 docker compose up -d minio-init
-wait_healthy lhmeta-minio 30
-wait_healthy lhmeta-solr 40
-wait_healthy lhmeta-hbase 60
+docker exec lhaqe-postgres psql -U admin -d postgres -c "CREATE DATABASE metastore_db;" 2>/dev/null || true
+docker exec lhaqe-postgres psql -U admin -d postgres -c "CREATE DATABASE iceberg_catalog;" 2>/dev/null || true
+docker exec lhaqe-postgres psql -U admin -d postgres -c "CREATE DATABASE airflow_db;" 2>/dev/null || true
+docker exec lhaqe-postgres psql -U admin -d postgres -c "CREATE DATABASE superset_db;" 2>/dev/null || true
 
-echo -e "  Starting Solr Atlas init..."
-docker compose up -d solr-atlas-init
+step "Starting catalog layer (Hive Metastore, Iceberg REST)"
+docker compose up -d hive-metastore iceberg-rest
 sleep 15
-echo -e "  ${GREEN}✅ Storage + catalog backends ready${NC}"
+wait_healthy lhaqe-iceberg-rest 40
 
-# ── 7. Metastore + Iceberg + Atlas ────────────────────────
-step "Starting Hive Metastore, Iceberg REST, Atlas"
-docker compose up -d hive-metastore
-docker compose up -d iceberg-rest
-sleep 10
-wait_healthy lhmeta-iceberg-rest 30
-
-docker compose up -d atlas
-echo -e "  ${YELLOW}Atlas needs several minutes to warm up (HBase + Solr + JanusGraph)${NC}"
-wait_healthy lhmeta-hive-metastore 60
-
-# ── 8. Compute layer ─────────────────────────────────────
-step "Starting Spark cluster + Jupyter"
+step "Starting compute (Spark, Trino, Jupyter)"
 docker compose up -d spark-master
-wait_healthy lhmeta-spark-master 30
-docker compose up -d spark-worker-1 spark-worker-2
-docker compose up -d jupyter
-sleep 5
-echo -e "  ${GREEN}✅ Spark cluster + Jupyter ready${NC}"
+wait_healthy lhaqe-spark-master 40
+docker compose up -d spark-worker-1 spark-worker-2 trino jupyter
+sleep 10
 
-# ── 9. Orchestration ─────────────────────────────────────
-step "Starting Airflow (init + webserver + scheduler)"
+step "Starting orchestration & observability (Airflow, Superset, Prometheus, Grafana)"
 docker compose up -d airflow-init
-sleep 20
+sleep 25
 docker compose up -d airflow-webserver
-wait_healthy lhmeta-airflow-webserver 60
+wait_healthy lhaqe-airflow-webserver 90
 docker compose up -d airflow-scheduler
-sleep 5
-echo -e "  ${GREEN}✅ Airflow ready${NC}"
 
-# ── 10. Data Catalog Portal ──────────────────────────────
-step "Starting Data Catalog Portal (Next.js)"
-docker compose up -d data-catalog 2>/dev/null || echo -e "  ${YELLOW}data-catalog service not configured (optional)${NC}"
-sleep 3
-echo -e "  ${GREEN}✅ Portal started (if configured)${NC}"
+docker compose up -d superset-init
+sleep 30
+docker compose up -d superset prometheus
+wait_healthy lhaqe-prometheus 30
+docker compose up -d grafana
 
-# ── Generate staging data if not exists ──────────────────
 if [ ! -f data/staging/raw_mahasiswa.csv ]; then
   echo ""
-  echo -e "${YELLOW}No staging data found. Generating synthetic data...${NC}"
-  python3 scripts/generate_bronze_data.py 2>/dev/null || \
-    docker exec lhmeta-airflow-scheduler python3 /opt/airflow/scripts/generate_bronze_data.py 2>/dev/null || \
-    echo -e "${YELLOW}  Skipped — run manually: python3 scripts/generate_bronze_data.py${NC}"
+  echo -e "${YELLOW}No staging CSV found — generating default profile aqe (may take several minutes)...${NC}"
+  python3 scripts/generate_bronze_data.py --mode full --profile aqe --dry-run 2>/dev/null || true
+  echo -e "${YELLOW}Run: python3 scripts/generate_bronze_data.py --mode full${NC}"
 fi
 
-# ── Final status ─────────────────────────────────────────
 echo ""
 echo -e "${CYAN}${BOLD}══════════════════════════════════════════════════════${NC}"
 echo -e "${BOLD}  SERVICE STATUS${NC}"
 echo -e "${CYAN}══════════════════════════════════════════════════════${NC}"
-docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | head -25 || docker compose ps
-echo ""
+docker compose ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | head -30 || docker compose ps
 
-echo -e "${CYAN}${BOLD}══════════════════════════════════════════════════════${NC}"
-echo -e "${BOLD}  SERVICE UI ACCESS POINTS${NC}"
+echo ""
+echo -e "${CYAN}${BOLD}  SERVICE UI${NC}"
 echo -e "${CYAN}══════════════════════════════════════════════════════${NC}"
+echo -e "  Spark UI          ${GREEN}http://localhost:18080${NC}"
+echo -e "  Airflow           ${GREEN}http://localhost:18681${NC}    (airflow / airflow)"
+echo -e "  MinIO Console     ${GREEN}http://localhost:19001${NC}    (minioadmin / minioadmin123)"
+echo -e "  Trino             ${GREEN}http://localhost:18088${NC}"
+echo -e "  Superset          ${GREEN}http://localhost:18089${NC}    (admin / admin)"
+echo -e "  Grafana           ${GREEN}http://localhost:13001${NC}    (admin / admin)"
+echo -e "  Prometheus        ${GREEN}http://localhost:19090${NC}"
+echo -e "  Jupyter           ${GREEN}http://localhost:18888${NC}    (token: lakehouse)"
+echo -e "  Hive Metastore    ${GREEN}thrift://localhost:19083${NC}"
 echo ""
-echo -e "  ${YELLOW}Spark Master UI${NC}        ${GREEN}http://localhost:18080${NC}"
-echo -e "  ${YELLOW}Airflow${NC}                ${GREEN}http://localhost:18681${NC}    (airflow / airflow)"
-echo -e "  ${YELLOW}MinIO Console${NC}          ${GREEN}http://localhost:19001${NC}    (minioadmin / minioadmin123)"
-echo -e "  ${YELLOW}MinIO S3 API${NC}           ${GREEN}http://localhost:19000${NC}"
-echo -e "  ${YELLOW}HBase Master UI${NC}        ${GREEN}http://localhost:19010${NC}"
-echo -e "  ${YELLOW}Apache Solr${NC}            ${GREEN}http://localhost:18984${NC}"
-echo -e "  ${YELLOW}Apache Atlas${NC}           ${GREEN}http://localhost:22100${NC}    (admin / admin)"
-echo -e "  ${YELLOW}Hive Metastore${NC}         ${GREEN}thrift://localhost:19083${NC}"
-echo -e "  ${YELLOW}Iceberg REST Catalog${NC}   ${GREEN}http://localhost:18181${NC}"
-echo -e "  ${YELLOW}Jupyter Notebook${NC}       ${GREEN}http://localhost:18888${NC}    (token: lakehouse)"
-echo -e "  ${YELLOW}Data Catalog Portal${NC}    ${GREEN}http://localhost:13000${NC}"
+echo -e "  ${BOLD}Trigger pipelines:${NC}"
+echo -e "  ${BLUE}docker exec lhaqe-airflow-scheduler airflow dags trigger staging_to_bronze_pipeline${NC}"
+echo -e "  ${BLUE}docker exec lhaqe-airflow-scheduler airflow dags trigger bronze_to_silver_pipeline --conf '{\"aqe_scenario\":\"OFF\"}'${NC}"
+echo -e "  ${BLUE}docker exec lhaqe-airflow-scheduler airflow dags trigger bronze_to_silver_pipeline --conf '{\"aqe_scenario\":\"ON\"}'${NC}"
+echo -e "  ${BLUE}docker exec lhaqe-airflow-scheduler airflow dags trigger silver_to_gold_pipeline${NC}"
 echo ""
-echo -e "${CYAN}══════════════════════════════════════════════════════${NC}"
-echo ""
-echo -e "  ${BOLD}Quick Commands:${NC}"
-echo -e "  ${BLUE}docker compose ps${NC}                           # Status all services"
-echo -e "  ${BLUE}docker compose logs -f atlas${NC}                # Atlas logs"
-echo -e "  ${BLUE}docker compose logs -f airflow-scheduler${NC}    # Airflow logs"
-echo -e "  ${BLUE}docker compose down${NC}                         # Stop all"
-echo -e "  ${BLUE}docker compose down -v${NC}                      # Stop + remove volumes"
-echo ""
-echo -e "  ${BOLD}Run Pipelines:${NC}"
-echo -e "  ${BLUE}docker exec lhmeta-airflow-scheduler airflow dags trigger staging_to_bronze_pipeline${NC}"
-echo -e "  ${BLUE}docker exec lhmeta-airflow-scheduler airflow dags trigger bronze_to_silver_pipeline${NC}"
-echo -e "  ${BLUE}docker exec lhmeta-airflow-scheduler airflow dags trigger silver_to_gold_pipeline${NC}"
-echo ""
-echo -e "${GREEN}${BOLD}Lakehouse stack fully started!${NC}"
+echo -e "${GREEN}${BOLD}Lakehouse AQE stack started.${NC}"

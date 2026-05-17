@@ -1,9 +1,0 @@
-//
-//	Progress
-//
-
-.progress {
-	@include dark-mode {
-		background-color: $dark-progress-bg;
-	}
-}
