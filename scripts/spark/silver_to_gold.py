@@ -184,6 +184,11 @@ def _target(tahun: int, iku: str) -> float:
 
 def build_fact_iku1(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     """IKU-1: % lulusan bekerja/studi/wirausaha."""
+    if not spark.catalog.tableExists("lakehouse.silver.silver_lulusan"):
+        raise RuntimeError(
+            "Tabel lakehouse.silver.silver_lulusan tidak ada — "
+            "jalankan ulang bronze_to_silver (cek quality gate / log Airflow)."
+        )
     lls = spark.table("lakehouse.silver.silver_lulusan")
 
     agg = (
@@ -219,7 +224,13 @@ def build_fact_iku2(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     mhs = spark.table("lakehouse.silver.silver_mahasiswa")
     prestasi = spark.table("lakehouse.bronze.raw_prestasi_mahasiswa")
 
-    mhs_aktif = mhs.filter(F.col("status_aktif") == "Aktif")
+    if "status_aktif" not in mhs.columns:
+        mhs = mhs.join(
+            spark.table("lakehouse.bronze.raw_mahasiswa").select("mahasiswa_id", "status_aktif"),
+            on="mahasiswa_id",
+            how="left",
+        )
+    mhs_aktif = mhs.filter(F.coalesce(F.col("status_aktif"), F.lit("Aktif")) == "Aktif")
 
     prestasi_nasional = (
         prestasi
@@ -277,7 +288,10 @@ def build_fact_iku3(spark: SparkSession) -> DataFrame:
         )
     )
 
-    joined = dosen.join(kg_pivot, on="dosen_id", how="left")
+    joined = (
+        dosen.join(kg_pivot, on="dosen_id", how="left")
+        .withColumn("tahun", F.coalesce(F.col("tahun"), F.lit(2024)))
+    )
 
     return (
         joined
@@ -333,6 +347,10 @@ def build_fact_iku5(spark: SparkSession) -> DataFrame:
     """IKU-5: rasio output penelitian rekognisi intl per dosen."""
     pkm = spark.table("lakehouse.silver.silver_penelitian_pkm")
     dosen = spark.table("lakehouse.silver.silver_dosen")
+
+    if "jurusan_id" not in dosen.columns:
+        prodi_jur = spark.table("lakehouse.bronze.raw_prodi").select("prodi_id", "jurusan_id")
+        dosen = dosen.join(prodi_jur, on="prodi_id", how="left")
 
     output = (
         pkm.groupBy("jurusan_id", "tahun")

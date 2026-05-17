@@ -228,6 +228,9 @@ def transform_silver_mahasiswa(spark: SparkSession) -> tuple[DataFrame, dict]:
         .withColumn("is_mbkm", F.col("sks_luar_kampus") >= 20)
         .dropDuplicates(["mahasiswa_id"])
     )
+    # Kolom ini dipakai fact_iku2 di Gold — harus ada di Silver
+    if "status_aktif" not in df.columns:
+        df = df.withColumn("status_aktif", F.lit("Aktif"))
 
     return df, quality
 
@@ -287,6 +290,9 @@ def transform_silver_dosen(spark: SparkSession) -> tuple[DataFrame, dict]:
         .drop("jenis_tridarma_count")
         .dropDuplicates(["dosen_id"])
     )
+    # jurusan_id dipakai fact_iku5 — ambil dari raw_prodi via prodi_id
+    prodi_jur = spark.table("lakehouse.bronze.raw_prodi").select("prodi_id", "jurusan_id")
+    df = df.join(prodi_jur, on="prodi_id", how="left")
 
     return df, quality
 
