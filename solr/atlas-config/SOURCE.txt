@@ -1,0 +1,7 @@
+Berisi salinan konfigurasi Solr resmi Apache Atlas 2.3.0 dari:
+https://github.com/apache/atlas/tree/release-2.3.0/distro/src/conf/solr
+
+Digunakan untuk core JanusGraph: vertex_index, edge_index, fulltext_index
+(lihat scripts/solr-atlas-init.sh dan service solr-atlas-init di docker-compose.yml).
+
+Tambahan lokal: `index_synonyms.txt` (kosong) — di distro penuh Atlas file ini ada; tanpanya Solr 8 gagal memuat schema.

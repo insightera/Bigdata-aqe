@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  HariSekhon entrypoint rewrites zookeeper:2181 -> localhost:2181 for embedded ZK (see hbase-docker-entrypoint-wrap.sh).
+  Hostname entries help Master/RegionServer advertise the service name `hbase` for RPC from other containers.
+-->
+<configuration>
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>/hbase-data</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>zookeeper:2181</value>
+  </property>
+  <property>
+    <name>hbase.master.hostname</name>
+    <value>hbase</value>
+  </property>
+  <property>
+    <name>hbase.regionserver.hostname</name>
+    <value>hbase</value>
+  </property>
+</configuration>

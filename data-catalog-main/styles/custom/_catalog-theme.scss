@@ -1,0 +1,72 @@
+//
+// Data Catalog — satu warna dominan + permukaan yang tetap terbaca di dark mode
+//
+
+@use 'sass:color';
+
+$catalog-accent-keys: primary, secondary, success, info, warning, danger, light, dark, brand, brand-two;
+
+[theme='dark'] {
+	// bg-l* dari template memakai tint terang → hampir putih di dark; ganti ke campuran primary + canvas gelap
+	@each $key in $catalog-accent-keys {
+		.bg-l10-#{$key} {
+			background-color: color.mix($primary, $dark-body-bg, 18%) !important;
+		}
+
+		.bg-l25-#{$key} {
+			background-color: color.mix($primary, $dark-body-bg, 28%) !important;
+		}
+
+		.bg-l50-#{$key} {
+			background-color: color.mix($primary, $dark-body-bg, 38%) !important;
+		}
+
+		.bg-l75-#{$key} {
+			background-color: color.mix($primary, $dark-body-bg, 48%) !important;
+		}
+
+		.bg-l90-#{$key} {
+			background-color: color.mix($primary, $dark-body-bg, 58%) !important;
+		}
+	}
+
+	.bg-light,
+	.text-bg-light {
+		background-color: $dark-card-bg !important;
+		color: $dark-body-color !important;
+	}
+
+	.text-muted {
+		color: $dark-text-muted !important;
+	}
+
+	.card {
+		--#{$prefix}card-bg: #{$dark-card-bg};
+		--#{$prefix}card-border-color: #{$dark-card-border-color};
+	}
+
+	.footer {
+		background-color: color.mix($primary, $dark-body-bg, 12%) !important;
+		border-top-color: $dark-card-border-color !important;
+	}
+}
+
+.footer-catalog {
+	&--compact .footer-catalog-row {
+		min-height: 2.5rem;
+	}
+
+	.footer-catalog-brand {
+		color: var(--#{$prefix}primary);
+	}
+
+	.footer-catalog-copy {
+		line-height: 1.2;
+	}
+}
+
+.footer {
+	align-items: center;
+	height: auto;
+	min-height: map-get($footer, height);
+}

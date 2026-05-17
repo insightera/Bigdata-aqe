@@ -1,0 +1,875 @@
+pkm_id,judul,dosen_id,jurusan_id,tahun,dana,lokasi,rekognisi_internasional,diterapkan_masyarakat,ingested_at
+PKM05300bd9,Pengabdian Sustainable Energy - 459d1503,0674021000,JTP,2020,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM736b0470,Pengabdian Green Infrastructure - ed11a560,0674021000,JTP,2025,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM5fb565fe,Pengabdian Innovative Industry - 6bb4189d,0956098001,JSA,2023,25000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM79c70167,Pengabdian Sustainable Energy - 592a2844,0956098001,JSA,2022,25000000,Pringsewu,True,True,2026-05-13T19:21:14+07:00
+PKM1d5d9cf0,Pengabdian Community Development - 6a9729db,0956098001,JSA,2023,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMb00c2c78,Pengabdian Green Infrastructure - 78edf5a4,0552708002,JMB,2021,3000000,Lampung Barat,True,True,2026-05-13T19:21:14+07:00
+PKM961e449b,Pengabdian Innovative Industry - a4bfd415,0552708002,JMB,2023,50000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM8e2ee132,Pengabdian Sustainable Energy - a25e4739,0865094005,JSA,2024,10000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM69fe4a33,Pengabdian Green Infrastructure - 5e6b8370,0865094005,JSA,2022,5000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM1b35d166,Pengabdian Community Development - 8b1c899b,0864868006,JTK,2025,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM4ec798bd,Pengabdian Community Development - 620b1e7b,0983330008,JSA,2021,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMbd73737c,Pengabdian Sustainable Energy - 8a1220f6,0983330008,JSA,2021,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMf0504c03,Pengabdian Green Infrastructure - 9d704bb2,0864073011,JTP,2024,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM424dbe9b,Pengabdian Innovative Industry - 76eb6196,0801920012,JSA,2022,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM85a462bc,Pengabdian Innovative Industry - c7d65d9d,0338301013,JTI,2021,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMda78d68e,Pengabdian Community Development - e5ef9e98,0114646014,JSA,2021,25000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM55412e7d,Pengabdian Innovative Industry - dceeff22,0151274015,JTI,2022,5000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM2023f8ae,Pengabdian Innovative Industry - f6b58094,0451448016,JSA,2021,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMf89a3861,Pengabdian Community Development - dd75f711,0403803017,JTI,2025,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM6977d304,Pengabdian Innovative Industry - 571f83d7,0564646020,JTP,2024,50000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM491bac19,Pengabdian Innovative Industry - aa83ff44,0564646020,JTP,2023,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMc091f754,Pengabdian Green Infrastructure - 34857d28,0384611021,JTK,2021,5000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM073605e1,Pengabdian Innovative Industry - cd3f657e,0227880024,JTP,2023,25000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMf40c708f,Pengabdian Community Development - bd18b51a,0227880024,JTP,2025,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMf0d2f1ec,Pengabdian Green Infrastructure - ee1ca0a0,0362517025,JTK,2022,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMa180dacb,Pengabdian Community Development - 233bc24d,0104173026,JTK,2022,10000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMf2a05e40,Pengabdian Community Development - c1ce4dce,0624689027,JMB,2023,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM9b5126c3,Pengabdian Community Development - 8535444d,0624689027,JMB,2023,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM01ec438a,Pengabdian Community Development - cb072731,0672850031,JMB,2025,50000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM02209cf9,Pengabdian Innovative Industry - 261f0109,0843085032,JSA,2025,3000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM2ca20900,Pengabdian Green Infrastructure - 73403fc7,0843085032,JSA,2023,5000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMca87f352,Pengabdian Innovative Industry - 36bcbaa1,0843085032,JSA,2021,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMea0e2433,Pengabdian Green Infrastructure - 18a42262,0535965034,JSA,2022,50000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMbd9f303d,Pengabdian Innovative Industry - 591817ff,0960758035,JTI,2025,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMfe65d355,Pengabdian Community Development - 41aa4d12,0984515036,JTI,2021,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM273f129b,Pengabdian Sustainable Energy - 6c566888,0861537038,JTK,2025,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM176d6525,Pengabdian Innovative Industry - d9531d62,0686745039,JTP,2020,50000000,Pesisir Barat,True,False,2026-05-13T19:21:14+07:00
+PKM44588239,Pengabdian Green Infrastructure - b796abc5,0686745039,JTP,2023,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM2b61d468,Pengabdian Community Development - 38ae532b,0625493040,JTI,2022,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMe437e6f7,Pengabdian Community Development - e3f403d9,0625493040,JTI,2025,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMc8f56abe,Pengabdian Sustainable Energy - f114a8e3,0140483041,JSA,2020,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM6697630e,Pengabdian Innovative Industry - 204719a2,0140483041,JSA,2021,25000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM9acc188a,Pengabdian Innovative Industry - bac02f55,0756674042,JTI,2021,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMa8f7ac43,Pengabdian Green Infrastructure - fb76f3d4,0756674042,JTI,2021,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM3bc394fd,Pengabdian Community Development - 54bc5764,0887456044,JTP,2024,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMb31ff5a4,Pengabdian Green Infrastructure - 0cd88db3,0887456044,JTP,2024,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMd5ad108d,Pengabdian Green Infrastructure - 78bce9cf,0887456044,JTP,2021,3000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM72b23969,Pengabdian Community Development - fc0411e4,0432875046,JTI,2021,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMf65bcb5a,Pengabdian Green Infrastructure - fb5033ef,0582088047,JTP,2024,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM0df82e0a,Pengabdian Green Infrastructure - d742a754,0582088047,JTP,2022,3000000,Tulang Bawang,True,False,2026-05-13T19:21:14+07:00
+PKMe8875af9,Pengabdian Community Development - 92e7b7b3,0651207049,JTK,2020,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMf41f4ea8,Pengabdian Sustainable Energy - 6c7750e3,0306695051,JSA,2025,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMf91dc4fc,Pengabdian Innovative Industry - 28cc12b8,0360173052,JTI,2022,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM9d09bfde,Pengabdian Sustainable Energy - 4c0b6cb0,0798294053,JTI,2020,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM643080ba,Pengabdian Community Development - 4a4429ae,0798294053,JTI,2022,50000000,Lampung Timur,True,True,2026-05-13T19:21:14+07:00
+PKM8b3fd32c,Pengabdian Community Development - 2ea25899,0417704055,JTI,2024,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMb2c365a5,Pengabdian Innovative Industry - 894f3dc6,0188244056,JTI,2023,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM248b2063,Pengabdian Community Development - 3e2ca4b3,0188244056,JTI,2020,3000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM038902fa,Pengabdian Innovative Industry - 3cc373a3,0168926057,JTK,2023,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMddd632c0,Pengabdian Innovative Industry - 45607ae2,0168926057,JTK,2024,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM7281fdbe,Pengabdian Sustainable Energy - 4916bb61,0973834058,JTK,2022,5000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMa3912f0b,Pengabdian Community Development - 044ed9a4,0973834058,JTK,2022,10000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM5dd485b7,Pengabdian Sustainable Energy - d80d9b52,0258633059,JSA,2020,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMaf8e3987,Pengabdian Community Development - 0e7d9b90,0673376061,JTI,2024,5000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM59d3e981,Pengabdian Green Infrastructure - 4f29100c,0673376061,JTI,2021,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM4ebdd5ad,Pengabdian Innovative Industry - 0394c41d,0909109063,JTK,2023,50000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM380a2d35,Pengabdian Sustainable Energy - ec7d62ff,0831542064,JMB,2023,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM22db7338,Pengabdian Community Development - 5d6c254c,0831542064,JMB,2024,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMe980b58f,Pengabdian Green Infrastructure - 10fa6531,0839791065,JSA,2022,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM294df418,Pengabdian Innovative Industry - 28808609,0839791065,JSA,2021,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM5fc71c8e,Pengabdian Green Infrastructure - eb810da2,0839791065,JSA,2024,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM4e0096e5,Pengabdian Community Development - 1a5366f3,0490557067,JSA,2023,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMeeae35f4,Pengabdian Community Development - 26d156a4,0343772068,JTI,2022,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM59576f14,Pengabdian Green Infrastructure - 81da2a18,0343772068,JTI,2024,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM610fc821,Pengabdian Sustainable Energy - f9c76790,0887831070,JTK,2022,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMfda30ff2,Pengabdian Innovative Industry - 0b0477dd,0887831070,JTK,2025,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM957cfc90,Pengabdian Green Infrastructure - 72e25969,0335816072,JTI,2021,3000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM3e098d1d,Pengabdian Innovative Industry - 7c7261db,0496400073,JTP,2025,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM0c9467a3,Pengabdian Innovative Industry - 766bdc56,0496400073,JTP,2024,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMac93c44a,Pengabdian Green Infrastructure - 67fa6b96,0730892074,JTI,2021,5000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMf1d721b1,Pengabdian Community Development - 5b02d8dd,0628727076,JTP,2021,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMb991ec3e,Pengabdian Green Infrastructure - 978ab388,0628727076,JTP,2025,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM0776f7bd,Pengabdian Sustainable Energy - d58100cf,0681021077,JTK,2020,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM236f9a01,Pengabdian Innovative Industry - a6f2cb64,0652685078,JSA,2023,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM494da186,Pengabdian Innovative Industry - 41766ec8,0898718079,JSA,2020,3000000,Tanggamus,True,False,2026-05-13T19:21:14+07:00
+PKM15c92475,Pengabdian Green Infrastructure - 841cd9c7,0898718079,JSA,2023,3000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM8a7b5fd5,Pengabdian Sustainable Energy - 802c786c,0450089080,JTP,2025,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM126ceef9,Pengabdian Community Development - 1ce9440c,0294728081,JTP,2023,25000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKMf01100e8,Pengabdian Sustainable Energy - 9934dd68,0294728081,JTP,2023,5000000,Lampung Utara,True,True,2026-05-13T19:21:14+07:00
+PKM26b7b72b,Pengabdian Sustainable Energy - 10343f3c,0294728081,JTP,2020,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM2f910533,Pengabdian Sustainable Energy - a6f720a8,0486340082,JSA,2022,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM318999be,Pengabdian Sustainable Energy - a0ef799a,0207142083,JMB,2023,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMef6a04eb,Pengabdian Community Development - 32f88ab3,0275884084,JTK,2023,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM1d0558f2,Pengabdian Green Infrastructure - a3bd11ad,0275884084,JTK,2025,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM1464cf7b,Pengabdian Green Infrastructure - 66e8e8d2,0201717085,JSA,2025,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM0ae1d848,Pengabdian Innovative Industry - d0c409bb,0810566087,JTI,2021,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM54d76449,Pengabdian Green Infrastructure - 70320b74,0767086091,JTK,2025,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMe0e5baca,Pengabdian Innovative Industry - 806f6f8d,0348207092,JTK,2024,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM0cecbe05,Pengabdian Community Development - 66e33b8d,0348207092,JTK,2025,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMae2064b8,Pengabdian Green Infrastructure - 38a09f23,0347829093,JTP,2023,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM608c6036,Pengabdian Sustainable Energy - 416ac310,0915315094,JTI,2023,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM178badba,Pengabdian Sustainable Energy - 633cc77c,0999584095,JMB,2022,25000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM5cc92fad,Pengabdian Community Development - 6039cc23,0479532096,JTK,2025,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM0cc3e1ec,Pengabdian Green Infrastructure - 45662db7,0479532096,JTK,2021,25000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM360aae13,Pengabdian Green Infrastructure - 3b80a7a3,0479532096,JTK,2021,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM8268112e,Pengabdian Innovative Industry - fab839a6,0165739097,JTK,2023,50000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM8ea292fd,Pengabdian Sustainable Energy - b4602d1c,0938164098,JTP,2022,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM7ed41524,Pengabdian Sustainable Energy - 518203d7,0895284102,JSA,2024,10000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMa2dca1ea,Pengabdian Community Development - bdab22d0,0659963103,JTK,2024,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMd094897c,Pengabdian Green Infrastructure - 50f80fcf,0659963103,JTK,2025,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMe487f101,Pengabdian Community Development - 01a0e4c7,0659963103,JTK,2021,5000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM303acaff,Pengabdian Green Infrastructure - c1cbe66a,0627833104,JTI,2021,3000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM35e29414,Pengabdian Community Development - da404a7b,0627833104,JTI,2022,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMf4135cc6,Pengabdian Green Infrastructure - 5ef46996,0284696105,JTK,2025,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM51070663,Pengabdian Sustainable Energy - 910949fd,0225824107,JMB,2025,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM63471ac7,Pengabdian Community Development - 71a172d2,0302776108,JTI,2025,25000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM41f24407,Pengabdian Innovative Industry - 310d1451,0302776108,JTI,2021,3000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM6a5ba678,Pengabdian Sustainable Energy - 861af093,0313983110,JSA,2024,25000000,Metro,True,True,2026-05-13T19:21:14+07:00
+PKM63966ae9,Pengabdian Green Infrastructure - cc8f06f8,0313983110,JSA,2025,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM0fd649a5,Pengabdian Green Infrastructure - 685d8251,0711883112,JTK,2023,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMe2f4c5a5,Pengabdian Sustainable Energy - de4e96cd,0134245113,JTI,2021,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMe8f33211,Pengabdian Green Infrastructure - aa34407c,0112627115,JTP,2022,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM7c7f2ceb,Pengabdian Community Development - eec85046,0112627115,JTP,2021,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM141a4235,Pengabdian Green Infrastructure - 4ccb7a55,0175949116,JTI,2025,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM835ad9f0,Pengabdian Sustainable Energy - c64bd628,0117640117,JTI,2023,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMda28631c,Pengabdian Green Infrastructure - 8843054c,0117640117,JTI,2020,3000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMdfb31bb6,Pengabdian Innovative Industry - 57ffe968,0117640117,JTI,2022,50000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM666ea95d,Pengabdian Sustainable Energy - 60f64f62,0849415118,JSA,2025,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMd1657636,Pengabdian Innovative Industry - 957e0891,0849415118,JSA,2023,5000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMd2922a13,Pengabdian Innovative Industry - 9186a2f1,0849415118,JSA,2025,3000000,Lampung Utara,True,True,2026-05-13T19:21:14+07:00
+PKM28fdd687,Pengabdian Innovative Industry - 08dbf85c,0462148120,JTK,2023,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM938cfc13,Pengabdian Green Infrastructure - 94bf5717,0462148120,JTK,2021,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM6f16fd06,Pengabdian Green Infrastructure - 3e5d8352,0603720121,JTP,2022,50000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM8c49383f,Pengabdian Innovative Industry - 9e2ca574,0513563122,JTI,2022,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM67e88fd2,Pengabdian Sustainable Energy - 420f0bd6,0910555123,JSA,2025,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMe0f3bd53,Pengabdian Innovative Industry - 2f0c99fa,0910555123,JSA,2021,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMa35964cd,Pengabdian Community Development - 28095e51,0413378124,JTI,2025,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM06c4df0d,Pengabdian Innovative Industry - 5bae8876,0413378124,JTI,2024,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMfcd29aa2,Pengabdian Green Infrastructure - 1d4281b4,0389915126,JSA,2025,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM2d80e280,Pengabdian Community Development - 54fc5f49,0134701127,JTK,2021,3000000,Pesawaran,True,False,2026-05-13T19:21:14+07:00
+PKMa420465a,Pengabdian Sustainable Energy - 39b3da89,0134701127,JTK,2020,25000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMbb2fa232,Pengabdian Community Development - 61eb664f,0947680128,JTI,2021,5000000,Bandar Lampung,True,False,2026-05-13T19:21:14+07:00
+PKM6bbc2712,Pengabdian Green Infrastructure - 4f4f83d6,0731723129,JTI,2024,25000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMdcf6892e,Pengabdian Sustainable Energy - 83909e68,0324172130,JTP,2024,3000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMc5e11019,Pengabdian Innovative Industry - 9833ed78,0905893131,JTK,2025,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM58a9d25e,Pengabdian Innovative Industry - 9fe6226e,0548632132,JTI,2024,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM9402baae,Pengabdian Community Development - 511b69e1,0548632132,JTI,2020,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM530d257d,Pengabdian Green Infrastructure - 724f563d,0309275134,JTI,2023,5000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM86a4384a,Pengabdian Green Infrastructure - 9f11b57f,0309275134,JTI,2022,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMcc36a337,Pengabdian Innovative Industry - 4722d207,0300171135,JTK,2020,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM5f0d198a,Pengabdian Community Development - dd62061d,0219718137,JTK,2025,10000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM04147450,Pengabdian Innovative Industry - 021cdf83,0219718137,JTK,2024,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM75911375,Pengabdian Innovative Industry - 9faaa873,0434926138,JTI,2021,50000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM943a931a,Pengabdian Innovative Industry - 85d6c739,0434926138,JTI,2024,25000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM5ab91e03,Pengabdian Innovative Industry - dda071dc,0482561140,JTI,2022,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMacd8e066,Pengabdian Sustainable Energy - 2c77d1ed,0307434142,JTK,2025,25000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMd7e2e201,Pengabdian Sustainable Energy - cba16af7,0307434142,JTK,2022,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMfc0a6ed1,Pengabdian Innovative Industry - edd19a93,0625663143,JTP,2021,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM6eb64693,Pengabdian Innovative Industry - 4fa50c39,0172024145,JTK,2021,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM12ce84d4,Pengabdian Community Development - 5973b015,0172024145,JTK,2024,5000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM32975e40,Pengabdian Green Infrastructure - c9157494,0235123147,JTI,2025,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM70599690,Pengabdian Innovative Industry - 19421449,0235123147,JTI,2025,3000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM7229304b,Pengabdian Sustainable Energy - 6806204c,0924819148,JMB,2020,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMa02ed75e,Pengabdian Innovative Industry - 89ad0ee1,0924819148,JMB,2020,25000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMac477750,Pengabdian Innovative Industry - aca155de,0781707150,JTI,2023,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMf3898098,Pengabdian Green Infrastructure - 1f8095b0,0827926151,JTP,2023,50000000,Metro,True,False,2026-05-13T19:21:14+07:00
+PKMb8c53907,Pengabdian Green Infrastructure - ff98e192,0698132152,JSA,2024,50000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMbd17662d,Pengabdian Community Development - 29b57dd1,0517195153,JTK,2022,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMb28a4c75,Pengabdian Sustainable Energy - 976216ef,0517195153,JTK,2021,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMa3422e36,Pengabdian Community Development - 574d3228,0834311154,JTI,2020,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM364d0a54,Pengabdian Sustainable Energy - 0f2dfe63,0320471155,JTK,2023,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM89d59fce,Pengabdian Innovative Industry - 1617f84c,0404862156,JMB,2020,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMc9917d44,Pengabdian Green Infrastructure - a07cb6c4,0641745157,JSA,2023,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM20fe843a,Pengabdian Sustainable Energy - dfb19562,0641745157,JSA,2021,10000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM6527b3f4,Pengabdian Sustainable Energy - 35f482e7,0641745157,JSA,2021,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM5f6e92a9,Pengabdian Green Infrastructure - d67c4af0,0418851159,JMB,2022,5000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM2560657f,Pengabdian Sustainable Energy - cfa13131,0870962160,JTI,2023,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM029bfdc6,Pengabdian Community Development - 8188f88e,0632696161,JTI,2024,10000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM70926b87,Pengabdian Innovative Industry - 3c133cfb,0598522162,JSA,2023,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMf91f6c73,Pengabdian Innovative Industry - 7f560832,0598522162,JSA,2023,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMe38b3614,Pengabdian Community Development - aa1e76f4,0161894163,JTK,2021,10000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMc16126d3,Pengabdian Sustainable Energy - 082a617a,0161894163,JTK,2025,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMa6456bb8,Pengabdian Green Infrastructure - ab53e153,0299646164,JTI,2024,50000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMfb098192,Pengabdian Innovative Industry - 1e5d3231,0717596165,JTK,2021,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMb167cdd2,Pengabdian Innovative Industry - 85723462,0717596165,JTK,2022,10000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMf989ae06,Pengabdian Innovative Industry - 0ae301f9,0274594166,JTK,2021,10000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM87579ee9,Pengabdian Innovative Industry - c6196269,0778247168,JSA,2021,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMa805bbb0,Pengabdian Community Development - fec2a218,0619030169,JTP,2022,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMb47cb501,Pengabdian Community Development - c3a21cf6,0194254170,JTP,2024,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMe146984a,Pengabdian Community Development - 3438dcf5,0725835175,JTK,2022,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM8db8978e,Pengabdian Green Infrastructure - 4db13937,0725835175,JTK,2022,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMe5a0196d,Pengabdian Sustainable Energy - 0cce6a47,0895405176,JSA,2020,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM8e1c1664,Pengabdian Innovative Industry - 41c60e09,0422111177,JTI,2025,50000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMf597603c,Pengabdian Innovative Industry - e31dd805,0989302181,JTI,2023,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMd5fde5fd,Pengabdian Community Development - 808a569b,0989302181,JTI,2020,3000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMca52aa78,Pengabdian Green Infrastructure - 2dbaeef3,0989302181,JTI,2024,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM8bacbc16,Pengabdian Sustainable Energy - 91a38868,0651248184,JTK,2023,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM81821e02,Pengabdian Green Infrastructure - 61240440,0651248184,JTK,2023,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMeefc0aa6,Pengabdian Innovative Industry - ce7188e0,0438914186,JTK,2022,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM24871ad1,Pengabdian Community Development - 9490c5b3,0212638187,JTI,2022,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM1d61e5d8,Pengabdian Sustainable Energy - b28cf581,0212638187,JTI,2023,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM7397613c,Pengabdian Green Infrastructure - 0ec6f740,0824702188,JTK,2025,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMa61afc1a,Pengabdian Community Development - e44cda50,0951734189,JTP,2024,5000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM5580f20e,Pengabdian Green Infrastructure - 62cf27a7,0446698190,JTK,2024,5000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM235901b2,Pengabdian Innovative Industry - 5bc003e0,0253005192,JTI,2021,3000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMc1b1f53d,Pengabdian Innovative Industry - fef9cd31,0379549193,JTI,2022,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMf3e19f88,Pengabdian Green Infrastructure - a8aa7f2a,0379549193,JTI,2024,50000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM57b5996d,Pengabdian Innovative Industry - 025f3a33,0723108194,JTI,2024,25000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM7527dd17,Pengabdian Community Development - 3518419c,0940356196,JTK,2025,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM16a3fd1e,Pengabdian Innovative Industry - 2d64a00f,0940356196,JTK,2024,25000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM52f6e85c,Pengabdian Green Infrastructure - 9eb94bb8,0861860198,JMB,2020,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMbcba7c5c,Pengabdian Innovative Industry - 019071e4,0849572200,JTK,2021,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMad994dcc,Pengabdian Green Infrastructure - fe085332,0849572200,JTK,2020,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM4c290302,Pengabdian Green Infrastructure - 74d2d639,0394031201,JMB,2021,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM7affc37b,Pengabdian Community Development - 91baeb32,0394031201,JMB,2020,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM5e956cb5,Pengabdian Community Development - 6579c0c3,0735700203,JTK,2020,10000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMa21723cd,Pengabdian Sustainable Energy - 255388b3,0284670207,JSA,2023,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM80ce1b65,Pengabdian Sustainable Energy - 3102c6e8,0157554208,JTK,2025,50000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMbb528a96,Pengabdian Community Development - be5932a3,0657715210,JSA,2020,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM861e5165,Pengabdian Community Development - 20fac311,0657715210,JSA,2022,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMb5147b5d,Pengabdian Innovative Industry - ae958ce0,0409799211,JSA,2023,5000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM5b443cd4,Pengabdian Green Infrastructure - c116692f,0409799211,JSA,2024,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM340dd05f,Pengabdian Community Development - 730c1b4c,0487016213,JTK,2024,10000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM615f6b26,Pengabdian Innovative Industry - adc59baa,0606430214,JSA,2024,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM635339f2,Pengabdian Green Infrastructure - 8bf84ce7,0485112216,JMB,2022,10000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM7baaa4f0,Pengabdian Green Infrastructure - 55b93451,0485112216,JMB,2022,5000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM9e5fdc24,Pengabdian Sustainable Energy - 8d7e66e1,0368456217,JTK,2023,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM9681dfb9,Pengabdian Sustainable Energy - d28d9775,0368456217,JTK,2021,3000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMbc645a4e,Pengabdian Sustainable Energy - ada261a2,0565454220,JTI,2023,5000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM31672ace,Pengabdian Innovative Industry - d1374b1e,0565454220,JTI,2025,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMa62a6b37,Pengabdian Innovative Industry - 96d67b8d,0844156221,JTK,2025,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM07e46ee8,Pengabdian Sustainable Energy - c8a29b24,0844156221,JTK,2025,50000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMf8fe8d54,Pengabdian Green Infrastructure - 80d36da9,0844156221,JTK,2024,50000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM0e6a1df7,Pengabdian Sustainable Energy - 9f9d9f23,0715204222,JSA,2020,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMa065da8d,Pengabdian Innovative Industry - d18ca643,0715204222,JSA,2022,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM702aec3e,Pengabdian Green Infrastructure - ae3879a8,0729516223,JTI,2022,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM19ff4c38,Pengabdian Sustainable Energy - ed5c8c6b,0176048225,JTK,2023,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMabe5ada6,Pengabdian Innovative Industry - 8b968cfb,0609175226,JTI,2023,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMf7ecf73e,Pengabdian Innovative Industry - b78db3cf,0609175226,JTI,2020,10000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM485fb87a,Pengabdian Community Development - 9f223a3a,0796070227,JSA,2020,3000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMa53a064e,Pengabdian Green Infrastructure - ea5cc356,0290959230,JTP,2020,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM68052aa9,Pengabdian Innovative Industry - c328eb13,0290959230,JTP,2020,5000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM23b17ec2,Pengabdian Community Development - e38db173,0305953231,JTK,2023,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM05840a5c,Pengabdian Innovative Industry - 23122cf4,0305953231,JTK,2024,25000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM94cb2790,Pengabdian Green Infrastructure - 88ac098a,0375073232,JSA,2022,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMf070a59d,Pengabdian Green Infrastructure - 5f08cb0c,0375073232,JSA,2021,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM0981bb4c,Pengabdian Community Development - d386851a,0375073232,JSA,2023,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM6f4bf80f,Pengabdian Community Development - cc5a2146,0909877233,JMB,2024,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM6ae6efc5,Pengabdian Sustainable Energy - 43638330,0109533234,JTP,2020,3000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM120d9f96,Pengabdian Sustainable Energy - 27fe52f9,0205366236,JSA,2022,5000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM60c9360f,Pengabdian Innovative Industry - cdd087da,0869361237,JTP,2020,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKMf557b38d,Pengabdian Green Infrastructure - 2f816a26,0869361237,JTP,2023,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMb27613ab,Pengabdian Innovative Industry - 67e13f08,0757016239,JTK,2020,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMda13e278,Pengabdian Innovative Industry - e6dd612f,0899993240,JTI,2022,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMcd40892a,Pengabdian Community Development - 0cbfbacf,0899993240,JTI,2021,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMd124c0c4,Pengabdian Green Infrastructure - e2b2ef9c,0764428241,JMB,2023,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM097afbc0,Pengabdian Community Development - 34d5bb1b,0294007242,JSA,2021,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM6eab8538,Pengabdian Innovative Industry - 6fd8a661,0294007242,JSA,2022,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM08c331c5,Pengabdian Community Development - ee4d396a,0302494243,JTI,2025,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM95c81b79,Pengabdian Innovative Industry - 27cbd3ca,0982258246,JTK,2020,25000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM281bf1d3,Pengabdian Sustainable Energy - e4cbe215,0844065247,JMB,2022,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM3c78461d,Pengabdian Innovative Industry - 4e7a4fa7,0129175248,JTI,2025,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM537f5090,Pengabdian Green Infrastructure - 9d8ca98c,0949309250,JMB,2024,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM83d74085,Pengabdian Community Development - eb54d004,0507865251,JTK,2024,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMd994eb28,Pengabdian Community Development - 293a9cd7,0192941252,JTI,2024,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM6db729a3,Pengabdian Innovative Industry - d34e98b3,0287098253,JSA,2021,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM83a13139,Pengabdian Sustainable Energy - e8034e9b,0176287254,JMB,2025,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMfd7f00ac,Pengabdian Green Infrastructure - 9a198b85,0176287254,JMB,2025,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM5de48e2d,Pengabdian Sustainable Energy - a19799d9,0332472256,JTP,2025,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM45972164,Pengabdian Innovative Industry - 7b415425,0332472256,JTP,2023,50000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM250cf679,Pengabdian Community Development - 02a6d184,0121583257,JTP,2022,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM7cc1271a,Pengabdian Innovative Industry - c7465e6c,0432608258,JTK,2023,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMd7b2b687,Pengabdian Innovative Industry - 8b923029,0470130259,JSA,2024,3000000,Lampung Timur,True,True,2026-05-13T19:21:14+07:00
+PKM3b87dbd4,Pengabdian Community Development - cbc9ab62,0470130259,JSA,2021,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMd87dd0b1,Pengabdian Community Development - 48d2d188,0484403262,JTK,2021,50000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMcd53c6b4,Pengabdian Sustainable Energy - 2cf1e586,0484403262,JTK,2024,50000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMf670362f,Pengabdian Innovative Industry - e4b68573,0374758263,JSA,2020,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMddda86e0,Pengabdian Community Development - ce13b4a1,0207978265,JTK,2020,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9dd1e5fd,Pengabdian Green Infrastructure - 834fc56c,0207978265,JTK,2021,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM973b6cda,Pengabdian Community Development - 44c9a0ce,0851719266,JTI,2021,50000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMfbea9168,Pengabdian Sustainable Energy - c09ec3cb,0789040267,JTK,2020,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM0c83beb6,Pengabdian Sustainable Energy - 7d24f3de,0887325268,JTK,2024,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMf0ca08f7,Pengabdian Sustainable Energy - 631f65e7,0887325268,JTK,2023,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMffe96e37,Pengabdian Innovative Industry - de3ca13e,0643509269,JTK,2021,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMa8a9b5ea,Pengabdian Sustainable Energy - 2d2aaba4,0703040270,JTP,2020,5000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMa0c847eb,Pengabdian Sustainable Energy - 2d90e80a,0797723271,JTK,2023,3000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM4246db8a,Pengabdian Community Development - ecc1ae59,0797723271,JTK,2024,10000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMfcd5f589,Pengabdian Green Infrastructure - bc851750,0317575272,JTK,2023,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMc7d3117b,Pengabdian Innovative Industry - b2724f23,0317575272,JTK,2022,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM2fd30969,Pengabdian Green Infrastructure - e95bf009,0317575272,JTK,2025,3000000,Lampung Tengah,True,False,2026-05-13T19:21:14+07:00
+PKM153ddb8c,Pengabdian Community Development - f01defc5,0853794273,JTK,2025,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM2a82e113,Pengabdian Innovative Industry - 06e1bbd2,0925677274,JTI,2023,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM0e407d86,Pengabdian Innovative Industry - df4c3cd2,0122974275,JTK,2023,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMc506e63c,Pengabdian Community Development - 27ef3979,0122974275,JTK,2025,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMb741cb72,Pengabdian Green Infrastructure - 9a103aab,0410487276,JTK,2024,3000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMd9547b3f,Pengabdian Innovative Industry - 3ef0d5f8,0410487276,JTK,2023,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMbfdaed2a,Pengabdian Green Infrastructure - 8584486e,0410487276,JTK,2024,3000000,Tulang Bawang,True,False,2026-05-13T19:21:14+07:00
+PKM62d04656,Pengabdian Sustainable Energy - 5aa847a9,0574701277,JSA,2021,3000000,Bandar Lampung,True,False,2026-05-13T19:21:14+07:00
+PKMf45c5936,Pengabdian Sustainable Energy - b4a42d80,0345832278,JTI,2023,3000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM0750507c,Pengabdian Community Development - 3f5f09c9,0345832278,JTI,2022,50000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMbb69ac02,Pengabdian Community Development - 03e3affb,0442787279,JTK,2023,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM69d8e189,Pengabdian Green Infrastructure - ed7663e4,0442787279,JTK,2020,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM3fe58095,Pengabdian Innovative Industry - db71db06,0619830280,JMB,2023,25000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMdf0f9a67,Pengabdian Green Infrastructure - ba3375cc,0619830280,JMB,2024,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMf7a20e39,Pengabdian Innovative Industry - 5d8a80fa,0847088283,JSA,2020,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM73514e68,Pengabdian Innovative Industry - e3e46c6f,0847088283,JSA,2025,5000000,Mesuji,True,False,2026-05-13T19:21:14+07:00
+PKM33c2d8bd,Pengabdian Community Development - 7908ba61,0146503284,JTI,2020,10000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM7f5a45c9,Pengabdian Community Development - 9714a7ce,0146503284,JTI,2023,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM05776f4f,Pengabdian Green Infrastructure - 54eee4d3,0420541287,JTI,2021,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM07a2b6d8,Pengabdian Sustainable Energy - 6a80547c,0420541287,JTI,2022,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMa9883d3e,Pengabdian Green Infrastructure - 7a6a7428,0718652288,JSA,2020,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMe582ce63,Pengabdian Green Infrastructure - e7d12845,0371226289,JTI,2022,3000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMd79ec6c6,Pengabdian Sustainable Energy - cfe41575,0289253290,JTK,2020,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM1da0daf4,Pengabdian Community Development - 22e89b84,0445505293,JTI,2023,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMe04a2ea7,Pengabdian Innovative Industry - 33a51e01,0160236295,JTK,2021,50000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM9375ffb8,Pengabdian Sustainable Energy - abc82a66,0160236295,JTK,2020,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMa089fe1a,Pengabdian Sustainable Energy - ea4a0397,0160236295,JTK,2024,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM96b31b88,Pengabdian Community Development - 1ecbaf25,0863920296,JMB,2025,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM027e9a34,Pengabdian Sustainable Energy - 58fcae3c,0863920296,JMB,2023,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMacc5ea31,Pengabdian Green Infrastructure - f5b76bb5,0270106297,JSA,2020,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM5e9daae6,Pengabdian Innovative Industry - 53ea84d4,0270106297,JSA,2021,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM76854965,Pengabdian Green Infrastructure - 9ef773b4,0693468298,JTI,2024,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM9840fd29,Pengabdian Sustainable Energy - 6122fa3e,0844529299,JTK,2022,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM8f38942a,Pengabdian Green Infrastructure - 4c40205c,0340518300,JTI,2021,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM71b9471e,Pengabdian Green Infrastructure - 9f04fcf3,0530384301,JTK,2023,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM5f4e8ced,Pengabdian Community Development - 27c8d845,0457617304,JTI,2022,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM2f612fa7,Pengabdian Green Infrastructure - aee5edfa,0218067305,JSA,2022,5000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM99602275,Pengabdian Sustainable Energy - e5020d8b,0720145308,JTI,2020,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMfb2b64bf,Pengabdian Innovative Industry - d6c5a690,0720145308,JTI,2023,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM514c030e,Pengabdian Green Infrastructure - 3da82f39,0820057309,JTI,2020,10000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM12a61a58,Pengabdian Community Development - 3a9ef5ad,0820057309,JTI,2021,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9266a9fe,Pengabdian Innovative Industry - 05938ba9,0966609310,JTI,2024,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMb0089898,Pengabdian Community Development - 0585f972,0966609310,JTI,2025,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMee562f71,Pengabdian Green Infrastructure - e8ed922a,0966609310,JTI,2021,10000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMebf54311,Pengabdian Innovative Industry - f637fe74,0966609310,JTI,2020,3000000,Lampung Tengah,True,False,2026-05-13T19:21:14+07:00
+PKM7210fe31,Pengabdian Green Infrastructure - fabe7489,0966609310,JTI,2021,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMd5794c76,Pengabdian Community Development - 637c835f,0157085311,JSA,2024,50000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMb0f6e0f3,Pengabdian Green Infrastructure - 75f3942c,0942085314,JSA,2023,5000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM60ba7391,Pengabdian Innovative Industry - 1a2983c9,0827118315,JSA,2022,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMb0b289d8,Pengabdian Green Infrastructure - 200ab3fd,0827118315,JSA,2025,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM22193613,Pengabdian Sustainable Energy - c8432625,0391353316,JTI,2025,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMbbdc2270,Pengabdian Community Development - ba399ca4,0391353316,JTI,2023,3000000,Way Kanan,True,False,2026-05-13T19:21:14+07:00
+PKM9d33382c,Pengabdian Innovative Industry - c889057d,0691283317,JSA,2020,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM4662e4e9,Pengabdian Sustainable Energy - 6376ef12,0691283317,JSA,2024,3000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM9540b463,Pengabdian Sustainable Energy - 8f1f7596,0389653318,JTI,2021,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMe20e3ab7,Pengabdian Innovative Industry - e4a5aa2d,0904706320,JTI,2023,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM789eb7f3,Pengabdian Community Development - ce85c917,0749689324,JTK,2025,3000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc28ccef3,Pengabdian Green Infrastructure - 2a9802b1,0410046327,JTI,2021,10000000,Lampung Tengah,True,False,2026-05-13T19:21:14+07:00
+PKM14a5cc2c,Pengabdian Sustainable Energy - f1d247a3,0410046327,JTI,2024,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM9609423a,Pengabdian Community Development - e3f61ba7,0747996328,JTI,2024,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM656754c1,Pengabdian Sustainable Energy - 5aa96290,0500608329,JTK,2024,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM655ae963,Pengabdian Innovative Industry - 84eafe77,0500608329,JTK,2021,50000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMc7b39a52,Pengabdian Community Development - 7304ab98,0592439330,JTP,2025,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM9ffb98c5,Pengabdian Sustainable Energy - becdad87,0736228331,JTK,2024,3000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMc793caff,Pengabdian Community Development - ecbaeecf,0736228331,JTK,2025,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM993ffc32,Pengabdian Green Infrastructure - 472983a7,0517916333,JTI,2024,50000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMcb56a139,Pengabdian Innovative Industry - 7a5f4a7c,0517916333,JTI,2023,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMa5109d35,Pengabdian Innovative Industry - 2053aeb3,0834591334,JTI,2024,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM3955c7e2,Pengabdian Community Development - f7a0e9d9,0834591334,JTI,2021,3000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM75f667fa,Pengabdian Sustainable Energy - faaddd83,0397623336,JTP,2020,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMdce66bb7,Pengabdian Sustainable Energy - 44b44055,0397623336,JTP,2021,50000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM0ec2d445,Pengabdian Sustainable Energy - 434bd41b,0236464337,JTK,2023,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM20aebb47,Pengabdian Innovative Industry - bcae6627,0387913338,JSA,2024,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM7da17e9c,Pengabdian Innovative Industry - 0bb3a59b,0387913338,JSA,2020,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM46780260,Pengabdian Innovative Industry - 96620809,0685679339,JTI,2021,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMb3bb8c14,Pengabdian Community Development - 88df3e99,0685679339,JTI,2020,50000000,Pringsewu,True,True,2026-05-13T19:21:14+07:00
+PKM6fdfbb7d,Pengabdian Community Development - 855e7a94,0685679339,JTI,2024,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM460b6e0c,Pengabdian Sustainable Energy - 6ccf3b5a,0336846340,JTK,2021,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM40b19eb4,Pengabdian Community Development - 6fb563f3,0336846340,JTK,2025,25000000,Lampung Utara,True,False,2026-05-13T19:21:14+07:00
+PKM8a7d72cf,Pengabdian Sustainable Energy - b475d951,0414007342,JSA,2020,5000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMbe538756,Pengabdian Sustainable Energy - 24456610,0414007342,JSA,2020,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMd7291ac9,Pengabdian Sustainable Energy - 7eb3c86f,0137583343,JTI,2022,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM0d64cc4f,Pengabdian Sustainable Energy - fad6e368,0137583343,JTI,2025,10000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMc50e6493,Pengabdian Innovative Industry - d1ce35e8,0992602345,JSA,2022,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMb7fdf05f,Pengabdian Community Development - 4877ef44,0992602345,JSA,2021,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMbef3a5aa,Pengabdian Sustainable Energy - b1d3a597,0828162346,JSA,2024,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM6f1409bc,Pengabdian Community Development - b749aafd,0828162346,JSA,2021,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM033f536b,Pengabdian Innovative Industry - ee1932dc,0105944347,JTI,2023,10000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKMde3985a2,Pengabdian Green Infrastructure - 6d25083a,0563700348,JSA,2025,3000000,Mesuji,True,True,2026-05-13T19:21:14+07:00
+PKM07713098,Pengabdian Innovative Industry - 68747932,0563700348,JSA,2024,5000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMac33dcb1,Pengabdian Innovative Industry - 822d0806,0595795351,JTK,2021,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM0d0d87b0,Pengabdian Sustainable Energy - 8df57232,0438431352,JTK,2020,5000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMd9c8fd25,Pengabdian Green Infrastructure - e03d0de1,0846355353,JSA,2024,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM50bf0fc9,Pengabdian Community Development - d99f7f70,0632076354,JTI,2024,10000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM7847a46e,Pengabdian Community Development - 192633ae,0590988355,JSA,2021,3000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM19d0dbd1,Pengabdian Sustainable Energy - 64e38df2,0590988355,JSA,2024,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMc626c8d2,Pengabdian Sustainable Energy - 4286308c,0957772357,JTI,2021,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM2783f042,Pengabdian Community Development - 318c84f0,0957772357,JTI,2024,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM60199ec4,Pengabdian Green Infrastructure - 3460f1d6,0696604358,JTK,2024,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMc58484f3,Pengabdian Innovative Industry - 3cdc98c2,0714364360,JTK,2025,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM602b6549,Pengabdian Community Development - 7e653c51,0714364360,JTK,2025,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMecd06503,Pengabdian Green Infrastructure - ca19ecd1,0490111361,JSA,2025,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM8807d1e8,Pengabdian Community Development - 1da04699,0490111361,JSA,2024,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMdab233e3,Pengabdian Sustainable Energy - 46d6adb6,0805147362,JTI,2024,3000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM82483558,Pengabdian Sustainable Energy - 28c929dd,0805147362,JTI,2020,25000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM01bb80a8,Pengabdian Sustainable Energy - 19f3c335,0913846363,JSA,2024,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM9e5841f0,Pengabdian Sustainable Energy - e1e32ea6,0913846363,JSA,2025,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMb0b93a4b,Pengabdian Innovative Industry - 7d16deba,0413321364,JSA,2022,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMde51799a,Pengabdian Innovative Industry - f45226a7,0788922365,JTP,2020,3000000,Metro,True,True,2026-05-13T19:21:14+07:00
+PKM02db9931,Pengabdian Green Infrastructure - 4b37e2c6,0300986366,JTI,2024,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMe170fdaf,Pengabdian Innovative Industry - c1cf1511,0509244367,JSA,2025,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM9689ad60,Pengabdian Sustainable Energy - 768be2c2,0540010368,JTP,2020,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM45b82777,Pengabdian Green Infrastructure - 5a224d69,0540010368,JTP,2020,25000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM039d2f28,Pengabdian Innovative Industry - b5a5f759,0201464369,JSA,2023,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM155d3260,Pengabdian Innovative Industry - 19bee7e8,0201464369,JSA,2024,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM639fd737,Pengabdian Innovative Industry - b86f7ed4,0201464369,JSA,2020,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM227c328b,Pengabdian Community Development - 319fb75d,0603715370,JTI,2025,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM725350db,Pengabdian Community Development - 2e692bb9,0743268371,JTK,2022,5000000,Tulang Bawang,True,True,2026-05-13T19:21:14+07:00
+PKM9f714abc,Pengabdian Sustainable Energy - e6677b9a,0743268371,JTK,2020,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMdf29d554,Pengabdian Green Infrastructure - ffefc0fd,0743268371,JTK,2025,50000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM903920f9,Pengabdian Sustainable Energy - bf4432f3,0938210372,JTP,2022,3000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM1587994e,Pengabdian Community Development - 9e02bd8d,0938210372,JTP,2025,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM5d5530ec,Pengabdian Innovative Industry - e9f75af9,0813584375,JTI,2021,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM7db575aa,Pengabdian Sustainable Energy - 31aa56d1,0640105376,JSA,2024,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMb40136c6,Pengabdian Green Infrastructure - d63423fc,0658905377,JSA,2024,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM45ef4b33,Pengabdian Green Infrastructure - 3f0ddd2c,0658905377,JSA,2020,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM5b052031,Pengabdian Community Development - 3dec2037,0864433378,JTP,2024,5000000,Lampung Barat,True,False,2026-05-13T19:21:14+07:00
+PKM58197fc5,Pengabdian Community Development - 11dab189,0864433378,JTP,2022,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM75855b21,Pengabdian Sustainable Energy - f4d97a36,0463556379,JTI,2023,3000000,Pesawaran,True,True,2026-05-13T19:21:14+07:00
+PKM6785e414,Pengabdian Community Development - 35a12bba,0463556379,JTI,2023,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM6a0eac9e,Pengabdian Community Development - c5b6e5f5,0405296383,JTI,2022,10000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMad47e803,Pengabdian Green Infrastructure - 2ff04eb2,0405296383,JTI,2024,10000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMfbe062a5,Pengabdian Sustainable Energy - 12ebda20,0405296383,JTI,2023,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMba4bcf9d,Pengabdian Green Infrastructure - f05c920a,0252309384,JSA,2022,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMe0e20ddd,Pengabdian Sustainable Energy - 28d246dc,0158250385,JMB,2022,3000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc239a4da,Pengabdian Sustainable Energy - 9c7e1582,0158250385,JMB,2020,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMaf0662fa,Pengabdian Innovative Industry - 63caf405,0247443386,JTP,2024,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM586c95e3,Pengabdian Sustainable Energy - 07c74e8f,0156372388,JTK,2022,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMad14cfa8,Pengabdian Community Development - 777d9f53,0156372388,JTK,2025,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM5a549865,Pengabdian Community Development - 009755b7,0996702389,JSA,2024,25000000,Lampung Utara,True,False,2026-05-13T19:21:14+07:00
+PKM4fd0e5ee,Pengabdian Community Development - b0ee15d6,0798533390,JTI,2021,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM737901ed,Pengabdian Green Infrastructure - 9e9e8f52,0340741391,JSA,2023,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMaaeb7e72,Pengabdian Community Development - ee21d9bb,0960900392,JSA,2022,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM1389844c,Pengabdian Green Infrastructure - 085d43cc,0876200393,JTI,2023,50000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM0ec339ab,Pengabdian Innovative Industry - 216f7c6f,0876200393,JTI,2020,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMfb914c87,Pengabdian Green Infrastructure - 84f86de6,0528976396,JTI,2023,25000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM0c96aed3,Pengabdian Community Development - 9130339f,0838270397,JMB,2025,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMa2e66579,Pengabdian Green Infrastructure - 2297f815,0838270397,JMB,2021,10000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc6e23936,Pengabdian Community Development - c0f7eef3,0838270397,JMB,2022,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM439e7136,Pengabdian Green Infrastructure - 62e6f382,0127559398,JSA,2024,25000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM452352ba,Pengabdian Community Development - a98c77a6,0866454403,JTI,2020,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMcc2ca4c9,Pengabdian Innovative Industry - 79549a30,0757764404,JTI,2020,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM7c88f4ce,Pengabdian Sustainable Energy - 291a2481,0757764404,JTI,2023,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKMf16b2135,Pengabdian Green Infrastructure - deeb8203,0757764404,JTI,2021,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM8373913d,Pengabdian Green Infrastructure - 76cfdbca,0777172405,JTK,2023,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM7dc1d16c,Pengabdian Innovative Industry - 355b28b8,0915422407,JTK,2025,50000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM78e0ce54,Pengabdian Green Infrastructure - 7f7ee378,0174060408,JTK,2023,50000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM1ef124d3,Pengabdian Innovative Industry - 1d0fa3db,0639390409,JSA,2025,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9a953211,Pengabdian Green Infrastructure - b7b46391,0507588410,JSA,2025,5000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMf8d65850,Pengabdian Green Infrastructure - 0d7a9565,0759457411,JTP,2020,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM4790ddf8,Pengabdian Community Development - 2d6c711e,0345960412,JTI,2021,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM3b9351aa,Pengabdian Sustainable Energy - 92bcffa6,0345960412,JTI,2022,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM1091d79c,Pengabdian Community Development - 5c64851d,0500925413,JTI,2020,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM18553828,Pengabdian Innovative Industry - da45a9ca,0500925413,JTI,2024,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMee6aa61d,Pengabdian Innovative Industry - 786eef91,0527870414,JTI,2023,25000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM4ccedb8a,Pengabdian Innovative Industry - 063771b4,0853012415,JMB,2025,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMec1055ae,Pengabdian Innovative Industry - c9839b69,0102071416,JTP,2023,10000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMad996310,Pengabdian Innovative Industry - 8724a81b,0172318417,JTI,2024,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM6509b9f0,Pengabdian Community Development - d74221a9,0172318417,JTI,2021,5000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMf3c60dc6,Pengabdian Sustainable Energy - 8f7ca46a,0738651418,JTP,2021,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM32d69d50,Pengabdian Innovative Industry - 464d8d8e,0185230420,JSA,2022,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMe069fb87,Pengabdian Community Development - c8eb54a3,0185230420,JSA,2025,5000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM576ab84f,Pengabdian Innovative Industry - 6bbe405c,0640462421,JTP,2020,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM5b307fee,Pengabdian Green Infrastructure - e3455a72,0640462421,JTP,2020,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM7b19ba88,Pengabdian Community Development - bd07dd52,0723044422,JTI,2022,3000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM617ba76e,Pengabdian Sustainable Energy - a2c54249,0395789423,JTP,2023,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM07ddd7b5,Pengabdian Green Infrastructure - dfe1ef1e,0395789423,JTP,2024,5000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM63eb0c53,Pengabdian Community Development - e0a6723d,0953118424,JTK,2021,5000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM271d15b7,Pengabdian Community Development - 81b37f2d,0953118424,JTK,2020,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM6a3be8bd,Pengabdian Innovative Industry - 4db01c73,0953118424,JTK,2020,50000000,Lampung Timur,True,False,2026-05-13T19:21:14+07:00
+PKMfee6a720,Pengabdian Innovative Industry - ebb8872e,0953118424,JTK,2025,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM15d07d3b,Pengabdian Innovative Industry - e40d7e5a,0246444426,JTI,2025,3000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM6f08c511,Pengabdian Community Development - 3b2868c9,0246444426,JTI,2023,10000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM071dbae7,Pengabdian Green Infrastructure - 855ca56e,0235779427,JSA,2020,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM17c63004,Pengabdian Community Development - 0183452a,0730131428,JTI,2022,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMdf77124f,Pengabdian Innovative Industry - da6862a1,0102100429,JTP,2025,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM8420d3a6,Pengabdian Innovative Industry - 9b1c1ad4,0195207431,JSA,2020,3000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM9ca494bc,Pengabdian Community Development - c2712d6b,0195207431,JSA,2020,3000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM443269b3,Pengabdian Innovative Industry - 684c5d6b,0195207431,JSA,2025,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM613c1efe,Pengabdian Sustainable Energy - 19c603c5,0420664432,JTP,2023,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM978e5a62,Pengabdian Sustainable Energy - c5ff2222,0124476436,JTI,2020,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM3dd2bddc,Pengabdian Community Development - 9857d39e,0124476436,JTI,2025,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM1614c111,Pengabdian Sustainable Energy - 7ac79542,0151613438,JTK,2022,10000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMe7d9f3b4,Pengabdian Green Infrastructure - 73cc9f1f,0151613438,JTK,2024,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM4bcf279a,Pengabdian Sustainable Energy - 6cb23cba,0325754439,JTK,2022,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM46405cca,Pengabdian Innovative Industry - 5f9a9c1e,0325754439,JTK,2024,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMf3f56a25,Pengabdian Community Development - 33074a82,0941911440,JTP,2023,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM2c3fb5b2,Pengabdian Innovative Industry - 838113d8,0941911440,JTP,2024,3000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM51316dca,Pengabdian Green Infrastructure - f5ca3dc6,0885528441,JTK,2020,50000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM637e190b,Pengabdian Innovative Industry - 5b761409,0945197442,JTI,2022,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM6750e429,Pengabdian Innovative Industry - ced021e9,0945197442,JTI,2024,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM8c5f36aa,Pengabdian Sustainable Energy - fadc6ce6,0205951444,JTP,2025,10000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMd8196f65,Pengabdian Innovative Industry - eab2f276,0205951444,JTP,2023,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM0ca962c1,Pengabdian Green Infrastructure - 7db52c6f,0868905445,JMB,2020,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM6b53a719,Pengabdian Community Development - 41b88adb,0330894446,JTI,2020,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM72ca4655,Pengabdian Sustainable Energy - 54669c7f,0330894446,JTI,2023,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM6604905c,Pengabdian Green Infrastructure - 861e3d6d,0604289447,JTK,2022,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM299925d3,Pengabdian Innovative Industry - e83f17ac,0340369448,JTK,2025,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMf662704d,Pengabdian Innovative Industry - 3f4bf952,0416716449,JTK,2020,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM971c6ead,Pengabdian Sustainable Energy - 0503c788,0416716449,JTK,2023,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM68a76df5,Pengabdian Sustainable Energy - a626fd70,0257796450,JTI,2025,10000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM0d61ec46,Pengabdian Community Development - 93dd4ae9,0257796450,JTI,2022,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM9033f90f,Pengabdian Green Infrastructure - bd3811cb,0257796450,JTI,2023,3000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM394b4247,Pengabdian Innovative Industry - 26554c73,0202874453,JSA,2023,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMa0c07a0a,Pengabdian Green Infrastructure - c54d0368,0856143456,JTI,2022,25000000,Lampung Timur,True,True,2026-05-13T19:21:14+07:00
+PKM6916cd32,Pengabdian Sustainable Energy - 3d69127e,0856143456,JTI,2022,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM0a231ca4,Pengabdian Innovative Industry - 5ca830e1,0856143456,JTI,2022,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM2172932e,Pengabdian Green Infrastructure - 2fc58f46,0125822457,JTP,2025,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMe77bb00c,Pengabdian Innovative Industry - d7b561e9,0366282460,JSA,2020,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMd6d707cb,Pengabdian Community Development - 592a3859,0956481461,JTP,2025,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMce480589,Pengabdian Green Infrastructure - e388c639,0956481461,JTP,2024,3000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM7cb20ee5,Pengabdian Innovative Industry - c1143b14,0849098462,JTP,2023,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM661e6959,Pengabdian Community Development - a2dd68ed,0849098462,JTP,2020,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM5148bc51,Pengabdian Sustainable Energy - 70d72215,0659514463,JTI,2025,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMc186b9e5,Pengabdian Green Infrastructure - 81e7e749,0389789464,JTP,2020,3000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM9b46a691,Pengabdian Community Development - bb62f3cc,0165809465,JMB,2025,10000000,Pesisir Barat,True,True,2026-05-13T19:21:14+07:00
+PKMf6e8d9f9,Pengabdian Community Development - 388877fc,0516203466,JTI,2020,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM18331ffb,Pengabdian Green Infrastructure - 1e0514f9,0516203466,JTI,2024,25000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM991a92b2,Pengabdian Sustainable Energy - 07c77f90,0282980468,JSA,2024,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM95221a9d,Pengabdian Innovative Industry - 6b656959,0781262469,JMB,2020,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMe01235c8,Pengabdian Innovative Industry - bccd889e,0181564472,JTK,2024,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM4eafe1bb,Pengabdian Sustainable Energy - 2cbe1b0e,0746558473,JMB,2023,50000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM493d3fe0,Pengabdian Sustainable Energy - c29b9293,0996883474,JTI,2022,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM09924327,Pengabdian Sustainable Energy - 2fdae283,0917300475,JSA,2024,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMcae61b32,Pengabdian Community Development - e6645f12,0892349476,JMB,2021,50000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM062597d9,Pengabdian Community Development - f4d278a6,0892349476,JMB,2020,3000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKMc335c0eb,Pengabdian Innovative Industry - 1a7eb221,0860442478,JSA,2020,5000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM0dacb434,Pengabdian Green Infrastructure - c77e2904,0654016479,JTI,2025,25000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMf4c2b758,Pengabdian Innovative Industry - 6fdd30f2,0654016479,JTI,2022,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM3675bfee,Pengabdian Green Infrastructure - aa67fdd1,0647136482,JSA,2024,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM8d1be273,Pengabdian Community Development - d02a6374,0389982483,JTI,2025,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM10e84dbd,Pengabdian Sustainable Energy - 6da9f81d,0787607484,JTK,2023,50000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKM7ffd5fc1,Pengabdian Sustainable Energy - db7e371a,0445141485,JSA,2024,5000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKMd1be12fd,Pengabdian Sustainable Energy - 1d3c32aa,0445141485,JSA,2025,25000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM56506f67,Pengabdian Sustainable Energy - ceec6f0e,0802078486,JMB,2025,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM2b74cb71,Pengabdian Sustainable Energy - 17c19019,0802078486,JMB,2023,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM0bfec982,Pengabdian Community Development - 3641aba3,0934934487,JTI,2024,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9891e6ce,Pengabdian Green Infrastructure - 0621aeab,0934934487,JTI,2024,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMd76dea1f,Pengabdian Sustainable Energy - a6bdc28a,0222916488,JTI,2020,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM2212dbe8,Pengabdian Sustainable Energy - 3493d523,0384744490,JTI,2024,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMa2586d42,Pengabdian Green Infrastructure - 6a26e8d9,0343042491,JTK,2024,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM338ea54c,Pengabdian Community Development - 83e8b13a,0935773493,JTI,2022,25000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM6d7ff9d1,Pengabdian Green Infrastructure - 72dccf1d,0349923494,JSA,2024,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMbefbc09d,Pengabdian Community Development - 5a08706e,0349923494,JSA,2020,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM24937786,Pengabdian Green Infrastructure - 4e39251a,0983016495,JMB,2022,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM498a1da4,Pengabdian Community Development - aeae1e62,0176300496,JTK,2024,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM75c17241,Pengabdian Sustainable Energy - 21cafeb1,0176300496,JTK,2021,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM601ca445,Pengabdian Green Infrastructure - 013489fe,0742125498,JTK,2024,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM04b8a06e,Pengabdian Green Infrastructure - c9fbac95,0253140499,JTI,2021,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM89bf6ea5,Pengabdian Green Infrastructure - 309efe7d,0849372500,JTP,2021,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM3aeb1430,Pengabdian Community Development - f88b097b,0849372500,JTP,2021,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM06d56915,Pengabdian Community Development - 7c1fdba9,0334481501,JSA,2024,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMe3bae1e2,Pengabdian Sustainable Energy - d8312fc9,0334481501,JSA,2023,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM45273383,Pengabdian Innovative Industry - 730c7c5f,0334481501,JSA,2021,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM3ed65fb3,Pengabdian Community Development - 87694d74,0931345504,JTP,2022,5000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMf77b1ebe,Pengabdian Sustainable Energy - a7ae3c68,0931345504,JTP,2020,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM60af6a82,Pengabdian Community Development - 9edd31c3,0576157505,JMB,2021,5000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMfd749dca,Pengabdian Sustainable Energy - 1ea666fc,0421811506,JSA,2021,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMe21fd0d6,Pengabdian Innovative Industry - 6754e4af,0655941507,JSA,2022,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMb03e3c1a,Pengabdian Sustainable Energy - e2700648,0655941507,JSA,2022,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM88674002,Pengabdian Community Development - 34426b14,0221048508,JTK,2024,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM8761d590,Pengabdian Sustainable Energy - 70ecb775,0221048508,JTK,2020,50000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM4c2f431b,Pengabdian Green Infrastructure - dfcff347,0424477509,JSA,2021,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM5c547dcf,Pengabdian Innovative Industry - aa768e15,0870434510,JTK,2022,50000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMf9c9c0c2,Pengabdian Green Infrastructure - d9dc339e,0870434510,JTK,2024,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM58fbefcf,Pengabdian Innovative Industry - c268927b,0705721511,JTP,2021,10000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMac00a491,Pengabdian Innovative Industry - 3227a06e,0745752513,JTP,2022,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM5b1f4a8d,Pengabdian Green Infrastructure - e2861ea1,0592615514,JMB,2023,50000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM1ed572f3,Pengabdian Innovative Industry - 372be07b,0592615514,JMB,2020,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMadefc62d,Pengabdian Innovative Industry - 125ae586,0326238515,JTP,2024,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMecc0584b,Pengabdian Community Development - cf3fb246,0326238515,JTP,2024,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM569bd9cc,Pengabdian Community Development - 34f183c9,0830493516,JTI,2021,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMaa39ec20,Pengabdian Green Infrastructure - e66efdcf,0830493516,JTI,2023,5000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM9dca5068,Pengabdian Innovative Industry - 280a19ab,0929707519,JTP,2025,5000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMb6c9aa22,Pengabdian Green Infrastructure - 91749166,0920478520,JTK,2025,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM27b8fb47,Pengabdian Community Development - d570b67a,0512468521,JTK,2025,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM63559cf6,Pengabdian Sustainable Energy - a5a7aaae,0512468521,JTK,2025,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM7daae660,Pengabdian Sustainable Energy - 6fadc930,0487069523,JSA,2020,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM8c3be0e9,Pengabdian Green Infrastructure - 69a72287,0880134525,JTK,2023,50000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc185eefa,Pengabdian Innovative Industry - 65ba2aad,0613363526,JMB,2022,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM0794813e,Pengabdian Green Infrastructure - e430666c,0613363526,JMB,2022,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKMad34b1a6,Pengabdian Sustainable Energy - 01bdb058,0877805527,JTP,2021,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMa753cce6,Pengabdian Sustainable Energy - ed1c85c1,0151464528,JTI,2021,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM9b3cd02a,Pengabdian Green Infrastructure - 338254ff,0355120529,JTI,2024,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM2f7c7969,Pengabdian Green Infrastructure - c62d44c1,0355120529,JTI,2024,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM76619097,Pengabdian Green Infrastructure - 09a7848f,0417769530,JTI,2021,25000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMd4aa737e,Pengabdian Green Infrastructure - fc6ec2c6,0417769530,JTI,2025,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMc10b59bd,Pengabdian Sustainable Energy - 113eb87e,0346816532,JTI,2022,3000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMf848a82d,Pengabdian Green Infrastructure - cf7c0e11,0385773533,JTK,2025,5000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM9fa215cc,Pengabdian Community Development - b8fbcb1a,0408025534,JTI,2025,10000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM884774a5,Pengabdian Green Infrastructure - 103b5baf,0114414537,JTP,2021,25000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMef997397,Pengabdian Sustainable Energy - e672be89,0114414537,JTP,2022,10000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMf94235fb,Pengabdian Sustainable Energy - dc05bf3c,0525312538,JSA,2023,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM8e94c8c8,Pengabdian Innovative Industry - 234835e9,0243520540,JTK,2025,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM43d5f0f4,Pengabdian Community Development - 8c9caeb3,0236649542,JTI,2021,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMaaa18bd4,Pengabdian Sustainable Energy - 953e7707,0236649542,JTI,2025,3000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMf432629e,Pengabdian Green Infrastructure - e20df2ef,0344027545,JSA,2020,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM6e03ed9f,Pengabdian Innovative Industry - ae2dfc3a,0344027545,JSA,2020,5000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMab101f8e,Pengabdian Sustainable Energy - 699c90d1,0497339546,JMB,2020,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMf5d81c09,Pengabdian Green Infrastructure - faeaff7c,0857284547,JTK,2024,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM23662392,Pengabdian Green Infrastructure - 03c13ee4,0978640548,JTK,2025,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMbacc7321,Pengabdian Innovative Industry - b2159342,0966999549,JTP,2022,10000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM3c238272,Pengabdian Sustainable Energy - d1db5f03,0129602551,JTP,2025,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM39745ed0,Pengabdian Green Infrastructure - fe97161f,0129602551,JTP,2025,5000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMb167d6c3,Pengabdian Innovative Industry - ccb8d52f,0203719553,JTK,2025,10000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM323807a5,Pengabdian Sustainable Energy - 05e75a25,0203719553,JTK,2020,10000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM77a9ac21,Pengabdian Sustainable Energy - 4b49985f,0494102554,JTI,2023,25000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM840fc3e0,Pengabdian Sustainable Energy - 76b625da,0494102554,JTI,2021,50000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM92f83856,Pengabdian Innovative Industry - 4339c179,0782431556,JTP,2023,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMc0c8fd6c,Pengabdian Innovative Industry - e21fad0c,0488431558,JTK,2020,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM83a428d3,Pengabdian Community Development - 010b1b08,0355261559,JTK,2021,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM65aa6a63,Pengabdian Sustainable Energy - 694cc6ed,0355261559,JTK,2023,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM5b1768ed,Pengabdian Community Development - a9c3df6c,0804242561,JSA,2021,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMeb4ab519,Pengabdian Community Development - c6da999a,0804242561,JSA,2020,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM413b4cdf,Pengabdian Innovative Industry - 12f46e4c,0599195562,JSA,2022,25000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMff001013,Pengabdian Sustainable Energy - 3067028e,0599195562,JSA,2023,5000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMd5b60e44,Pengabdian Sustainable Energy - a99e3b98,0599195562,JSA,2024,3000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKMe03fbfd8,Pengabdian Green Infrastructure - b752718e,0517969564,JTI,2021,50000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM3900f9ba,Pengabdian Community Development - c5ce7223,0517969564,JTI,2022,25000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM794b357a,Pengabdian Innovative Industry - 370bc64d,0550605567,JTP,2025,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM471efc28,Pengabdian Sustainable Energy - 813257dd,0505220568,JSA,2023,5000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM439e4133,Pengabdian Sustainable Energy - af99700c,0596727569,JSA,2021,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMdc476870,Pengabdian Community Development - 967dd29f,0165069570,JTI,2020,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMe445d1b6,Pengabdian Community Development - 0c2ce421,0165069570,JTI,2023,3000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMd26b4527,Pengabdian Sustainable Energy - 11751d88,0459463572,JSA,2020,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM762e4c1e,Pengabdian Community Development - 3f3a92ae,0459463572,JSA,2020,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM3589d5b8,Pengabdian Innovative Industry - c76381c4,0459463572,JSA,2022,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM43a32e33,Pengabdian Community Development - f61492bf,0964901573,JTK,2020,5000000,Pesawaran,True,False,2026-05-13T19:21:14+07:00
+PKM2066bdbd,Pengabdian Sustainable Energy - 89573d28,0964901573,JTK,2020,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMab042087,Pengabdian Community Development - 6f8a8164,0964901573,JTK,2020,5000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM17a6c3e0,Pengabdian Community Development - 31151cb7,0838885574,JTI,2020,5000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM156321ca,Pengabdian Green Infrastructure - de136b6d,0646838575,JSA,2021,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM9a44818b,Pengabdian Sustainable Energy - 5f7ffcff,0646838575,JSA,2022,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMd04b6627,Pengabdian Community Development - 0e6a949b,0524001576,JTI,2022,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMd5c8584c,Pengabdian Sustainable Energy - ff31826a,0524001576,JTI,2022,10000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKMba4327e0,Pengabdian Community Development - b8bb4cf4,0186242577,JTI,2021,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMa952abd4,Pengabdian Innovative Industry - e2135c74,0186242577,JTI,2025,10000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMaca9cd47,Pengabdian Community Development - af901b66,0965041578,JTI,2025,25000000,Lampung Timur,True,False,2026-05-13T19:21:14+07:00
+PKM0e872e55,Pengabdian Innovative Industry - 3d00ecf3,0834331580,JTK,2023,5000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM32eb5e07,Pengabdian Sustainable Energy - 191269e0,0834331580,JTK,2024,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM805535c8,Pengabdian Community Development - 51976d37,0834331580,JTK,2025,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM39b81ce6,Pengabdian Sustainable Energy - 92fc8f22,0960416582,JSA,2024,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMf187f60c,Pengabdian Green Infrastructure - 796e47a2,0379454583,JSA,2022,10000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM4b869224,Pengabdian Community Development - 88f4c76f,0379454583,JSA,2021,3000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMbdee6f57,Pengabdian Sustainable Energy - 8c458d6e,0778163584,JTP,2020,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc0d0fc0a,Pengabdian Sustainable Energy - ec37ca6a,0532334586,JSA,2021,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMd9ef91f2,Pengabdian Innovative Industry - 5c93ab67,0532334586,JSA,2023,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM79fc6cb2,Pengabdian Sustainable Energy - 2f169911,0269160587,JTP,2020,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM829a2f07,Pengabdian Green Infrastructure - 48772921,0269160587,JTP,2025,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM2be6037d,Pengabdian Innovative Industry - 8e7f4d74,0269160587,JTP,2020,10000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMf20edb78,Pengabdian Sustainable Energy - 92bc1b29,0841444588,JTK,2025,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMd0bab54f,Pengabdian Community Development - bbcdd19d,0841444588,JTK,2020,10000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMc2067303,Pengabdian Community Development - 1c61e35f,0550541589,JTP,2022,50000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM9f9fcc61,Pengabdian Green Infrastructure - 3dc4a4e9,0203784590,JMB,2020,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMe1633e7b,Pengabdian Community Development - db0670f0,0203784590,JMB,2020,5000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMc2711cca,Pengabdian Sustainable Energy - e358ffda,0519475591,JTK,2021,25000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMc8933215,Pengabdian Community Development - 54719288,0699285592,JTP,2020,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM228469c1,Pengabdian Community Development - 3512a7e7,0699285592,JTP,2021,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM5f5d4c85,Pengabdian Community Development - 6ba3ef85,0368693593,JSA,2021,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM6cc4d41c,Pengabdian Green Infrastructure - e21376b1,0368693593,JSA,2021,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM646b1a20,Pengabdian Sustainable Energy - 2f0c50ed,0126302595,JTI,2023,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMf359a252,Pengabdian Green Infrastructure - aba72a1a,0505857596,JTP,2025,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMa532575b,Pengabdian Sustainable Energy - 9d177387,0505857596,JTP,2023,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM820b518e,Pengabdian Green Infrastructure - 7a1de207,0521669598,JTK,2023,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMa0190a40,Pengabdian Innovative Industry - 52ac277e,0521669598,JTK,2023,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM19001289,Pengabdian Innovative Industry - f4b879cc,0826805599,JTI,2025,10000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMf9066061,Pengabdian Community Development - 027bf5b8,0353998601,JTI,2022,25000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM6bcbc228,Pengabdian Sustainable Energy - 95135f1a,0353998601,JTI,2024,25000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMb4be6708,Pengabdian Community Development - c9a0b32d,0245308602,JTI,2021,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMd553cbeb,Pengabdian Innovative Industry - 2dec231c,0713682603,JSA,2020,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM3847be86,Pengabdian Community Development - 256bdd7f,0713682603,JSA,2021,10000000,Lampung Utara,True,True,2026-05-13T19:21:14+07:00
+PKM76455d18,Pengabdian Community Development - 87d15cd5,0713682603,JSA,2022,5000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM933c3bfb,Pengabdian Community Development - 5e3ff30c,0549063605,JTI,2024,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM05dd2d49,Pengabdian Innovative Industry - 2f5c6ae4,0122332606,JTI,2025,50000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMc3ade7c1,Pengabdian Community Development - 589a3aac,0122332606,JTI,2022,3000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM9577a5e0,Pengabdian Community Development - 455014d6,0326064607,JTP,2022,50000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM5b21baa8,Pengabdian Green Infrastructure - 8bffe292,0455298609,JTP,2023,25000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM7855095c,Pengabdian Community Development - 5a0003dd,0455298609,JTP,2024,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM0443f64c,Pengabdian Sustainable Energy - 4e1d7428,0615501614,JTI,2021,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM7eba6059,Pengabdian Innovative Industry - 92b2d0e6,0572247615,JTI,2025,3000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMbef49b32,Pengabdian Green Infrastructure - eaff0747,0572247615,JTI,2025,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMadd68884,Pengabdian Innovative Industry - 6fd0dcce,0444569616,JTI,2023,10000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMc767888b,Pengabdian Sustainable Energy - 1244d329,0477981619,JMB,2020,50000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM97adef40,Pengabdian Community Development - 753cacd6,0278815627,JTI,2022,5000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM0041b8ac,Pengabdian Community Development - 0984475f,0500681629,JTI,2020,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMd10361da,Pengabdian Sustainable Energy - 62e5103c,0316119630,JTK,2025,25000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM846b5a4e,Pengabdian Green Infrastructure - a123919f,0316119630,JTK,2024,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM45c8175b,Pengabdian Green Infrastructure - 66065315,0737212631,JTP,2023,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMc3fa0875,Pengabdian Innovative Industry - c7167ec7,0737212631,JTP,2024,5000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMd0d182e6,Pengabdian Innovative Industry - daf5948c,0451676632,JTI,2025,50000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMe9f1d76f,Pengabdian Green Infrastructure - 933e3a55,0451676632,JTI,2023,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM4a5bbb0d,Pengabdian Innovative Industry - fd783b31,0978897633,JTK,2024,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM71bc9c25,Pengabdian Green Infrastructure - ae2f8147,0409126634,JMB,2023,25000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMc1ce78fe,Pengabdian Green Infrastructure - bbc979af,0409126634,JMB,2021,25000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM777d5179,Pengabdian Green Infrastructure - 445fc7a5,0409126634,JMB,2024,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM0a90d610,Pengabdian Innovative Industry - 85b7f938,0857247635,JTK,2024,3000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM5ebd98d1,Pengabdian Sustainable Energy - ca3263e9,0925689636,JMB,2021,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM6b9f2368,Pengabdian Community Development - a72d7dd1,0510879637,JSA,2020,50000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMebb6e35e,Pengabdian Community Development - 8ff150db,0782342638,JTI,2021,25000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMf4859c98,Pengabdian Green Infrastructure - 1dea584b,0235902640,JTP,2025,5000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM6b9e1213,Pengabdian Community Development - bfe0bef8,0182354641,JSA,2023,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM81000b4f,Pengabdian Innovative Industry - 67b6004e,0229694644,JTI,2021,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKMf08070b2,Pengabdian Community Development - 4654083f,0831570645,JTI,2024,25000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM428ed448,Pengabdian Community Development - da670fac,0831570645,JTI,2021,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMbf045b09,Pengabdian Innovative Industry - e5dead5f,0926529647,JTI,2022,5000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM79b7217d,Pengabdian Innovative Industry - 4afc7fe6,0926529647,JTI,2021,25000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM5c55a9aa,Pengabdian Innovative Industry - b34c5659,0719028648,JTP,2021,25000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM13a4740c,Pengabdian Green Infrastructure - a22c42ba,0555281649,JTP,2021,50000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM7c5c817d,Pengabdian Community Development - 45c0b980,0555281649,JTP,2024,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM0c4df08b,Pengabdian Green Infrastructure - edc95a29,0957099650,JSA,2025,3000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMc40ea269,Pengabdian Innovative Industry - 7e0bacbf,0184510651,JTI,2020,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM2b6011e1,Pengabdian Innovative Industry - a302aa26,0271379653,JTI,2021,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM76a6ed46,Pengabdian Innovative Industry - 380b2d54,0515646654,JSA,2025,50000000,Metro,True,False,2026-05-13T19:21:14+07:00
+PKM993cee7a,Pengabdian Green Infrastructure - 6adced44,0515646654,JSA,2020,10000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKM3a02e3e2,Pengabdian Community Development - 2b186032,0265305655,JTP,2022,10000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM6ba90640,Pengabdian Green Infrastructure - 4808824e,0265305655,JTP,2025,10000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMfaf17f5a,Pengabdian Sustainable Energy - dc333096,0717771658,JSA,2024,50000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM9b1dcd9b,Pengabdian Green Infrastructure - 6094699c,0717771658,JSA,2023,5000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM923fa8aa,Pengabdian Innovative Industry - 0591bafa,0476658659,JTI,2022,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM91e5a47f,Pengabdian Sustainable Energy - 544d9f68,0239210660,JTK,2020,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMa3588d0d,Pengabdian Sustainable Energy - 991f500d,0239210660,JTK,2025,25000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM7e90dac3,Pengabdian Green Infrastructure - 30187d33,0614571661,JTI,2024,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKMe15e0a96,Pengabdian Green Infrastructure - 37bc1cfc,0369456662,JTP,2022,5000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9639eb87,Pengabdian Innovative Industry - d65e4184,0369456662,JTP,2023,3000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMc6530d8d,Pengabdian Sustainable Energy - adc6d087,0298164663,JSA,2020,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM9fd6b099,Pengabdian Community Development - 2b337862,0298164663,JSA,2021,10000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM765f76af,Pengabdian Innovative Industry - 0cfe1d94,0975946664,JSA,2023,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMa2e7da70,Pengabdian Green Infrastructure - 9373cacf,0975946664,JSA,2021,25000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMe2c785fb,Pengabdian Green Infrastructure - 9bee3463,0708719665,JTP,2024,10000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMece0b041,Pengabdian Green Infrastructure - a2b15e34,0708719665,JTP,2022,50000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM60f8765e,Pengabdian Community Development - 37bbbbee,0359125666,JSA,2025,10000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKM204fd590,Pengabdian Community Development - 3b9e5bca,0359125666,JSA,2022,50000000,Tanggamus,True,False,2026-05-13T19:21:14+07:00
+PKM085efd24,Pengabdian Innovative Industry - e0986e9b,0949877668,JTK,2025,5000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM888fdcb0,Pengabdian Innovative Industry - 41c953df,0117320669,JTI,2024,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM97605f15,Pengabdian Green Infrastructure - 85b673de,0664703671,JMB,2021,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM0f9ae174,Pengabdian Community Development - 70f27868,0664703671,JMB,2020,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM7b318a79,Pengabdian Sustainable Energy - 313b0d25,0664703671,JMB,2021,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM1ec72c6d,Pengabdian Community Development - b2a61ee1,0664703671,JMB,2021,5000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM52cec607,Pengabdian Innovative Industry - a81c3138,0196507675,JTK,2022,25000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM042f07f1,Pengabdian Community Development - 28821d44,0196507675,JTK,2022,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM849341df,Pengabdian Green Infrastructure - 2ffab46d,0326307677,JTK,2025,25000000,Lampung Selatan,True,True,2026-05-13T19:21:14+07:00
+PKMbf58615b,Pengabdian Innovative Industry - cd356f8a,0478886679,JTI,2022,50000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM044f7f31,Pengabdian Community Development - b9d36fe1,0478886679,JTI,2020,5000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM1a9cf0ca,Pengabdian Community Development - f9b2d8d6,0643280680,JTP,2021,3000000,Tulang Bawang,False,False,2026-05-13T19:21:14+07:00
+PKM028e920e,Pengabdian Sustainable Energy - 0f781067,0751390681,JTK,2024,50000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMa095ac76,Pengabdian Community Development - 1ea1b4f2,0751390681,JTK,2025,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM870dd6db,Pengabdian Green Infrastructure - bb24f7ea,0546237682,JTP,2021,10000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM8d4b91b7,Pengabdian Sustainable Energy - c14c47f6,0214946685,JTI,2025,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM0ea5fe56,Pengabdian Sustainable Energy - 69e82fd4,0214946685,JTI,2024,5000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMb4ff51f0,Pengabdian Green Infrastructure - 44fe1f37,0954024688,JTI,2021,25000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM91346a67,Pengabdian Innovative Industry - 3f6fcdfe,0954024688,JTI,2024,10000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMcec140ed,Pengabdian Sustainable Energy - 9b9cb6d7,0526666690,JTP,2023,50000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMabec1159,Pengabdian Innovative Industry - 8811980f,0526666690,JTP,2022,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM3e4ad92e,Pengabdian Innovative Industry - a02eb89a,0526666690,JTP,2024,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM65bb59bb,Pengabdian Sustainable Energy - be9ffcc7,0574975692,JTK,2025,3000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM140e67d0,Pengabdian Innovative Industry - be0a8770,0110048693,JMB,2025,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM14c35f7e,Pengabdian Community Development - 339570a8,0384194695,JSA,2022,3000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM2d445fed,Pengabdian Innovative Industry - 1fa70f77,0194292696,JTI,2025,5000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM524036e9,Pengabdian Community Development - 8fc0a936,0528742697,JTK,2025,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM7ceea633,Pengabdian Community Development - 082df5db,0271442699,JTK,2023,5000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKMba08c330,Pengabdian Innovative Industry - 12487b64,0139288703,JTK,2023,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM751b7eeb,Pengabdian Green Infrastructure - 02f9b047,0629720705,JTI,2020,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM6f115ff8,Pengabdian Sustainable Energy - a1077616,0629720705,JTI,2020,3000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKMc52574fd,Pengabdian Sustainable Energy - 348d929a,0516354706,JTI,2024,50000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM170a4982,Pengabdian Sustainable Energy - 12151792,0177028707,JSA,2020,50000000,Way Kanan,False,True,2026-05-13T19:21:14+07:00
+PKM495b7078,Pengabdian Innovative Industry - 3b92098f,0475011709,JTI,2024,25000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKM63b2774c,Pengabdian Innovative Industry - 944f22fc,0475011709,JTI,2024,3000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMb03d38bc,Pengabdian Community Development - 932548c3,0217257710,JTI,2022,3000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKMd3f8267a,Pengabdian Sustainable Energy - c2ac03e3,0415659711,JTK,2021,5000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM451aea75,Pengabdian Innovative Industry - 9439987f,0415659711,JTK,2025,3000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMec3213cb,Pengabdian Community Development - 6e279ec0,0202352712,JTK,2023,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM11e4a6be,Pengabdian Green Infrastructure - 3c433f2f,0697639713,JTI,2023,10000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMa70e4938,Pengabdian Sustainable Energy - e92ea8f1,0697639713,JTI,2024,3000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM0e144fd8,Pengabdian Green Infrastructure - 919aa9a2,0475467716,JTI,2023,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKM6935c033,Pengabdian Green Infrastructure - c0b4005f,0300602717,JSA,2021,5000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM1b3e30ee,Pengabdian Innovative Industry - ca03d242,0462848719,JMB,2020,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMb49d5c50,Pengabdian Green Infrastructure - 34ea80a5,0237180720,JSA,2022,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM442717dd,Pengabdian Community Development - fff24026,0115389721,JTI,2025,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMb80f3048,Pengabdian Green Infrastructure - b1a31384,0311515722,JTK,2022,5000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM537ade8e,Pengabdian Innovative Industry - 0ee2442b,0385526723,JSA,2020,25000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM0db3b825,Pengabdian Green Infrastructure - bde6b937,0385526723,JSA,2022,50000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMe67dab2a,Pengabdian Sustainable Energy - d393ac6d,0755430725,JTK,2025,3000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM147edc31,Pengabdian Green Infrastructure - 52dee159,0179957726,JTI,2020,5000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKMa0465bc2,Pengabdian Green Infrastructure - 21abc68d,0179957726,JTI,2022,5000000,Metro,False,False,2026-05-13T19:21:14+07:00
+PKMf164f8ca,Pengabdian Green Infrastructure - 4b23ba73,0539244728,JTK,2025,5000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM0366c40c,Pengabdian Sustainable Energy - 4b825116,0539244728,JTK,2022,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMf52421d5,Pengabdian Sustainable Energy - 108ac1d7,0830012731,JSA,2024,50000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM516d0225,Pengabdian Innovative Industry - faf1c085,0830012731,JSA,2024,3000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMe45740f0,Pengabdian Community Development - 16eafdfb,0927808734,JTK,2025,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM65b389c9,Pengabdian Green Infrastructure - 26ec1fe9,0927808734,JTK,2022,10000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM8352208e,Pengabdian Innovative Industry - 2a3895cf,0975010735,JTK,2022,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM3ee3d19e,Pengabdian Sustainable Energy - da321b99,0977509739,JTP,2021,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM5341e5f9,Pengabdian Sustainable Energy - 55634367,0977509739,JTP,2020,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM22466d23,Pengabdian Green Infrastructure - b7d1a590,0394868740,JTI,2022,25000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM1800aeb0,Pengabdian Community Development - 5858b77e,0116326741,JMB,2020,50000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM25534786,Pengabdian Community Development - 4be66b10,0438156742,JTK,2023,25000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM4f4bc70f,Pengabdian Green Infrastructure - 1eb89827,0457796744,JTK,2022,3000000,Lampung Selatan,False,False,2026-05-13T19:21:14+07:00
+PKMfca78df6,Pengabdian Innovative Industry - f6d3a84b,0524631745,JMB,2023,10000000,Tulang Bawang,True,False,2026-05-13T19:21:14+07:00
+PKM457d5b6d,Pengabdian Innovative Industry - 4b246c9f,0524631745,JMB,2022,5000000,Lampung Barat,False,False,2026-05-13T19:21:14+07:00
+PKMcca23f3e,Pengabdian Green Infrastructure - a3502f97,0524631745,JMB,2020,10000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKMc063b380,Pengabdian Community Development - fdba18b7,0380213748,JTK,2024,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM6faf2588,Pengabdian Sustainable Energy - 0ae2d22c,0774826750,JSA,2023,50000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM52ab3aae,Pengabdian Innovative Industry - 266eb332,0936623755,JTI,2025,5000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKM8cc96b8a,Pengabdian Sustainable Energy - 57f9d71e,0885358756,JSA,2023,25000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKM0015f621,Pengabdian Green Infrastructure - ad3123a8,0242126758,JTP,2023,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKM63992e45,Pengabdian Innovative Industry - fc664f87,0513455759,JTI,2025,5000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKMfeca85aa,Pengabdian Innovative Industry - ed9f4239,0321419760,JSA,2025,5000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMab63e2e1,Pengabdian Sustainable Energy - c095791c,0629492764,JSA,2022,25000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM1189c94e,Pengabdian Innovative Industry - 00ab2e55,0758692765,JTI,2020,25000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKM1b0767b9,Pengabdian Innovative Industry - 33568a8f,0758692765,JTI,2024,50000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKMb58e5f0b,Pengabdian Green Infrastructure - 7281b49d,0758692765,JTI,2025,25000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM84263305,Pengabdian Sustainable Energy - 8f5f3ab7,0422371766,JMB,2024,5000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKMbd1bebab,Pengabdian Innovative Industry - b5a53492,0422371766,JMB,2023,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMe3ac3b69,Pengabdian Innovative Industry - b9c8c9d6,0587101767,JTI,2025,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM546241ef,Pengabdian Community Development - aeeaef3c,0587101767,JTI,2020,50000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMd1f53d2c,Pengabdian Innovative Industry - 063f7298,0353090768,JTK,2021,5000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM5170cd35,Pengabdian Innovative Industry - 9465fc6a,0353090768,JTK,2024,50000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMf5ba250e,Pengabdian Green Infrastructure - b0a7fff1,0353470770,JTP,2024,10000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKMb2eb2d8e,Pengabdian Green Infrastructure - 1522e825,0130214771,JSA,2021,10000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM6fa2c32a,Pengabdian Community Development - 659acb77,0871761772,JTK,2020,10000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM5ebf6c46,Pengabdian Community Development - 3dc33132,0552807773,JTK,2022,5000000,Lampung Barat,False,True,2026-05-13T19:21:14+07:00
+PKM40a7a26f,Pengabdian Community Development - 77e6b8ae,0552807773,JTK,2024,50000000,Pesisir Barat,False,True,2026-05-13T19:21:14+07:00
+PKM94920c56,Pengabdian Innovative Industry - b5166557,0552807773,JTK,2020,3000000,Lampung Selatan,False,True,2026-05-13T19:21:14+07:00
+PKM6a0c6e64,Pengabdian Green Infrastructure - 46fb8ca3,0715905774,JTP,2021,5000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMcd492130,Pengabdian Sustainable Energy - ddc04693,0455034776,JTK,2023,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMb21d6a13,Pengabdian Innovative Industry - 527ad802,0455034776,JTK,2020,10000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMc1c5229f,Pengabdian Community Development - 64ed4ae2,0412450777,JSA,2024,25000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMf6155fbc,Pengabdian Community Development - f112d14a,0315677778,JTP,2025,3000000,Tulang Bawang,False,True,2026-05-13T19:21:14+07:00
+PKMab55d1de,Pengabdian Community Development - f208eca6,0315677778,JTP,2021,25000000,Pesawaran,False,True,2026-05-13T19:21:14+07:00
+PKMb963c2aa,Pengabdian Community Development - 0d616dee,0333764779,JTK,2025,10000000,Lampung Timur,False,False,2026-05-13T19:21:14+07:00
+PKM76ad2a59,Pengabdian Community Development - 3f6981d5,0333764779,JTK,2023,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKMc60cd054,Pengabdian Innovative Industry - 9dfe5bf2,0316936780,JTP,2024,3000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKM252bba79,Pengabdian Community Development - 49144479,0506082781,JTP,2023,3000000,Lampung Tengah,False,True,2026-05-13T19:21:14+07:00
+PKMefc47f52,Pengabdian Green Infrastructure - df4b0536,0451194782,JTI,2025,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKM9ac75794,Pengabdian Community Development - 9033f8d5,0748459783,JTI,2024,3000000,Mesuji,False,False,2026-05-13T19:21:14+07:00
+PKMc385e7b7,Pengabdian Innovative Industry - 0595709b,0208400785,JTK,2020,25000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKM00a5c22b,Pengabdian Community Development - dd7eeb8d,0594492787,JSA,2024,50000000,Bandar Lampung,False,True,2026-05-13T19:21:14+07:00
+PKM21728296,Pengabdian Green Infrastructure - b6ba51d4,0594492787,JSA,2025,50000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKMa82e5dab,Pengabdian Sustainable Energy - 9a238657,0441671788,JTI,2024,3000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM776cf2e2,Pengabdian Community Development - 38c84d1e,0441671788,JTI,2025,25000000,Pringsewu,False,True,2026-05-13T19:21:14+07:00
+PKM3dba33ef,Pengabdian Sustainable Energy - 92210a58,0196230790,JTK,2022,5000000,Lampung Utara,False,True,2026-05-13T19:21:14+07:00
+PKMaab5912e,Pengabdian Community Development - 42fbb022,0899186792,JTI,2021,10000000,Way Kanan,False,False,2026-05-13T19:21:14+07:00
+PKM6339f1f9,Pengabdian Innovative Industry - f9c9aa98,0899186792,JTI,2023,3000000,Tanggamus,False,True,2026-05-13T19:21:14+07:00
+PKM27b92ae9,Pengabdian Community Development - 4fd93abe,0705492793,JTP,2021,50000000,Pringsewu,False,False,2026-05-13T19:21:14+07:00
+PKM8caf8553,Pengabdian Green Infrastructure - 8141df2a,0627720794,JMB,2022,5000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKMa6911eb8,Pengabdian Sustainable Energy - fcc3ed76,0627720794,JMB,2025,10000000,Lampung Utara,False,False,2026-05-13T19:21:14+07:00
+PKM8dda1b60,Pengabdian Innovative Industry - 2398a36d,0201321795,JTK,2022,25000000,Bandar Lampung,False,False,2026-05-13T19:21:14+07:00
+PKMe4ffa8f5,Pengabdian Green Infrastructure - f3c1ec5f,0874762796,JTI,2024,10000000,Pesisir Barat,False,False,2026-05-13T19:21:14+07:00
+PKM1004c5a0,Pengabdian Sustainable Energy - a089031b,0414889797,JTI,2023,10000000,Lampung Timur,False,True,2026-05-13T19:21:14+07:00
+PKMee7df345,Pengabdian Green Infrastructure - e117262c,0646910798,JSA,2024,50000000,Lampung Tengah,False,False,2026-05-13T19:21:14+07:00
+PKMe6ad351a,Pengabdian Community Development - b5c99065,0646910798,JSA,2023,3000000,Metro,False,True,2026-05-13T19:21:14+07:00
+PKM552ba6a2,Pengabdian Green Infrastructure - c600c90b,0646910798,JSA,2020,50000000,Mesuji,False,True,2026-05-13T19:21:14+07:00
+PKMb86e4143,Pengabdian Community Development - a17890e7,0644134799,JSA,2022,25000000,Pringsewu,True,True,2026-05-13T19:21:14+07:00
+PKM8aa5f488,Pengabdian Green Infrastructure - 9bb26bfe,0644134799,JSA,2023,25000000,Tanggamus,False,False,2026-05-13T19:21:14+07:00
+PKM79120375,Pengabdian Innovative Industry - 50e2117a,0644134799,JSA,2020,10000000,Pesawaran,False,False,2026-05-13T19:21:14+07:00
+PKM940e7368,Pengabdian Green Infrastructure - 178f6a68,0797829000,JSA,2021,25000000,Lampung Tengah,False,True,2026-05-13T19:21:19+07:00
+PKM4023d66a,Pengabdian Green Infrastructure - 355ebbda,0797829000,JSA,2024,10000000,Tanggamus,False,False,2026-05-13T19:21:19+07:00
+PKM960164f8,Pengabdian Innovative Industry - 79d70aaf,0480240001,JTK,2023,25000000,Pringsewu,False,True,2026-05-13T19:21:19+07:00
+PKM15800a87,Pengabdian Community Development - 23acb1c8,0328400002,JMB,2024,10000000,Tanggamus,False,True,2026-05-13T19:21:19+07:00
+PKM6c6b5a97,Pengabdian Innovative Industry - 0384d0ed,0139179003,JTP,2020,25000000,Bandar Lampung,False,False,2026-05-13T19:21:19+07:00
+PKM9078e763,Pengabdian Community Development - 59495c19,0520355008,JMB,2023,50000000,Metro,False,True,2026-05-13T19:21:19+07:00
+PKM6d03a62f,Pengabdian Sustainable Energy - 3caf259e,0520355008,JMB,2021,3000000,Lampung Tengah,False,True,2026-05-13T19:21:19+07:00
+PKMcffd926e,Pengabdian Green Infrastructure - 1e0ae82d,0520355008,JMB,2022,25000000,Lampung Timur,False,False,2026-05-13T19:21:19+07:00
+PKMa79e52f1,Pengabdian Sustainable Energy - 427d9efb,0405885009,JTI,2020,10000000,Pesawaran,False,False,2026-05-13T19:21:19+07:00
+PKMcb6fe16d,Pengabdian Innovative Industry - 902c8e31,0405885009,JTI,2024,10000000,Lampung Tengah,False,False,2026-05-13T19:21:19+07:00
+PKM5806bb8b,Pengabdian Green Infrastructure - 910301ef,0254582011,JTK,2021,3000000,Tanggamus,False,False,2026-05-13T19:21:19+07:00
+PKM1c521fa6,Pengabdian Innovative Industry - 48ed5dc0,0254582011,JTK,2025,5000000,Pringsewu,False,False,2026-05-13T19:21:19+07:00
+PKM68933b06,Pengabdian Sustainable Energy - f4a00c5d,0642782012,JTP,2020,25000000,Metro,False,False,2026-05-13T19:21:19+07:00
+PKM9187d9b7,Pengabdian Green Infrastructure - 9366d8b1,0912670013,JTK,2020,25000000,Metro,False,False,2026-05-13T19:21:19+07:00
+PKMe82ac6c1,Pengabdian Sustainable Energy - 84bb9179,0375523015,JTK,2024,5000000,Way Kanan,False,True,2026-05-13T19:21:19+07:00
+PKM38223a87,Pengabdian Community Development - c398f06c,0353513016,JTK,2024,3000000,Way Kanan,False,False,2026-05-13T19:21:19+07:00
+PKM57852ad4,Pengabdian Sustainable Energy - 39c16d1e,0353513016,JTK,2025,50000000,Metro,False,False,2026-05-13T19:21:19+07:00
+PKM74b457c0,Pengabdian Green Infrastructure - 0ab1227b,0492926018,JTI,2025,50000000,Metro,False,True,2026-05-13T19:21:19+07:00
+PKMdabd5d22,Pengabdian Community Development - ec8b641e,0492926018,JTI,2021,10000000,Pesisir Barat,False,True,2026-05-13T19:21:19+07:00

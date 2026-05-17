@@ -1,0 +1,821 @@
+dosen_id,nama,prodi_id,jurusan_id,jenis_kelamin,status_asn,pendidikan_terakhir,jabatan_fungsional,sedang_tugas_belajar,sertifikat_dosen,berasal_praktisi,tahun_bergabung,ingested_at
+0674021000,Yusuf Wijaya,TP,JTP,P,Non-ASN,S2,Tenaga Pengajar,False,True,True,2019,2026-05-13T19:21:14+07:00
+0956098001,Kartika Fauzi,SK,JSA,P,PPPK,S3,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0552708002,Nisa Susanti,MB,JMB,L,PPPK,S2,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0162146003,Galih Kusuma,FT,JSA,P,PPPK,S3,Lektor Kepala,False,True,False,2014,2026-05-13T19:21:14+07:00
+0778203004,Omar Nugroho,PWK,JTI,P,Non-ASN,S3,Lektor,False,True,False,2024,2026-05-13T19:21:14+07:00
+0865094005,Yani Setiawan,FIS,JSA,P,PNS,S3,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0864868006,Muhammad Purnama,TIF_S2,JTK,L,PPPK,S3,Asisten Ahli,False,True,False,2014,2026-05-13T19:21:14+07:00
+0406705007,Novi Suryadi,FIS,JSA,P,PPPK,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0983330008,Kevin Suherman,FT,JSA,L,Non-ASN,S2,Lektor Kepala,False,False,False,2015,2026-05-13T19:21:14+07:00
+0205194009,Ahmad Gunawan,BIO,JSA,P,PNS,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0618414010,Omar Ramadhani,TIF_S2,JTK,L,PPPK,S2,Lektor,False,False,False,2018,2026-05-13T19:21:14+07:00
+0864073011,Fitri Firmansyah,TK,JTP,P,Non-ASN,S3,Guru Besar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0801920012,Umar Wibowo,BIO,JSA,L,PNS,S2,Tenaga Pengajar,False,False,True,2015,2026-05-13T19:21:14+07:00
+0338301013,Galih Mahendra,AR,JTI,P,Non-ASN,S2,Lektor Kepala,True,True,False,2019,2026-05-13T19:21:14+07:00
+0114646014,Taufik Safitri,FIS,JSA,L,PNS,S3,Lektor,False,True,True,2024,2026-05-13T19:21:14+07:00
+0151274015,Rina Wulandari,AR,JTI,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0451448016,Nadia Permana,FT,JSA,P,PPPK,S3,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0403803017,Andi Mahendra,TG,JTI,P,Non-ASN,S2,Tenaga Pengajar,False,True,True,2020,2026-05-13T19:21:14+07:00
+0158385018,Gilang Suryadi,TL,JTK,L,Non-ASN,S2,Guru Besar,False,False,True,2014,2026-05-13T19:21:14+07:00
+0969230019,Taufik Wulandari,TG,JTI,P,Non-ASN,S3,Tenaga Pengajar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0564646020,Fitri Ramadhan,TP,JTP,L,PNS,S2,Guru Besar,False,True,True,2014,2026-05-13T19:21:14+07:00
+0384611021,Maulana Setiawan,IF,JTK,P,Non-ASN,S2,Guru Besar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0994613022,Galih Prasetyo,GL,JTI,L,PPPK,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0884093023,Hadi Wijaya,TE,JTK,P,PPPK,S3,Asisten Ahli,False,False,False,2018,2026-05-13T19:21:14+07:00
+0227880024,Hana Santoso,AG,JTP,P,PNS,S3,Tenaga Pengajar,False,False,True,2024,2026-05-13T19:21:14+07:00
+0362517025,Kartika Santoso,SI,JTK,P,Non-ASN,S3,Asisten Ahli,False,False,False,2015,2026-05-13T19:21:14+07:00
+0104173026,Jihan Surya,TE,JTK,L,PNS,S2,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0624689027,Kartika Prasetyo,MB,JMB,L,PNS,S2,Lektor Kepala,False,False,False,2015,2026-05-13T19:21:14+07:00
+0810558028,Citra Santoso,AR,JTI,P,PPPK,S3,Asisten Ahli,False,False,False,2019,2026-05-13T19:21:14+07:00
+0395198029,Putri Aditya,MTK,JMB,L,Non-ASN,S2,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0101115030,Luna Aditya,SI,JTK,P,PNS,S3,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0672850031,Bella Mahendra,MB,JMB,L,PNS,S2,Tenaga Pengajar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0843085032,Nadia Anggraini,FIS,JSA,L,Non-ASN,S3,Lektor Kepala,False,True,False,2022,2026-05-13T19:21:14+07:00
+0469665033,Fajar Handayani,TM,JTP,L,PPPK,S3,Lektor Kepala,False,False,False,2019,2026-05-13T19:21:14+07:00
+0535965034,Elsa Suryadi,BIO,JSA,L,PNS,S2,Guru Besar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0960758035,Wati Santoso,GD,JTI,P,Non-ASN,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0984515036,Sinta Permana,GD,JTI,L,Non-ASN,S3,Asisten Ahli,False,False,False,2015,2026-05-13T19:21:14+07:00
+0980274037,Fajar Suherman,GD,JTI,P,PNS,S3,Asisten Ahli,True,False,False,2014,2026-05-13T19:21:14+07:00
+0861537038,Kevin Setiawan,TI,JTK,P,Non-ASN,S3,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0686745039,Arif Safitri,TM,JTP,L,Non-ASN,S2,Guru Besar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0625493040,Galih Ramadhan,TLK,JTI,P,Non-ASN,S3,Guru Besar,False,False,False,2014,2026-05-13T19:21:14+07:00
+0140483041,Budi Permana,FT,JSA,P,Non-ASN,S2,Guru Besar,False,True,True,2019,2026-05-13T19:21:14+07:00
+0756674042,Nadia Damayanti,TS_S2,JTI,L,Non-ASN,S2,Lektor Kepala,False,False,True,2021,2026-05-13T19:21:14+07:00
+0981066043,Dinda Maharani,TK,JTP,L,PNS,S3,Tenaga Pengajar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0887456044,Gilang Laksono,TP,JTP,L,PNS,S2,Lektor,False,False,False,2022,2026-05-13T19:21:14+07:00
+0851856045,Rizki Mahendra,TI,JTK,L,PNS,S3,Asisten Ahli,False,True,False,2025,2026-05-13T19:21:14+07:00
+0432875046,Omar Pratama,GD,JTI,L,PNS,S2,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0582088047,Fajar Wijaya,AG,JTP,L,PPPK,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0514594048,Wati Fitriani,TK,JTP,L,Non-ASN,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0651207049,Nadia Purnama,TL,JTK,L,Non-ASN,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0334615050,Bella Fauzi,PWK,JTI,P,PNS,S2,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0306695051,Wahyu Hidayat,KIM,JSA,P,Non-ASN,S3,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0360173052,Sinta Saputra,AR,JTI,L,PNS,S3,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0798294053,Okta Santoso,GD,JTI,P,PNS,S2,Lektor Kepala,False,True,False,2018,2026-05-13T19:21:14+07:00
+0427571054,Omar Safitri,SK,JSA,L,Non-ASN,S2,Lektor Kepala,False,False,False,2017,2026-05-13T19:21:14+07:00
+0417704055,Wahyu Ramadhani,TG,JTI,L,PPPK,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0188244056,Muhammad Putra,GD,JTI,L,Non-ASN,S3,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0168926057,Bayu Ramadhani,TI,JTK,L,Non-ASN,S3,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0973834058,Jihan Safitri,TI,JTK,L,PNS,S3,Lektor,False,False,False,2016,2026-05-13T19:21:14+07:00
+0258633059,Yusuf Suryadi,BIO,JSA,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2018,2026-05-13T19:21:14+07:00
+0694306060,Joko Permana,TI,JTK,P,Non-ASN,S2,Lektor,True,False,False,2019,2026-05-13T19:21:14+07:00
+0673376061,Kevin Hidayat,PWK,JTI,L,PPPK,S2,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0277173062,Fajar Wibowo,TLK,JTI,L,PPPK,S3,Guru Besar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0909109063,Yusuf Kusuma,IF,JTK,L,PPPK,S3,Lektor,True,True,False,2016,2026-05-13T19:21:14+07:00
+0831542064,Yusuf Hidayat,MTK,JMB,P,Non-ASN,S3,Tenaga Pengajar,True,False,False,2023,2026-05-13T19:21:14+07:00
+0839791065,Elsa Prasetyo,FT,JSA,P,PPPK,S2,Lektor,False,True,False,2014,2026-05-13T19:21:14+07:00
+0819519066,Qori Prasetyo,AG,JTP,L,Non-ASN,S2,Asisten Ahli,False,True,False,2015,2026-05-13T19:21:14+07:00
+0490557067,Luna Ramadhani,SK,JSA,L,PPPK,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0343772068,Budi Susanti,GD,JTI,L,Non-ASN,S3,Asisten Ahli,False,False,False,2015,2026-05-13T19:21:14+07:00
+0645571069,Dian Aditya,TL,JTK,P,Non-ASN,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0887831070,Arif Fitriani,IF,JTK,L,PNS,S2,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0979280071,Galih Wulandari,GD,JTI,L,Non-ASN,S3,Lektor,False,True,False,2014,2026-05-13T19:21:14+07:00
+0335816072,Vina Maharani,TLK,JTI,L,PPPK,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0496400073,Taufik Wijaya,TK,JTP,P,PPPK,S2,Guru Besar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0730892074,Novi Permana,TS_S2,JTI,L,Non-ASN,S2,Asisten Ahli,True,True,False,2015,2026-05-13T19:21:14+07:00
+0922440075,Nisa Fauzi,MB,JMB,L,PNS,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0628727076,Sari Purnama,AG,JTP,L,Non-ASN,S3,Asisten Ahli,False,False,False,2022,2026-05-13T19:21:14+07:00
+0681021077,Elsa Safitri,IF,JTK,P,PPPK,S3,Guru Besar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0652685078,Jihan Gunawan,KIM,JSA,L,PPPK,S2,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0898718079,Gilang Gunawan,FIS,JSA,P,Non-ASN,S3,Asisten Ahli,False,False,False,2017,2026-05-13T19:21:14+07:00
+0450089080,Taufik Firmansyah,AG,JTP,P,Non-ASN,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0294728081,Jihan Wijaya,TP,JTP,L,PPPK,S2,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0486340082,Nadia Firmansyah,KIM,JSA,P,Non-ASN,S3,Asisten Ahli,False,False,False,2018,2026-05-13T19:21:14+07:00
+0207142083,Yusuf Fitriani,MTK,JMB,L,PNS,S2,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0275884084,Taufik Handayani,IF,JTK,L,PNS,S3,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0201717085,Yusuf Anggraini,KIM,JSA,L,PNS,S2,Lektor,False,True,True,2021,2026-05-13T19:21:14+07:00
+0952685086,Rina Laksono,KIM,JSA,L,PNS,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0810566087,Zaki Fauzi,TS_S2,JTI,P,PNS,S3,Lektor,True,True,False,2019,2026-05-13T19:21:14+07:00
+0419965088,Yani Wijaya,MTK,JMB,P,PNS,S2,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0175401089,Gita Handayani,TIF_S2,JTK,L,PNS,S3,Tenaga Pengajar,True,True,False,2021,2026-05-13T19:21:14+07:00
+0827291090,Ilham Damayanti,TL,JTK,L,PPPK,S3,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0767086091,Muhammad Hidayat,TI,JTK,L,PNS,S2,Lektor,True,True,False,2023,2026-05-13T19:21:14+07:00
+0348207092,Gilang Mahendra,SI,JTK,P,PNS,S2,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0347829093,Gita Mahendra,AG,JTP,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0915315094,Luna Gunawan,GL,JTI,P,PNS,S2,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0999584095,Dinda Maharani,MTK,JMB,L,Non-ASN,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0479532096,Prima Ramadhan,IF,JTK,P,Non-ASN,S2,Asisten Ahli,True,False,True,2014,2026-05-13T19:21:14+07:00
+0165739097,Yani Susanti,TE,JTK,P,PPPK,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0938164098,Jihan Firmansyah,AG,JTP,L,PNS,S2,Asisten Ahli,False,True,False,2014,2026-05-13T19:21:14+07:00
+0750446099,Omar Prasetyo,TE,JTK,L,PNS,S3,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0997546100,Dian Suryadi,SI,JTK,P,Non-ASN,S2,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0506519101,Yani Aditya,MTK,JMB,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0895284102,Zahra Firmansyah,KIM,JSA,L,Non-ASN,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0659963103,Vina Aditya,TIF_S2,JTK,L,Non-ASN,S3,Lektor,True,True,False,2022,2026-05-13T19:21:14+07:00
+0627833104,Yani Mahendra,TLK,JTI,P,PNS,S2,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:14+07:00
+0284696105,Fandi Hidayat,TE,JTK,L,Non-ASN,S3,Asisten Ahli,False,True,False,2024,2026-05-13T19:21:14+07:00
+0339704106,Dewi Firmansyah,AG,JTP,L,PNS,S2,Tenaga Pengajar,False,False,False,2014,2026-05-13T19:21:14+07:00
+0225824107,Indra Setiawan,MB,JMB,L,Non-ASN,S2,Asisten Ahli,True,True,False,2015,2026-05-13T19:21:14+07:00
+0302776108,Zaki Hidayat,GD,JTI,L,PNS,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0877339109,Kartika Fauzi,TP,JTP,P,PNS,S3,Asisten Ahli,False,True,True,2020,2026-05-13T19:21:14+07:00
+0313983110,Ahmad Mahendra,KIM,JSA,L,Non-ASN,S2,Asisten Ahli,False,True,False,2024,2026-05-13T19:21:14+07:00
+0899268111,Gilang Wulandari,BIO,JSA,L,Non-ASN,S2,Guru Besar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0711883112,Citra Handayani,TI,JTK,L,Non-ASN,S3,Asisten Ahli,True,False,False,2020,2026-05-13T19:21:14+07:00
+0134245113,Bella Suryadi,GL,JTI,L,PPPK,S3,Guru Besar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0776509114,Joko Aditya,TS,JTI,L,Non-ASN,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0112627115,Dinda Santoso,TK,JTP,L,PNS,S3,Guru Besar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0175949116,Arif Anggraini,TS_S2,JTI,L,PNS,S3,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0117640117,Fajar Gunawan,GL,JTI,L,PNS,S2,Guru Besar,False,True,True,2018,2026-05-13T19:21:14+07:00
+0849415118,Nisa Purnama,SK,JSA,L,PNS,S3,Tenaga Pengajar,False,False,True,2022,2026-05-13T19:21:14+07:00
+0253212119,Dewi Permana,TP,JTP,P,PNS,S2,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0462148120,Wati Wibowo,IF,JTK,P,Non-ASN,S2,Lektor,False,False,True,2014,2026-05-13T19:21:14+07:00
+0603720121,Omar Wijaya,TK,JTP,P,PNS,S3,Guru Besar,False,False,True,2016,2026-05-13T19:21:14+07:00
+0513563122,Mira Wijaya,TG,JTI,L,PPPK,S3,Lektor,False,True,True,2021,2026-05-13T19:21:14+07:00
+0910555123,Joni Suryadi,FT,JSA,P,PPPK,S3,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0413378124,Luna Susanti,GD,JTI,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0572013125,Muhammad Damayanti,TI,JTK,L,PNS,S2,Lektor Kepala,False,False,False,2014,2026-05-13T19:21:14+07:00
+0389915126,Taufik Wijaya,FT,JSA,P,PNS,S2,Lektor Kepala,False,False,False,2014,2026-05-13T19:21:14+07:00
+0134701127,Jihan Fitriani,TIF_S2,JTK,L,PNS,S3,Tenaga Pengajar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0947680128,Prima Kusuma,PWK,JTI,P,PNS,S2,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0731723129,Budi Purnama,TG,JTI,P,PNS,S3,Guru Besar,True,True,False,2017,2026-05-13T19:21:14+07:00
+0324172130,Yani Prasetyo,AG,JTP,P,PPPK,S2,Tenaga Pengajar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0905893131,Taufik Pratama,IF,JTK,L,Non-ASN,S3,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0548632132,Dian Hakim,TS,JTI,L,PNS,S2,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0823073133,Nisa Putra,TG,JTI,P,PNS,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0309275134,Yani Kusuma,GD,JTI,L,Non-ASN,S3,Lektor,False,False,False,2018,2026-05-13T19:21:14+07:00
+0300171135,Prima Gunawan,TL,JTK,L,PNS,S2,Guru Besar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0897511136,Mira Aditya,TK,JTP,P,Non-ASN,S2,Lektor,False,False,True,2017,2026-05-13T19:21:14+07:00
+0219718137,Vina Ramadhani,SI,JTK,L,PPPK,S2,Guru Besar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0434926138,Sinta Purnama,GD,JTI,P,Non-ASN,S3,Lektor,False,True,True,2023,2026-05-13T19:21:14+07:00
+0401739139,Prima Ramadhani,IF,JTK,P,Non-ASN,S2,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0482561140,Jihan Damayanti,TS,JTI,L,Non-ASN,S3,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0239125141,Muhammad Purnama,TE,JTK,P,PPPK,S2,Lektor Kepala,False,False,False,2016,2026-05-13T19:21:14+07:00
+0307434142,Galih Kusuma,TE,JTK,L,PPPK,S3,Asisten Ahli,False,True,False,2025,2026-05-13T19:21:14+07:00
+0625663143,Vina Firmansyah,TP,JTP,L,Non-ASN,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0655514144,Yani Ramadhan,GD,JTI,P,PPPK,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0172024145,Bella Fauzi,TIF_S2,JTK,P,PNS,S2,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0383197146,Rina Gunawan,MB,JMB,P,Non-ASN,S3,Asisten Ahli,True,True,False,2024,2026-05-13T19:21:14+07:00
+0235123147,Kevin Prasetyo,PWK,JTI,P,Non-ASN,S3,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0924819148,Rina Setiawan,MTK,JMB,P,Non-ASN,S2,Lektor,False,False,True,2018,2026-05-13T19:21:14+07:00
+0706471149,Bayu Prasetyo,TI,JTK,L,Non-ASN,S3,Guru Besar,False,True,False,2018,2026-05-13T19:21:14+07:00
+0781707150,Maulana Hidayat,GL,JTI,P,PPPK,S2,Guru Besar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0827926151,Jihan Permana,TK,JTP,P,PPPK,S3,Asisten Ahli,False,False,False,2021,2026-05-13T19:21:14+07:00
+0698132152,Andi Aditya,FT,JSA,L,PNS,S3,Lektor,False,True,False,2019,2026-05-13T19:21:14+07:00
+0517195153,Omar Utami,SI,JTK,P,PNS,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0834311154,Ilham Susanti,TG,JTI,L,PPPK,S3,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0320471155,Fitri Susanti,TI,JTK,P,PNS,S2,Lektor Kepala,True,True,False,2017,2026-05-13T19:21:14+07:00
+0404862156,Lia Fauzi,MTK,JMB,L,Non-ASN,S2,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0641745157,Sinta Pratama,FIS,JSA,L,Non-ASN,S2,Guru Besar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0615453158,Yani Hakim,GD,JTI,L,Non-ASN,S2,Guru Besar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0418851159,Joni Maharani,MB,JMB,L,Non-ASN,S2,Asisten Ahli,False,False,True,2018,2026-05-13T19:21:14+07:00
+0870962160,Dian Damayanti,TG,JTI,L,PNS,S3,Asisten Ahli,False,True,False,2024,2026-05-13T19:21:14+07:00
+0632696161,Rina Anggraini,GL,JTI,P,PNS,S2,Tenaga Pengajar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0598522162,Okta Maharani,FT,JSA,L,PPPK,S2,Guru Besar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0161894163,Fandi Gunawan,TL,JTK,P,PPPK,S2,Tenaga Pengajar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0299646164,Dinda Purnama,TS_S2,JTI,L,Non-ASN,S3,Guru Besar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0717596165,Joko Ramadhani,IF,JTK,L,PNS,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0274594166,Okta Hidayat,TL,JTK,P,PNS,S3,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0452291167,Dian Pratama,MB,JMB,L,PNS,S3,Lektor Kepala,True,False,False,2025,2026-05-13T19:21:14+07:00
+0778247168,Zahra Wulandari,SK,JSA,P,PNS,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0619030169,Fitri Mahendra,TP,JTP,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0194254170,Joko Laksono,AG,JTP,P,PPPK,S3,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0457514171,Sinta Mahendra,AR,JTI,L,PPPK,S2,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0221832172,Maulana Aditya,KIM,JSA,P,Non-ASN,S3,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0983704173,Galih Damayanti,IF,JTK,P,PNS,S2,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0803723174,Kartika Aditya,TP,JTP,L,Non-ASN,S2,Guru Besar,False,False,True,2014,2026-05-13T19:21:14+07:00
+0725835175,Cahya Santoso,TI,JTK,P,Non-ASN,S2,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0895405176,Vina Firmansyah,FIS,JSA,L,Non-ASN,S2,Tenaga Pengajar,False,True,True,2024,2026-05-13T19:21:14+07:00
+0422111177,Taufik Ramadhan,AR,JTI,P,Non-ASN,S2,Lektor,False,False,True,2024,2026-05-13T19:21:14+07:00
+0848129178,Irma Utami,BIO,JSA,P,PNS,S2,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0719465179,Putri Hidayat,GL,JTI,L,PNS,S2,Tenaga Pengajar,False,True,True,2025,2026-05-13T19:21:14+07:00
+0625601180,Sari Setiawan,GL,JTI,P,PPPK,S3,Tenaga Pengajar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0989302181,Dian Permana,PWK,JTI,L,PNS,S3,Guru Besar,False,True,True,2020,2026-05-13T19:21:14+07:00
+0762151182,Galih Wibowo,TS,JTI,P,Non-ASN,S2,Lektor,False,True,False,2024,2026-05-13T19:21:14+07:00
+0684758183,Umar Anggraini,FT,JSA,P,Non-ASN,S3,Lektor Kepala,False,True,False,2015,2026-05-13T19:21:14+07:00
+0651248184,Mira Kusuma,SI,JTK,L,PNS,S2,Guru Besar,False,True,True,2016,2026-05-13T19:21:14+07:00
+0182312185,Zaki Wijaya,TI,JTK,L,PPPK,S2,Lektor,False,True,False,2019,2026-05-13T19:21:14+07:00
+0438914186,Arif Damayanti,IF,JTK,P,PNS,S2,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:14+07:00
+0212638187,Okta Handayani,PWK,JTI,L,PPPK,S3,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0824702188,Ulfa Hidayat,TL,JTK,L,PPPK,S3,Guru Besar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0951734189,Eka Maharani,TM,JTP,L,Non-ASN,S3,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0446698190,Kiki Ramadhan,IF,JTK,P,PNS,S2,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0462665191,Okta Aditya,MB,JMB,L,PNS,S2,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0253005192,Citra Pratama,TLK,JTI,P,Non-ASN,S2,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0379549193,Elsa Handayani,AR,JTI,P,Non-ASN,S3,Guru Besar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0723108194,Wahyu Wulandari,TLK,JTI,L,PNS,S2,Tenaga Pengajar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0256328195,Arif Safitri,SK,JSA,L,PNS,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0940356196,Joni Purnama,TE,JTK,P,PNS,S2,Lektor Kepala,False,False,False,2019,2026-05-13T19:21:14+07:00
+0614941197,Rizki Setiawan,AR,JTI,P,PNS,S3,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0861860198,Sinta Ramadhan,MTK,JMB,P,PNS,S2,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:14+07:00
+0387606199,Eka Setiawan,IF,JTK,P,Non-ASN,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0849572200,Putri Wijaya,IF,JTK,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0394031201,Budi Safitri,MB,JMB,L,PNS,S3,Guru Besar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0882105202,Yusuf Wulandari,MTK,JMB,L,PPPK,S3,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0735700203,Umar Saputra,TE,JTK,P,PNS,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0575783204,Fitri Surya,AG,JTP,L,Non-ASN,S2,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0644815205,Arif Hidayat,AR,JTI,L,Non-ASN,S3,Guru Besar,False,True,True,2015,2026-05-13T19:21:14+07:00
+0791890206,Tina Firmansyah,GL,JTI,L,Non-ASN,S2,Lektor,False,True,False,2024,2026-05-13T19:21:14+07:00
+0284670207,Fandi Wulandari,FT,JSA,L,Non-ASN,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0157554208,Tina Hakim,SI,JTK,L,Non-ASN,S3,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0228954209,Hana Maharani,TI,JTK,P,PNS,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0657715210,Dewi Pratama,FIS,JSA,L,Non-ASN,S3,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0409799211,Putri Utami,KIM,JSA,P,Non-ASN,S2,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0234284212,Tina Hakim,TE,JTK,L,Non-ASN,S2,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0487016213,Kiki Saputra,TI,JTK,P,PNS,S3,Lektor,False,True,False,2014,2026-05-13T19:21:14+07:00
+0606430214,Gilang Laksono,FIS,JSA,P,Non-ASN,S2,Guru Besar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0203672215,Wati Aditya,MB,JMB,P,PPPK,S2,Asisten Ahli,False,False,False,2023,2026-05-13T19:21:14+07:00
+0485112216,Fajar Damayanti,MTK,JMB,P,Non-ASN,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0368456217,Wati Wijaya,TIF_S2,JTK,L,PNS,S2,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0404990218,Yusuf Nugroho,IF,JTK,P,PPPK,S3,Asisten Ahli,False,True,False,2015,2026-05-13T19:21:14+07:00
+0780900219,Bayu Anggraini,TM,JTP,L,PPPK,S2,Lektor Kepala,True,True,False,2019,2026-05-13T19:21:14+07:00
+0565454220,Bella Firmansyah,TS_S2,JTI,L,PNS,S3,Lektor Kepala,False,True,False,2018,2026-05-13T19:21:14+07:00
+0844156221,Kevin Mahendra,TE,JTK,L,PNS,S3,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0715204222,Wati Aditya,KIM,JSA,P,PNS,S3,Tenaga Pengajar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0729516223,Fajar Maharani,TLK,JTI,P,PPPK,S2,Lektor,False,False,True,2024,2026-05-13T19:21:14+07:00
+0667058224,Luna Permana,TL,JTK,L,Non-ASN,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0176048225,Luna Mahendra,TL,JTK,L,PNS,S3,Asisten Ahli,False,False,False,2022,2026-05-13T19:21:14+07:00
+0609175226,Dinda Wulandari,PWK,JTI,P,PNS,S2,Guru Besar,False,False,True,2024,2026-05-13T19:21:14+07:00
+0796070227,Fitri Hakim,SK,JSA,P,PNS,S2,Tenaga Pengajar,False,False,True,2022,2026-05-13T19:21:14+07:00
+0619690228,Joni Hidayat,TM,JTP,L,PPPK,S3,Guru Besar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0564119229,Yani Purnama,MB,JMB,P,Non-ASN,S2,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0290959230,Kevin Aditya,AG,JTP,L,Non-ASN,S2,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0305953231,Dian Nugroho,IF,JTK,P,PPPK,S3,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0375073232,Andi Santoso,SK,JSA,P,PNS,S2,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0909877233,Yusuf Ramadhani,MB,JMB,L,PNS,S2,Guru Besar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0109533234,Wati Mahendra,AG,JTP,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0355505235,Jihan Fitriani,SK,JSA,P,Non-ASN,S2,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0205366236,Rizki Damayanti,BIO,JSA,P,Non-ASN,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0869361237,Zaki Wijaya,TP,JTP,P,PNS,S2,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0441573238,Yusuf Santoso,TE,JTK,L,PNS,S3,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0757016239,Umar Suherman,TL,JTK,P,PPPK,S2,Asisten Ahli,False,False,False,2017,2026-05-13T19:21:14+07:00
+0899993240,Yani Firmansyah,TS_S2,JTI,P,PNS,S2,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0764428241,Gita Suherman,MB,JMB,P,PNS,S2,Guru Besar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0294007242,Zahra Santoso,FIS,JSA,L,Non-ASN,S2,Lektor Kepala,False,False,False,2019,2026-05-13T19:21:14+07:00
+0302494243,Hadi Ramadhan,GL,JTI,L,PNS,S3,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0544887244,Nadia Santoso,SK,JSA,L,PPPK,S2,Guru Besar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0845561245,Tina Handayani,SI,JTK,P,PNS,S2,Tenaga Pengajar,True,True,False,2014,2026-05-13T19:21:14+07:00
+0982258246,Lestari Purnama,IF,JTK,L,Non-ASN,S2,Guru Besar,False,True,True,2025,2026-05-13T19:21:14+07:00
+0844065247,Qori Hakim,MTK,JMB,L,Non-ASN,S3,Tenaga Pengajar,False,False,True,2023,2026-05-13T19:21:14+07:00
+0129175248,Sinta Saputra,PWK,JTI,P,Non-ASN,S3,Asisten Ahli,True,False,False,2018,2026-05-13T19:21:14+07:00
+0505699249,Rina Hidayat,TK,JTP,L,PNS,S2,Guru Besar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0949309250,Putri Mahendra,MB,JMB,L,Non-ASN,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0507865251,Umar Aditya,TIF_S2,JTK,P,Non-ASN,S3,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0192941252,Taufik Prasetyo,GL,JTI,L,Non-ASN,S2,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0287098253,Bayu Saputra,SK,JSA,L,Non-ASN,S3,Lektor Kepala,False,False,False,2017,2026-05-13T19:21:14+07:00
+0176287254,Citra Wulandari,MTK,JMB,P,Non-ASN,S2,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0789052255,Ahmad Mahendra,TL,JTK,L,Non-ASN,S3,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0332472256,Rizki Suherman,TM,JTP,L,PNS,S2,Lektor Kepala,True,True,False,2018,2026-05-13T19:21:14+07:00
+0121583257,Putri Fitriani,TP,JTP,L,PPPK,S2,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0432608258,Citra Prasetyo,TI,JTK,L,PPPK,S2,Lektor Kepala,False,True,False,2020,2026-05-13T19:21:14+07:00
+0470130259,Bella Susanti,FT,JSA,L,PPPK,S2,Guru Besar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0250643260,Nadia Hakim,GD,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2015,2026-05-13T19:21:14+07:00
+0903347261,Galih Aditya,TE,JTK,L,PNS,S3,Guru Besar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0484403262,Dewi Gunawan,TL,JTK,P,PPPK,S3,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0374758263,Okta Utami,FIS,JSA,P,PNS,S3,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0815064264,Arif Ramadhani,FT,JSA,L,PPPK,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0207978265,Eka Susanti,TIF_S2,JTK,P,Non-ASN,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0851719266,Eka Surya,GL,JTI,P,Non-ASN,S2,Lektor,False,True,False,2024,2026-05-13T19:21:14+07:00
+0789040267,Ilham Utami,TL,JTK,P,PNS,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0887325268,Ilham Aditya,SI,JTK,P,PNS,S2,Guru Besar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0643509269,Cahya Ramadhani,TI,JTK,P,PNS,S2,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0703040270,Ahmad Nugroho,AG,JTP,P,Non-ASN,S2,Guru Besar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0797723271,Cahya Pratama,TL,JTK,P,Non-ASN,S3,Lektor,False,True,False,2019,2026-05-13T19:21:14+07:00
+0317575272,Irma Suherman,SI,JTK,P,Non-ASN,S2,Lektor Kepala,False,True,True,2014,2026-05-13T19:21:14+07:00
+0853794273,Cahya Damayanti,TIF_S2,JTK,L,PPPK,S3,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0925677274,Zaki Wibowo,TS,JTI,L,PNS,S2,Asisten Ahli,True,False,False,2023,2026-05-13T19:21:14+07:00
+0122974275,Putri Prasetyo,TL,JTK,P,Non-ASN,S2,Lektor,True,False,False,2015,2026-05-13T19:21:14+07:00
+0410487276,Nisa Wijaya,TL,JTK,L,PNS,S2,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0574701277,Hadi Suherman,KIM,JSA,L,Non-ASN,S2,Tenaga Pengajar,True,False,False,2023,2026-05-13T19:21:14+07:00
+0345832278,Lestari Setiawan,PWK,JTI,L,Non-ASN,S3,Guru Besar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0442787279,Fandi Safitri,SI,JTK,L,PNS,S3,Tenaga Pengajar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0619830280,Putri Putra,MB,JMB,P,Non-ASN,S2,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0797233281,Putri Pratama,TM,JTP,L,Non-ASN,S3,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0225938282,Citra Gunawan,TS,JTI,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0847088283,Galih Prasetyo,FT,JSA,P,PPPK,S2,Lektor,True,False,False,2021,2026-05-13T19:21:14+07:00
+0146503284,Lestari Gunawan,TLK,JTI,L,PNS,S3,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0491719285,Joko Nugroho,TS,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0344379286,Dian Saputra,TP,JTP,L,Non-ASN,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0420541287,Budi Nugroho,TG,JTI,P,Non-ASN,S3,Asisten Ahli,False,False,True,2024,2026-05-13T19:21:14+07:00
+0718652288,Tina Mahendra,SK,JSA,L,PNS,S3,Lektor Kepala,False,False,False,2016,2026-05-13T19:21:14+07:00
+0371226289,Andi Kusuma,GL,JTI,L,PNS,S3,Guru Besar,True,True,False,2025,2026-05-13T19:21:14+07:00
+0289253290,Sinta Damayanti,SI,JTK,P,PNS,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0911592291,Umar Suryadi,BIO,JSA,L,Non-ASN,S3,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0129279292,Hana Damayanti,TIF_S2,JTK,L,PNS,S3,Tenaga Pengajar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0445505293,Joko Handayani,TG,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0133447294,Wahyu Ramadhan,SI,JTK,P,Non-ASN,S3,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0160236295,Bella Pratama,TL,JTK,L,Non-ASN,S3,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0863920296,Lestari Anggraini,MB,JMB,P,Non-ASN,S2,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0270106297,Vina Ramadhan,BIO,JSA,P,Non-ASN,S3,Lektor,False,False,False,2022,2026-05-13T19:21:14+07:00
+0693468298,Kevin Hidayat,TG,JTI,L,PNS,S3,Guru Besar,False,True,True,2014,2026-05-13T19:21:14+07:00
+0844529299,Galih Maharani,IF,JTK,P,PNS,S2,Tenaga Pengajar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0340518300,Novi Saputra,GD,JTI,L,Non-ASN,S2,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:14+07:00
+0530384301,Citra Mahendra,SI,JTK,L,PPPK,S3,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0368635302,Kartika Safitri,TLK,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0457194303,Fajar Susanti,SI,JTK,P,Non-ASN,S2,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0457617304,Ulfa Safitri,GD,JTI,P,Non-ASN,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0218067305,Tina Laksono,FIS,JSA,L,Non-ASN,S3,Tenaga Pengajar,True,True,True,2017,2026-05-13T19:21:14+07:00
+0723015306,Putri Setiawan,TM,JTP,L,Non-ASN,S3,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0543326307,Sari Suherman,MTK,JMB,L,Non-ASN,S2,Asisten Ahli,False,True,False,2021,2026-05-13T19:21:14+07:00
+0720145308,Bayu Nugroho,TLK,JTI,L,PPPK,S3,Asisten Ahli,False,False,False,2020,2026-05-13T19:21:14+07:00
+0820057309,Mira Maharani,TS_S2,JTI,L,PNS,S2,Guru Besar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0966609310,Umar Damayanti,TG,JTI,L,PNS,S2,Lektor Kepala,False,True,True,2014,2026-05-13T19:21:14+07:00
+0157085311,Muhammad Maharani,FIS,JSA,L,PNS,S2,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0324734312,Budi Hakim,GD,JTI,P,PNS,S3,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0285890313,Zahra Utami,SK,JSA,L,PNS,S3,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0942085314,Rina Setiawan,SK,JSA,L,PNS,S3,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0827118315,Dewi Laksono,FT,JSA,L,Non-ASN,S2,Lektor,False,True,False,2019,2026-05-13T19:21:14+07:00
+0391353316,Dian Fauzi,TG,JTI,L,PNS,S2,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0691283317,Mira Aditya,FIS,JSA,P,PNS,S2,Guru Besar,False,False,False,2014,2026-05-13T19:21:14+07:00
+0389653318,Indra Putra,TS,JTI,P,Non-ASN,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0201548319,Gita Nugroho,FT,JSA,L,PNS,S2,Asisten Ahli,False,True,True,2018,2026-05-13T19:21:14+07:00
+0904706320,Joni Putra,GL,JTI,P,PPPK,S2,Lektor,False,True,False,2023,2026-05-13T19:21:14+07:00
+0357471321,Sari Pratama,TM,JTP,P,PNS,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0184499322,Budi Suryadi,TI,JTK,P,PNS,S2,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0506126323,Nadia Surya,TE,JTK,P,PPPK,S3,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0749689324,Yani Setiawan,TIF_S2,JTK,P,PNS,S3,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0566077325,Dewi Suryadi,MB,JMB,L,PNS,S3,Lektor,False,True,False,2014,2026-05-13T19:21:14+07:00
+0104195326,Sinta Fauzi,FIS,JSA,L,Non-ASN,S2,Lektor Kepala,False,False,False,2016,2026-05-13T19:21:14+07:00
+0410046327,Hendra Prasetyo,GD,JTI,P,Non-ASN,S2,Asisten Ahli,False,True,False,2022,2026-05-13T19:21:14+07:00
+0747996328,Bella Utami,GD,JTI,P,PNS,S2,Guru Besar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0500608329,Sari Santoso,TIF_S2,JTK,P,PPPK,S3,Guru Besar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0592439330,Lestari Suherman,TK,JTP,P,PNS,S2,Lektor,False,True,True,2015,2026-05-13T19:21:14+07:00
+0736228331,Nadia Anggraini,IF,JTK,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0194820332,Yani Safitri,SI,JTK,L,PNS,S2,Asisten Ahli,False,True,False,2015,2026-05-13T19:21:14+07:00
+0517916333,Rizki Prasetyo,TS_S2,JTI,L,Non-ASN,S3,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0834591334,Prima Permana,TLK,JTI,L,Non-ASN,S3,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0522087335,Fandi Anggraini,AR,JTI,L,Non-ASN,S2,Tenaga Pengajar,True,False,False,2021,2026-05-13T19:21:14+07:00
+0397623336,Fandi Fitriani,TP,JTP,P,PNS,S2,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0236464337,Hana Wibowo,IF,JTK,L,Non-ASN,S2,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0387913338,Ilham Hakim,FIS,JSA,L,PNS,S2,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0685679339,Rina Santoso,TS,JTI,L,PNS,S2,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0336846340,Bella Fauzi,IF,JTK,P,Non-ASN,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0338291341,Cahya Safitri,MB,JMB,L,PNS,S3,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0414007342,Dinda Laksono,SK,JSA,P,Non-ASN,S2,Asisten Ahli,False,True,True,2015,2026-05-13T19:21:14+07:00
+0137583343,Putri Prasetyo,TS,JTI,L,PNS,S3,Lektor Kepala,False,True,True,2018,2026-05-13T19:21:14+07:00
+0229040344,Yusuf Mahendra,SK,JSA,L,Non-ASN,S2,Tenaga Pengajar,False,True,True,2023,2026-05-13T19:21:14+07:00
+0992602345,Maulana Safitri,KIM,JSA,L,Non-ASN,S3,Lektor,False,False,False,2022,2026-05-13T19:21:14+07:00
+0828162346,Kartika Setiawan,KIM,JSA,P,Non-ASN,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0105944347,Nisa Maharani,TS,JTI,L,PNS,S2,Guru Besar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0563700348,Omar Susanti,FT,JSA,P,Non-ASN,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0622924349,Mira Susanti,SK,JSA,P,PNS,S2,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0546334350,Wati Aditya,TS_S2,JTI,P,Non-ASN,S2,Lektor,True,True,False,2019,2026-05-13T19:21:14+07:00
+0595795351,Lia Permana,TIF_S2,JTK,P,PNS,S2,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0438431352,Omar Putra,IF,JTK,L,Non-ASN,S3,Asisten Ahli,False,False,False,2018,2026-05-13T19:21:14+07:00
+0846355353,Cahya Ramadhan,SK,JSA,L,PNS,S2,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0632076354,Gilang Putra,GL,JTI,P,Non-ASN,S3,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0590988355,Nadia Hakim,KIM,JSA,L,PPPK,S2,Asisten Ahli,False,True,False,2016,2026-05-13T19:21:14+07:00
+0355082356,Tina Nugroho,MTK,JMB,L,Non-ASN,S3,Guru Besar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0957772357,Taufik Putra,AR,JTI,P,PNS,S2,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0696604358,Bella Santoso,IF,JTK,L,Non-ASN,S2,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0377272359,Kevin Ramadhani,TS,JTI,P,PPPK,S2,Lektor Kepala,False,False,False,2023,2026-05-13T19:21:14+07:00
+0714364360,Indra Fitriani,TL,JTK,L,Non-ASN,S3,Guru Besar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0490111361,Lestari Wibowo,SK,JSA,L,PNS,S3,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0805147362,Ahmad Putra,TLK,JTI,L,PPPK,S3,Guru Besar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0913846363,Mira Putra,FT,JSA,P,PPPK,S3,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0413321364,Yusuf Pratama,KIM,JSA,L,PPPK,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0788922365,Andi Purnama,AG,JTP,P,PNS,S2,Asisten Ahli,False,True,False,2016,2026-05-13T19:21:14+07:00
+0300986366,Ulfa Gunawan,AR,JTI,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0509244367,Dian Wibowo,KIM,JSA,L,Non-ASN,S2,Lektor,False,False,True,2020,2026-05-13T19:21:14+07:00
+0540010368,Omar Suryadi,AG,JTP,P,PPPK,S3,Lektor Kepala,False,True,False,2014,2026-05-13T19:21:14+07:00
+0201464369,Fajar Mahendra,KIM,JSA,P,PPPK,S3,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0603715370,Bella Putra,TLK,JTI,P,PNS,S2,Lektor Kepala,True,False,True,2021,2026-05-13T19:21:14+07:00
+0743268371,Gita Laksono,TL,JTK,L,PPPK,S3,Guru Besar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0938210372,Galih Wijaya,AG,JTP,P,PNS,S3,Guru Besar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0501081373,Gita Kusuma,TS_S2,JTI,P,PNS,S2,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0675017374,Joni Kusuma,IF,JTK,P,Non-ASN,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0813584375,Wahyu Purnama,GD,JTI,L,PNS,S2,Lektor Kepala,False,False,True,2023,2026-05-13T19:21:14+07:00
+0640105376,Tina Safitri,FT,JSA,P,PNS,S2,Lektor Kepala,False,False,True,2020,2026-05-13T19:21:14+07:00
+0658905377,Galih Firmansyah,FT,JSA,P,PNS,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0864433378,Kiki Mahendra,TM,JTP,L,PPPK,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0463556379,Ulfa Ramadhani,TS,JTI,L,PPPK,S2,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0622363380,Taufik Hidayat,SI,JTK,P,PPPK,S3,Tenaga Pengajar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0694215381,Andi Utami,TE,JTK,L,Non-ASN,S3,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0955474382,Arif Susanti,TI,JTK,P,Non-ASN,S2,Lektor Kepala,False,True,True,2020,2026-05-13T19:21:14+07:00
+0405296383,Citra Laksono,PWK,JTI,L,Non-ASN,S2,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0252309384,Fajar Wijaya,SK,JSA,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0158250385,Umar Purnama,MB,JMB,P,Non-ASN,S3,Guru Besar,False,False,True,2016,2026-05-13T19:21:14+07:00
+0247443386,Kartika Nugroho,TM,JTP,P,PNS,S3,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0550568387,Yani Anggraini,PWK,JTI,L,PNS,S3,Asisten Ahli,False,False,True,2017,2026-05-13T19:21:14+07:00
+0156372388,Ilham Aditya,TE,JTK,P,PNS,S2,Tenaga Pengajar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0996702389,Galih Hidayat,KIM,JSA,P,PPPK,S3,Asisten Ahli,False,True,False,2016,2026-05-13T19:21:14+07:00
+0798533390,Gita Susanti,TS_S2,JTI,P,Non-ASN,S3,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0340741391,Sinta Pratama,FT,JSA,P,PPPK,S2,Tenaga Pengajar,False,False,True,2015,2026-05-13T19:21:14+07:00
+0960900392,Ahmad Santoso,FT,JSA,P,PNS,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0876200393,Galih Anggraini,GL,JTI,L,Non-ASN,S3,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0674293394,Dian Wulandari,MB,JMB,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0795622395,Taufik Firmansyah,PWK,JTI,P,PNS,S3,Asisten Ahli,False,False,True,2021,2026-05-13T19:21:14+07:00
+0528976396,Bayu Ramadhan,GD,JTI,L,PPPK,S3,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0838270397,Andi Maharani,MTK,JMB,P,Non-ASN,S3,Lektor Kepala,False,True,False,2015,2026-05-13T19:21:14+07:00
+0127559398,Bayu Maharani,BIO,JSA,L,PPPK,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0143876399,Sari Saputra,TG,JTI,L,PNS,S3,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0646567400,Zaki Ramadhan,GD,JTI,L,Non-ASN,S2,Guru Besar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0497045401,Mira Firmansyah,GD,JTI,L,PNS,S3,Asisten Ahli,False,False,False,2018,2026-05-13T19:21:14+07:00
+0678011402,Elsa Safitri,TE,JTK,P,Non-ASN,S3,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0866454403,Fajar Wijaya,TG,JTI,L,Non-ASN,S3,Asisten Ahli,False,True,False,2015,2026-05-13T19:21:14+07:00
+0757764404,Irma Aditya,TS,JTI,P,PNS,S3,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:14+07:00
+0777172405,Fajar Prasetyo,TE,JTK,L,PPPK,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0840615406,Yani Damayanti,GD,JTI,L,PPPK,S3,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0915422407,Wati Anggraini,TE,JTK,L,Non-ASN,S2,Lektor,False,False,False,2018,2026-05-13T19:21:14+07:00
+0174060408,Hadi Putra,SI,JTK,L,Non-ASN,S2,Guru Besar,True,True,False,2021,2026-05-13T19:21:14+07:00
+0639390409,Fajar Wulandari,BIO,JSA,L,PNS,S2,Asisten Ahli,False,True,False,2018,2026-05-13T19:21:14+07:00
+0507588410,Sinta Laksono,BIO,JSA,P,PNS,S2,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0759457411,Fitri Laksono,TP,JTP,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0345960412,Taufik Saputra,TG,JTI,P,Non-ASN,S2,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0500925413,Omar Santoso,TS_S2,JTI,P,PNS,S3,Lektor Kepala,False,True,False,2022,2026-05-13T19:21:14+07:00
+0527870414,Bayu Handayani,TS_S2,JTI,L,PPPK,S2,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0853012415,Okta Permana,MB,JMB,P,PPPK,S2,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0102071416,Prima Handayani,TP,JTP,P,Non-ASN,S3,Lektor Kepala,True,True,False,2023,2026-05-13T19:21:14+07:00
+0172318417,Eka Mahendra,GD,JTI,P,PNS,S2,Lektor Kepala,False,True,True,2022,2026-05-13T19:21:14+07:00
+0738651418,Galih Pratama,AG,JTP,P,PNS,S2,Guru Besar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0753214419,Hadi Susanti,TLK,JTI,L,PNS,S2,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0185230420,Zahra Saputra,SK,JSA,P,PPPK,S2,Guru Besar,True,False,False,2023,2026-05-13T19:21:14+07:00
+0640462421,Tina Setiawan,TP,JTP,L,PNS,S3,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0723044422,Yusuf Utami,TS,JTI,L,PPPK,S2,Asisten Ahli,False,False,True,2021,2026-05-13T19:21:14+07:00
+0395789423,Citra Laksono,TK,JTP,L,PPPK,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0953118424,Lia Fitriani,SI,JTK,P,PNS,S3,Lektor,True,False,False,2021,2026-05-13T19:21:14+07:00
+0600338425,Wahyu Pratama,FT,JSA,P,PPPK,S2,Asisten Ahli,False,True,False,2021,2026-05-13T19:21:14+07:00
+0246444426,Dewi Setiawan,AR,JTI,L,PNS,S2,Guru Besar,False,True,True,2023,2026-05-13T19:21:14+07:00
+0235779427,Irma Wibowo,BIO,JSA,P,Non-ASN,S3,Guru Besar,False,False,True,2019,2026-05-13T19:21:14+07:00
+0730131428,Joko Mahendra,GD,JTI,L,PNS,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0102100429,Taufik Prasetyo,TK,JTP,L,Non-ASN,S2,Lektor,True,False,True,2025,2026-05-13T19:21:14+07:00
+0856030430,Umar Damayanti,TM,JTP,L,Non-ASN,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0195207431,Cahya Wulandari,FIS,JSA,L,Non-ASN,S2,Asisten Ahli,False,True,False,2018,2026-05-13T19:21:14+07:00
+0420664432,Hana Ramadhani,AG,JTP,L,Non-ASN,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0989284433,Muhammad Wulandari,AR,JTI,P,Non-ASN,S2,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0241489434,Fajar Hakim,TK,JTP,L,Non-ASN,S3,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0424512435,Dinda Kusuma,GD,JTI,L,Non-ASN,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0124476436,Qori Kusuma,AR,JTI,P,Non-ASN,S3,Tenaga Pengajar,True,False,False,2016,2026-05-13T19:21:14+07:00
+0964617437,Maulana Permana,IF,JTK,L,PPPK,S3,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0151613438,Cahya Fitriani,TIF_S2,JTK,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0325754439,Gita Utami,TIF_S2,JTK,L,Non-ASN,S2,Asisten Ahli,True,True,False,2023,2026-05-13T19:21:14+07:00
+0941911440,Eka Aditya,TM,JTP,P,PNS,S2,Lektor Kepala,False,False,True,2014,2026-05-13T19:21:14+07:00
+0885528441,Bella Saputra,TE,JTK,P,Non-ASN,S2,Lektor Kepala,False,True,True,2020,2026-05-13T19:21:14+07:00
+0945197442,Zahra Safitri,GL,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2015,2026-05-13T19:21:14+07:00
+0447083443,Yusuf Anggraini,SI,JTK,P,PNS,S2,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0205951444,Zahra Mahendra,TK,JTP,P,Non-ASN,S3,Lektor,False,False,False,2016,2026-05-13T19:21:14+07:00
+0868905445,Tina Setiawan,MTK,JMB,P,PNS,S2,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0330894446,Wati Hidayat,PWK,JTI,L,PPPK,S2,Lektor Kepala,False,True,False,2020,2026-05-13T19:21:14+07:00
+0604289447,Hendra Wijaya,TE,JTK,L,Non-ASN,S2,Guru Besar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0340369448,Kevin Permana,IF,JTK,L,PNS,S2,Asisten Ahli,False,False,True,2019,2026-05-13T19:21:14+07:00
+0416716449,Budi Handayani,IF,JTK,P,PPPK,S3,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0257796450,Joko Ramadhani,TLK,JTI,P,PNS,S3,Lektor Kepala,False,True,False,2015,2026-05-13T19:21:14+07:00
+0267242451,Elsa Pratama,IF,JTK,P,PNS,S2,Guru Besar,False,True,False,2018,2026-05-13T19:21:14+07:00
+0601693452,Putri Ramadhani,TM,JTP,P,PNS,S3,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0202874453,Wati Mahendra,KIM,JSA,L,PPPK,S3,Guru Besar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0480264454,Wahyu Pratama,FIS,JSA,L,PPPK,S3,Lektor,False,False,False,2015,2026-05-13T19:21:14+07:00
+0343243455,Kartika Pratama,GL,JTI,P,PNS,S2,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0856143456,Sinta Hidayat,TG,JTI,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0125822457,Hana Wulandari,TM,JTP,P,PPPK,S3,Guru Besar,True,False,False,2014,2026-05-13T19:21:14+07:00
+0412840458,Wahyu Damayanti,MTK,JMB,L,PNS,S3,Tenaga Pengajar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0175410459,Wati Aditya,FIS,JSA,P,PNS,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0366282460,Muhammad Mahendra,KIM,JSA,L,PNS,S3,Asisten Ahli,False,True,False,2018,2026-05-13T19:21:14+07:00
+0956481461,Hana Aditya,TM,JTP,L,Non-ASN,S2,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0849098462,Maulana Suryadi,TP,JTP,L,Non-ASN,S3,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0659514463,Ulfa Utami,TS,JTI,L,PNS,S2,Lektor Kepala,False,False,True,2015,2026-05-13T19:21:14+07:00
+0389789464,Hendra Nugroho,TK,JTP,L,Non-ASN,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0165809465,Indra Wijaya,MTK,JMB,L,PNS,S2,Tenaga Pengajar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0516203466,Lia Firmansyah,TS_S2,JTI,L,PNS,S2,Lektor,True,True,False,2021,2026-05-13T19:21:14+07:00
+0508874467,Nadia Suherman,TG,JTI,P,Non-ASN,S3,Lektor,True,True,False,2014,2026-05-13T19:21:14+07:00
+0282980468,Ulfa Handayani,BIO,JSA,L,PNS,S3,Lektor Kepala,True,True,False,2025,2026-05-13T19:21:14+07:00
+0781262469,Dinda Firmansyah,MTK,JMB,L,PPPK,S3,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0122311470,Eka Wijaya,TIF_S2,JTK,L,PPPK,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0391750471,Tina Hakim,TIF_S2,JTK,L,PPPK,S2,Guru Besar,False,False,False,2024,2026-05-13T19:21:14+07:00
+0181564472,Gita Maharani,TE,JTK,L,PNS,S3,Lektor Kepala,False,True,False,2015,2026-05-13T19:21:14+07:00
+0746558473,Elsa Mahendra,MTK,JMB,P,PNS,S3,Lektor Kepala,False,False,False,2023,2026-05-13T19:21:14+07:00
+0996883474,Citra Nugroho,GL,JTI,L,PNS,S2,Lektor Kepala,False,True,False,2020,2026-05-13T19:21:14+07:00
+0917300475,Zahra Kusuma,KIM,JSA,L,PNS,S2,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:14+07:00
+0892349476,Hadi Purnama,MB,JMB,L,Non-ASN,S2,Asisten Ahli,True,False,False,2017,2026-05-13T19:21:14+07:00
+0160699477,Jihan Utami,AR,JTI,P,PPPK,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0860442478,Kevin Ramadhani,SK,JSA,L,PPPK,S2,Asisten Ahli,False,False,False,2018,2026-05-13T19:21:14+07:00
+0654016479,Taufik Anggraini,GL,JTI,P,PNS,S2,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0137815480,Maulana Santoso,SK,JSA,L,PPPK,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0981960481,Rina Laksono,TI,JTK,L,PNS,S2,Guru Besar,True,True,False,2015,2026-05-13T19:21:14+07:00
+0647136482,Kartika Santoso,FIS,JSA,L,PNS,S2,Tenaga Pengajar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0389982483,Gilang Fauzi,TS_S2,JTI,P,PNS,S3,Asisten Ahli,True,True,False,2022,2026-05-13T19:21:14+07:00
+0787607484,Tina Utami,TIF_S2,JTK,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0445141485,Gita Ramadhan,KIM,JSA,P,Non-ASN,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0802078486,Umar Wibowo,MTK,JMB,P,Non-ASN,S2,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0934934487,Yani Santoso,GL,JTI,P,PNS,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0222916488,Lestari Putra,GD,JTI,L,PNS,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0354302489,Muhammad Saputra,AG,JTP,L,PNS,S3,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:14+07:00
+0384744490,Yusuf Wijaya,TG,JTI,L,PNS,S2,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0343042491,Irma Wulandari,SI,JTK,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0761247492,Galih Damayanti,TI,JTK,L,Non-ASN,S2,Asisten Ahli,True,False,False,2016,2026-05-13T19:21:14+07:00
+0935773493,Vina Firmansyah,GL,JTI,P,PNS,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0349923494,Tina Suherman,SK,JSA,L,PPPK,S2,Tenaga Pengajar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0983016495,Galih Kusuma,MB,JMB,P,PNS,S2,Lektor,True,False,False,2024,2026-05-13T19:21:14+07:00
+0176300496,Omar Putra,SI,JTK,P,PNS,S3,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0585199497,Putri Fitriani,KIM,JSA,L,PPPK,S2,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:14+07:00
+0742125498,Fandi Kusuma,TL,JTK,L,Non-ASN,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0253140499,Elsa Ramadhan,PWK,JTI,L,Non-ASN,S3,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0849372500,Umar Damayanti,AG,JTP,L,Non-ASN,S3,Lektor,False,False,False,2023,2026-05-13T19:21:14+07:00
+0334481501,Arif Maharani,FIS,JSA,L,PNS,S3,Lektor Kepala,False,True,True,2024,2026-05-13T19:21:14+07:00
+0649723502,Cahya Firmansyah,AR,JTI,L,Non-ASN,S3,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0657234503,Putri Ramadhan,TL,JTK,P,Non-ASN,S3,Lektor Kepala,False,False,True,2018,2026-05-13T19:21:14+07:00
+0931345504,Ilham Saputra,TM,JTP,L,Non-ASN,S2,Lektor,True,False,False,2018,2026-05-13T19:21:14+07:00
+0576157505,Okta Putra,MB,JMB,L,Non-ASN,S2,Tenaga Pengajar,True,False,True,2016,2026-05-13T19:21:14+07:00
+0421811506,Fajar Permana,KIM,JSA,L,PPPK,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0655941507,Putri Pratama,KIM,JSA,P,PPPK,S3,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0221048508,Yani Surya,IF,JTK,P,PPPK,S3,Guru Besar,False,True,True,2015,2026-05-13T19:21:14+07:00
+0424477509,Fitri Handayani,SK,JSA,L,PNS,S2,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0870434510,Irma Kusuma,SI,JTK,L,Non-ASN,S2,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0705721511,Joni Santoso,TM,JTP,L,Non-ASN,S2,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0973131512,Kartika Ramadhan,TI,JTK,L,PNS,S3,Lektor Kepala,False,True,True,2025,2026-05-13T19:21:14+07:00
+0745752513,Vina Purnama,TK,JTP,P,Non-ASN,S2,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0592615514,Gita Fitriani,MB,JMB,P,PPPK,S2,Tenaga Pengajar,False,False,True,2019,2026-05-13T19:21:14+07:00
+0326238515,Yani Surya,TK,JTP,L,Non-ASN,S2,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0830493516,Bella Handayani,TG,JTI,P,PNS,S3,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0881198517,Bayu Putra,PWK,JTI,P,Non-ASN,S2,Guru Besar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0175134518,Sari Permana,TS_S2,JTI,P,PNS,S3,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0929707519,Lestari Ramadhani,TK,JTP,P,PNS,S2,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0920478520,Lestari Suherman,TI,JTK,L,Non-ASN,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0512468521,Elsa Safitri,SI,JTK,P,Non-ASN,S3,Asisten Ahli,False,True,False,2021,2026-05-13T19:21:14+07:00
+0274017522,Kiki Purnama,TM,JTP,L,PNS,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0487069523,Wati Gunawan,KIM,JSA,P,PNS,S3,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0904050524,Nisa Maharani,MTK,JMB,P,PPPK,S2,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0880134525,Luna Wibowo,TE,JTK,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0613363526,Nadia Safitri,MB,JMB,P,PNS,S2,Lektor,False,False,True,2020,2026-05-13T19:21:14+07:00
+0877805527,Yani Hakim,TP,JTP,L,Non-ASN,S2,Guru Besar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0151464528,Yani Hakim,GD,JTI,P,Non-ASN,S2,Tenaga Pengajar,True,False,False,2019,2026-05-13T19:21:14+07:00
+0355120529,Joni Wijaya,TG,JTI,P,PNS,S2,Tenaga Pengajar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0417769530,Taufik Wulandari,TS,JTI,L,PNS,S2,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0228144531,Hana Suryadi,TE,JTK,L,PNS,S2,Guru Besar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0346816532,Budi Firmansyah,GD,JTI,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0385773533,Qori Anggraini,IF,JTK,L,PNS,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0408025534,Sinta Saputra,GD,JTI,P,PNS,S2,Guru Besar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0474915535,Fajar Putra,GD,JTI,P,Non-ASN,S2,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0203165536,Bella Utami,GL,JTI,L,Non-ASN,S2,Lektor Kepala,True,False,False,2023,2026-05-13T19:21:14+07:00
+0114414537,Elsa Setiawan,TP,JTP,L,PNS,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0525312538,Dian Wulandari,FIS,JSA,P,PNS,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0291399539,Nadia Setiawan,TI,JTK,P,PPPK,S2,Lektor Kepala,False,True,False,2022,2026-05-13T19:21:14+07:00
+0243520540,Zahra Setiawan,SI,JTK,L,PPPK,S3,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0983589541,Omar Anggraini,TG,JTI,L,PPPK,S2,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0236649542,Galih Pratama,TLK,JTI,P,Non-ASN,S2,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0841590543,Zaki Hakim,KIM,JSA,L,PNS,S2,Asisten Ahli,True,False,False,2021,2026-05-13T19:21:14+07:00
+0366025544,Arif Gunawan,MB,JMB,L,Non-ASN,S2,Lektor,False,True,True,2018,2026-05-13T19:21:14+07:00
+0344027545,Ilham Susanti,FT,JSA,P,Non-ASN,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0497339546,Nisa Aditya,MB,JMB,L,Non-ASN,S2,Asisten Ahli,False,False,True,2020,2026-05-13T19:21:14+07:00
+0857284547,Novi Surya,TIF_S2,JTK,P,PPPK,S2,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0978640548,Joni Wulandari,TI,JTK,L,PNS,S3,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0966999549,Nisa Hakim,AG,JTP,P,PNS,S2,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0780606550,Umar Suryadi,FIS,JSA,L,Non-ASN,S2,Asisten Ahli,False,False,False,2023,2026-05-13T19:21:14+07:00
+0129602551,Cahya Hidayat,AG,JTP,L,Non-ASN,S2,Lektor Kepala,False,False,False,2023,2026-05-13T19:21:14+07:00
+0174751552,Muhammad Susanti,TS,JTI,L,PNS,S3,Asisten Ahli,False,False,False,2023,2026-05-13T19:21:14+07:00
+0203719553,Luna Surya,TL,JTK,L,Non-ASN,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0494102554,Eka Laksono,TS_S2,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0469986555,Citra Utami,TIF_S2,JTK,P,PPPK,S3,Asisten Ahli,False,False,False,2017,2026-05-13T19:21:14+07:00
+0782431556,Taufik Wulandari,TP,JTP,P,PNS,S2,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0686650557,Dinda Hakim,TL,JTK,P,PNS,S2,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0488431558,Bayu Kusuma,TI,JTK,P,PPPK,S2,Guru Besar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0355261559,Irma Handayani,TL,JTK,P,Non-ASN,S2,Lektor Kepala,False,False,False,2019,2026-05-13T19:21:14+07:00
+0913338560,Zaki Permana,IF,JTK,L,PPPK,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0804242561,Hana Ramadhan,FT,JSA,L,PPPK,S3,Guru Besar,False,False,True,2020,2026-05-13T19:21:14+07:00
+0599195562,Hadi Handayani,KIM,JSA,P,PNS,S2,Lektor,False,False,False,2024,2026-05-13T19:21:14+07:00
+0557778563,Maulana Firmansyah,TG,JTI,P,Non-ASN,S3,Guru Besar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0517969564,Rizki Suryadi,GD,JTI,P,Non-ASN,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0445727565,Gita Hakim,MB,JMB,P,PNS,S3,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0793228566,Jihan Utami,FT,JSA,P,PPPK,S2,Tenaga Pengajar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0550605567,Maulana Wijaya,TP,JTP,P,PNS,S2,Lektor Kepala,False,False,False,2020,2026-05-13T19:21:14+07:00
+0505220568,Taufik Permana,FIS,JSA,P,Non-ASN,S3,Lektor Kepala,False,False,False,2014,2026-05-13T19:21:14+07:00
+0596727569,Galih Laksono,FIS,JSA,P,PNS,S3,Asisten Ahli,False,False,False,2022,2026-05-13T19:21:14+07:00
+0165069570,Dewi Purnama,TG,JTI,P,PNS,S3,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0747051571,Lestari Suryadi,TG,JTI,L,PNS,S2,Lektor,False,True,False,2025,2026-05-13T19:21:14+07:00
+0459463572,Indra Safitri,FT,JSA,L,PPPK,S3,Tenaga Pengajar,False,False,True,2021,2026-05-13T19:21:14+07:00
+0964901573,Nadia Surya,TI,JTK,L,Non-ASN,S2,Guru Besar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0838885574,Ulfa Purnama,GD,JTI,P,PNS,S3,Asisten Ahli,False,False,False,2019,2026-05-13T19:21:14+07:00
+0646838575,Dinda Firmansyah,FIS,JSA,P,PPPK,S3,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0524001576,Prima Mahendra,TS_S2,JTI,L,PPPK,S2,Asisten Ahli,False,True,False,2016,2026-05-13T19:21:14+07:00
+0186242577,Hendra Wijaya,TLK,JTI,P,PNS,S3,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0965041578,Hendra Putra,TLK,JTI,L,Non-ASN,S2,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0759549579,Wahyu Fauzi,IF,JTK,P,PPPK,S2,Guru Besar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0834331580,Sari Firmansyah,SI,JTK,L,PNS,S2,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0885142581,Wahyu Gunawan,GL,JTI,P,Non-ASN,S3,Lektor Kepala,False,False,False,2017,2026-05-13T19:21:14+07:00
+0960416582,Vina Nugroho,SK,JSA,P,PNS,S2,Guru Besar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0379454583,Luna Handayani,FT,JSA,P,Non-ASN,S2,Guru Besar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0778163584,Irma Santoso,TM,JTP,L,Non-ASN,S2,Guru Besar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0523159585,Irma Safitri,TIF_S2,JTK,P,PNS,S3,Lektor,False,True,False,2024,2026-05-13T19:21:14+07:00
+0532334586,Ulfa Fauzi,FIS,JSA,L,PPPK,S3,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0269160587,Elsa Handayani,TM,JTP,P,PPPK,S2,Lektor,False,False,False,2022,2026-05-13T19:21:14+07:00
+0841444588,Dewi Wulandari,TIF_S2,JTK,L,Non-ASN,S2,Lektor,True,True,False,2015,2026-05-13T19:21:14+07:00
+0550541589,Ilham Utami,AG,JTP,P,PNS,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0203784590,Irma Utami,MB,JMB,P,PNS,S2,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0519475591,Omar Handayani,TI,JTK,P,PPPK,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0699285592,Ilham Setiawan,TM,JTP,P,PNS,S2,Tenaga Pengajar,False,True,False,2018,2026-05-13T19:21:14+07:00
+0368693593,Taufik Setiawan,BIO,JSA,P,PNS,S3,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0485999594,Kevin Hakim,TE,JTK,L,PPPK,S2,Lektor,False,False,False,2019,2026-05-13T19:21:14+07:00
+0126302595,Luna Kusuma,TG,JTI,P,Non-ASN,S3,Guru Besar,True,False,False,2016,2026-05-13T19:21:14+07:00
+0505857596,Hendra Kusuma,TK,JTP,P,Non-ASN,S3,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0414263597,Okta Hakim,IF,JTK,L,PNS,S2,Lektor Kepala,False,True,False,2014,2026-05-13T19:21:14+07:00
+0521669598,Bayu Putra,TE,JTK,P,PPPK,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0826805599,Prima Damayanti,TLK,JTI,P,Non-ASN,S2,Asisten Ahli,False,False,True,2016,2026-05-13T19:21:14+07:00
+0489160600,Kevin Putra,KIM,JSA,P,PNS,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0353998601,Luna Wulandari,TS,JTI,P,PPPK,S3,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0245308602,Joko Handayani,GD,JTI,P,PNS,S2,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0713682603,Luna Utami,BIO,JSA,L,PNS,S2,Asisten Ahli,False,True,False,2025,2026-05-13T19:21:14+07:00
+0301145604,Ahmad Fauzi,AR,JTI,L,Non-ASN,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0549063605,Zaki Santoso,TS,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2020,2026-05-13T19:21:14+07:00
+0122332606,Fitri Handayani,PWK,JTI,P,Non-ASN,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0326064607,Tina Pratama,TK,JTP,P,Non-ASN,S2,Guru Besar,False,True,True,2015,2026-05-13T19:21:14+07:00
+0530329608,Muhammad Wulandari,TS_S2,JTI,P,PNS,S2,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0455298609,Nadia Fauzi,AG,JTP,P,Non-ASN,S2,Tenaga Pengajar,False,True,True,2014,2026-05-13T19:21:14+07:00
+0327552610,Qori Damayanti,TL,JTK,L,Non-ASN,S2,Lektor Kepala,True,True,False,2019,2026-05-13T19:21:14+07:00
+0639475611,Sari Wijaya,AG,JTP,L,PNS,S2,Tenaga Pengajar,False,True,True,2019,2026-05-13T19:21:14+07:00
+0546820612,Lestari Pratama,TIF_S2,JTK,L,PNS,S2,Tenaga Pengajar,False,False,False,2017,2026-05-13T19:21:14+07:00
+0125162613,Budi Saputra,BIO,JSA,L,PPPK,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0615501614,Elsa Handayani,GD,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0572247615,Gilang Suherman,TS,JTI,L,Non-ASN,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0444569616,Omar Permana,GL,JTI,P,Non-ASN,S3,Lektor,False,True,False,2023,2026-05-13T19:21:14+07:00
+0758119617,Lia Nugroho,MB,JMB,P,Non-ASN,S3,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0673341618,Maulana Firmansyah,MB,JMB,L,Non-ASN,S3,Tenaga Pengajar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0477981619,Irma Anggraini,MTK,JMB,L,PNS,S2,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0419447620,Elsa Aditya,TE,JTK,L,PNS,S2,Tenaga Pengajar,True,True,False,2019,2026-05-13T19:21:14+07:00
+0285525621,Hadi Anggraini,TIF_S2,JTK,L,Non-ASN,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0801690622,Ahmad Fitriani,IF,JTK,L,PNS,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0850615623,Sinta Santoso,AG,JTP,L,PPPK,S3,Asisten Ahli,False,False,False,2022,2026-05-13T19:21:14+07:00
+0872977624,Galih Handayani,GD,JTI,L,Non-ASN,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0976742625,Elsa Gunawan,SI,JTK,L,PNS,S2,Tenaga Pengajar,False,True,True,2025,2026-05-13T19:21:14+07:00
+0180545626,Ilham Hidayat,TIF_S2,JTK,P,Non-ASN,S3,Asisten Ahli,False,True,False,2019,2026-05-13T19:21:14+07:00
+0278815627,Ulfa Anggraini,AR,JTI,L,PNS,S3,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0115521628,Tina Saputra,SK,JSA,P,Non-ASN,S2,Tenaga Pengajar,False,True,True,2019,2026-05-13T19:21:14+07:00
+0500681629,Yusuf Handayani,TG,JTI,L,PPPK,S2,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0316119630,Dian Prasetyo,SI,JTK,L,PNS,S2,Tenaga Pengajar,False,True,True,2021,2026-05-13T19:21:14+07:00
+0737212631,Zaki Setiawan,TK,JTP,L,Non-ASN,S3,Lektor Kepala,False,True,False,2018,2026-05-13T19:21:14+07:00
+0451676632,Eka Maharani,PWK,JTI,L,PNS,S2,Lektor Kepala,False,True,True,2018,2026-05-13T19:21:14+07:00
+0978897633,Joko Hakim,TE,JTK,P,Non-ASN,S2,Guru Besar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0409126634,Dinda Santoso,MB,JMB,L,PNS,S2,Asisten Ahli,False,True,False,2021,2026-05-13T19:21:14+07:00
+0857247635,Fajar Putra,TI,JTK,P,PNS,S2,Asisten Ahli,False,False,False,2019,2026-05-13T19:21:14+07:00
+0925689636,Rizki Wulandari,MB,JMB,P,PPPK,S2,Tenaga Pengajar,False,True,False,2021,2026-05-13T19:21:14+07:00
+0510879637,Bella Wulandari,FT,JSA,P,Non-ASN,S2,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:14+07:00
+0782342638,Indra Permana,TS,JTI,P,Non-ASN,S3,Asisten Ahli,False,False,False,2023,2026-05-13T19:21:14+07:00
+0160054639,Elsa Wulandari,GD,JTI,P,Non-ASN,S2,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0235902640,Galih Hidayat,AG,JTP,P,PPPK,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0182354641,Kevin Wulandari,SK,JSA,L,PNS,S2,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0655006642,Lia Wulandari,TK,JTP,P,PNS,S2,Lektor Kepala,False,False,False,2019,2026-05-13T19:21:14+07:00
+0283428643,Prima Setiawan,GL,JTI,P,Non-ASN,S2,Lektor Kepala,False,False,False,2021,2026-05-13T19:21:14+07:00
+0229694644,Yani Maharani,AR,JTI,L,PNS,S3,Lektor,False,True,False,2023,2026-05-13T19:21:14+07:00
+0831570645,Sari Prasetyo,TS_S2,JTI,P,PPPK,S2,Guru Besar,True,False,False,2016,2026-05-13T19:21:14+07:00
+0617030646,Nadia Safitri,TP,JTP,P,Non-ASN,S3,Asisten Ahli,False,False,False,2019,2026-05-13T19:21:14+07:00
+0926529647,Umar Suryadi,TS_S2,JTI,P,PPPK,S3,Lektor,True,True,False,2025,2026-05-13T19:21:14+07:00
+0719028648,Kiki Wijaya,TM,JTP,L,PNS,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0555281649,Bella Mahendra,TP,JTP,L,PNS,S3,Tenaga Pengajar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0957099650,Ulfa Purnama,BIO,JSA,P,PPPK,S2,Tenaga Pengajar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0184510651,Elsa Fauzi,GL,JTI,P,PNS,S2,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0213493652,Cahya Fauzi,GL,JTI,P,Non-ASN,S3,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0271379653,Fajar Mahendra,GL,JTI,L,PNS,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0515646654,Gita Firmansyah,SK,JSA,L,Non-ASN,S2,Lektor Kepala,False,True,False,2015,2026-05-13T19:21:14+07:00
+0265305655,Yusuf Anggraini,TP,JTP,L,PNS,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0291345656,Yusuf Permana,GL,JTI,L,PPPK,S3,Guru Besar,True,True,False,2016,2026-05-13T19:21:14+07:00
+0577870657,Indra Susanti,TIF_S2,JTK,P,Non-ASN,S3,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0717771658,Fitri Fauzi,FT,JSA,P,Non-ASN,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0476658659,Luna Maharani,AR,JTI,L,PNS,S3,Tenaga Pengajar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0239210660,Novi Utami,TI,JTK,P,Non-ASN,S2,Lektor,False,False,True,2021,2026-05-13T19:21:14+07:00
+0614571661,Okta Suherman,PWK,JTI,P,PNS,S2,Asisten Ahli,False,True,True,2025,2026-05-13T19:21:14+07:00
+0369456662,Wahyu Handayani,TM,JTP,P,PNS,S2,Guru Besar,True,True,False,2022,2026-05-13T19:21:14+07:00
+0298164663,Mira Purnama,FIS,JSA,P,PPPK,S3,Asisten Ahli,False,False,False,2021,2026-05-13T19:21:14+07:00
+0975946664,Lestari Firmansyah,FIS,JSA,L,PNS,S3,Lektor,False,True,False,2014,2026-05-13T19:21:14+07:00
+0708719665,Bayu Pratama,TM,JTP,P,PNS,S2,Lektor,False,True,True,2020,2026-05-13T19:21:14+07:00
+0359125666,Nadia Ramadhani,BIO,JSA,L,PPPK,S2,Lektor,False,False,True,2021,2026-05-13T19:21:14+07:00
+0772446667,Fitri Safitri,BIO,JSA,P,Non-ASN,S2,Guru Besar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0949877668,Hadi Saputra,TL,JTK,L,PNS,S2,Asisten Ahli,False,False,False,2025,2026-05-13T19:21:14+07:00
+0117320669,Kevin Handayani,PWK,JTI,L,Non-ASN,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0873034670,Eka Putra,FIS,JSA,P,PNS,S3,Asisten Ahli,True,True,False,2024,2026-05-13T19:21:14+07:00
+0664703671,Rina Kusuma,MTK,JMB,L,PNS,S2,Lektor,False,True,False,2018,2026-05-13T19:21:14+07:00
+0596581672,Putri Ramadhani,TI,JTK,L,PNS,S2,Asisten Ahli,False,False,False,2020,2026-05-13T19:21:14+07:00
+0599589673,Ahmad Saputra,SK,JSA,L,PNS,S2,Lektor,False,False,False,2020,2026-05-13T19:21:14+07:00
+0463326674,Dewi Hakim,MB,JMB,L,Non-ASN,S2,Asisten Ahli,False,False,False,2024,2026-05-13T19:21:14+07:00
+0196507675,Nadia Hakim,TIF_S2,JTK,L,PNS,S2,Asisten Ahli,False,False,True,2019,2026-05-13T19:21:14+07:00
+0786711676,Eka Putra,TE,JTK,P,PNS,S2,Asisten Ahli,False,False,False,2017,2026-05-13T19:21:14+07:00
+0326307677,Hana Wijaya,TL,JTK,L,PNS,S2,Guru Besar,True,True,False,2023,2026-05-13T19:21:14+07:00
+0836851678,Lestari Aditya,TL,JTK,P,PNS,S2,Guru Besar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0478886679,Nadia Mahendra,TS,JTI,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0643280680,Zaki Utami,TP,JTP,L,PPPK,S3,Guru Besar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0751390681,Hendra Surya,TI,JTK,L,PNS,S2,Guru Besar,False,True,False,2019,2026-05-13T19:21:14+07:00
+0546237682,Luna Nugroho,TK,JTP,L,PNS,S2,Guru Besar,False,True,True,2021,2026-05-13T19:21:14+07:00
+0734766683,Jihan Utami,TIF_S2,JTK,P,Non-ASN,S3,Lektor,False,True,True,2023,2026-05-13T19:21:14+07:00
+0511626684,Fitri Suherman,TI,JTK,L,PNS,S3,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0214946685,Lestari Ramadhan,PWK,JTI,L,PNS,S2,Asisten Ahli,False,True,False,2021,2026-05-13T19:21:14+07:00
+0477779686,Gita Hakim,TM,JTP,P,Non-ASN,S2,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0715886687,Dinda Safitri,BIO,JSA,L,Non-ASN,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0954024688,Zaki Laksono,TLK,JTI,P,Non-ASN,S3,Lektor,False,False,False,2023,2026-05-13T19:21:14+07:00
+0573611689,Kartika Prasetyo,AR,JTI,L,PPPK,S3,Lektor Kepala,False,True,False,2014,2026-05-13T19:21:14+07:00
+0526666690,Yusuf Suherman,TK,JTP,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2016,2026-05-13T19:21:14+07:00
+0291476691,Citra Ramadhani,TL,JTK,L,PNS,S3,Lektor Kepala,False,True,True,2021,2026-05-13T19:21:14+07:00
+0574975692,Vina Gunawan,SI,JTK,P,PPPK,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0110048693,Jihan Handayani,MTK,JMB,L,PNS,S2,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0691701694,Ulfa Maharani,GL,JTI,P,Non-ASN,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0384194695,Prima Firmansyah,SK,JSA,P,Non-ASN,S3,Tenaga Pengajar,False,True,False,2020,2026-05-13T19:21:14+07:00
+0194292696,Kevin Nugroho,TS,JTI,L,Non-ASN,S2,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0528742697,Okta Kusuma,IF,JTK,L,PNS,S3,Asisten Ahli,False,True,False,2024,2026-05-13T19:21:14+07:00
+0509329698,Joni Fitriani,KIM,JSA,P,Non-ASN,S3,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0271442699,Nisa Wibowo,SI,JTK,P,PNS,S3,Tenaga Pengajar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0784087700,Mira Nugroho,AG,JTP,P,PNS,S3,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0173409701,Umar Anggraini,TS,JTI,P,PPPK,S3,Tenaga Pengajar,False,False,False,2014,2026-05-13T19:21:14+07:00
+0860799702,Dewi Gunawan,SK,JSA,L,Non-ASN,S2,Lektor,False,True,False,2021,2026-05-13T19:21:14+07:00
+0139288703,Irma Handayani,TE,JTK,L,PNS,S3,Asisten Ahli,False,True,False,2014,2026-05-13T19:21:14+07:00
+0821309704,Budi Pratama,TIF_S2,JTK,P,Non-ASN,S2,Asisten Ahli,False,True,False,2014,2026-05-13T19:21:14+07:00
+0629720705,Rizki Anggraini,GD,JTI,P,PNS,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0516354706,Galih Maharani,AR,JTI,P,PPPK,S2,Tenaga Pengajar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0177028707,Ahmad Firmansyah,SK,JSA,P,PNS,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:14+07:00
+0846256708,Sinta Gunawan,AR,JTI,L,PNS,S2,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0475011709,Elsa Safitri,AR,JTI,P,Non-ASN,S3,Lektor,False,True,False,2019,2026-05-13T19:21:14+07:00
+0217257710,Arif Maharani,TG,JTI,P,PNS,S2,Guru Besar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0415659711,Umar Setiawan,TIF_S2,JTK,P,PNS,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0202352712,Lia Suherman,IF,JTK,L,PPPK,S2,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0697639713,Ulfa Saputra,TS_S2,JTI,P,PNS,S2,Guru Besar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0595964714,Galih Anggraini,TM,JTP,L,PNS,S2,Tenaga Pengajar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0832701715,Kevin Safitri,TG,JTI,P,PPPK,S3,Lektor Kepala,False,True,False,2025,2026-05-13T19:21:14+07:00
+0475467716,Wahyu Mahendra,TS,JTI,P,PNS,S3,Asisten Ahli,False,False,False,2022,2026-05-13T19:21:14+07:00
+0300602717,Lestari Fauzi,FT,JSA,P,Non-ASN,S3,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0921555718,Lia Firmansyah,PWK,JTI,P,PPPK,S2,Lektor,False,False,False,2014,2026-05-13T19:21:14+07:00
+0462848719,Joni Pratama,MTK,JMB,P,Non-ASN,S2,Asisten Ahli,False,False,False,2017,2026-05-13T19:21:14+07:00
+0237180720,Ulfa Gunawan,SK,JSA,P,Non-ASN,S2,Asisten Ahli,False,False,False,2019,2026-05-13T19:21:14+07:00
+0115389721,Qori Hidayat,TG,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0311515722,Muhammad Wibowo,SI,JTK,P,PNS,S3,Guru Besar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0385526723,Nadia Anggraini,FT,JSA,P,Non-ASN,S3,Lektor,False,False,False,2025,2026-05-13T19:21:14+07:00
+0120743724,Zaki Putra,TIF_S2,JTK,P,PPPK,S2,Lektor Kepala,False,True,False,2018,2026-05-13T19:21:14+07:00
+0755430725,Bayu Mahendra,TI,JTK,L,PNS,S2,Tenaga Pengajar,False,True,True,2019,2026-05-13T19:21:14+07:00
+0179957726,Hana Fitriani,TS,JTI,P,PPPK,S3,Tenaga Pengajar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0963802727,Fajar Wulandari,AR,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2015,2026-05-13T19:21:14+07:00
+0539244728,Sari Hidayat,TI,JTK,P,PPPK,S2,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0441271729,Zaki Fauzi,TS,JTI,L,PPPK,S2,Asisten Ahli,False,False,False,2020,2026-05-13T19:21:14+07:00
+0723118730,Dian Permana,TS,JTI,L,PPPK,S3,Lektor,False,False,False,2017,2026-05-13T19:21:14+07:00
+0830012731,Yani Permana,FT,JSA,P,PNS,S2,Tenaga Pengajar,False,True,False,2024,2026-05-13T19:21:14+07:00
+0658870732,Yusuf Suryadi,SI,JTK,P,Non-ASN,S2,Lektor Kepala,False,False,False,2015,2026-05-13T19:21:14+07:00
+0813392733,Gita Pratama,TS,JTI,L,Non-ASN,S2,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:14+07:00
+0927808734,Kiki Maharani,TE,JTK,L,Non-ASN,S2,Tenaga Pengajar,False,True,False,2025,2026-05-13T19:21:14+07:00
+0975010735,Hana Ramadhan,SI,JTK,P,PPPK,S3,Lektor Kepala,False,True,False,2016,2026-05-13T19:21:14+07:00
+0200900736,Nadia Anggraini,TG,JTI,L,Non-ASN,S3,Lektor,True,True,False,2025,2026-05-13T19:21:14+07:00
+0417283737,Qori Mahendra,GD,JTI,L,PNS,S3,Guru Besar,False,False,True,2015,2026-05-13T19:21:14+07:00
+0904090738,Luna Surya,GD,JTI,P,PNS,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:14+07:00
+0977509739,Indra Suherman,AG,JTP,P,PNS,S2,Lektor,False,True,True,2014,2026-05-13T19:21:14+07:00
+0394868740,Sinta Anggraini,TLK,JTI,P,Non-ASN,S2,Asisten Ahli,False,True,False,2018,2026-05-13T19:21:14+07:00
+0116326741,Dian Wulandari,MB,JMB,P,PNS,S2,Asisten Ahli,False,True,False,2020,2026-05-13T19:21:14+07:00
+0438156742,Dian Utami,TE,JTK,P,PNS,S3,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0873520743,Yani Setiawan,TK,JTP,P,Non-ASN,S3,Guru Besar,False,False,False,2019,2026-05-13T19:21:14+07:00
+0457796744,Arif Prasetyo,SI,JTK,L,PPPK,S3,Lektor Kepala,False,False,False,2024,2026-05-13T19:21:14+07:00
+0524631745,Muhammad Fauzi,MTK,JMB,P,PNS,S2,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0453110746,Luna Damayanti,PWK,JTI,L,Non-ASN,S3,Tenaga Pengajar,False,False,False,2021,2026-05-13T19:21:14+07:00
+0828663747,Cahya Permana,TG,JTI,L,PNS,S2,Tenaga Pengajar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0380213748,Hadi Wulandari,SI,JTK,P,PNS,S3,Lektor Kepala,True,False,False,2017,2026-05-13T19:21:14+07:00
+0336868749,Tina Fauzi,TIF_S2,JTK,L,Non-ASN,S2,Tenaga Pengajar,False,True,True,2020,2026-05-13T19:21:14+07:00
+0774826750,Kevin Pratama,FT,JSA,P,Non-ASN,S3,Tenaga Pengajar,False,False,False,2014,2026-05-13T19:21:14+07:00
+0320459751,Hadi Laksono,TM,JTP,P,Non-ASN,S3,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0156888752,Kiki Permana,FIS,JSA,L,PNS,S2,Lektor Kepala,False,False,False,2018,2026-05-13T19:21:14+07:00
+0156697753,Hana Aditya,TLK,JTI,P,PPPK,S3,Lektor,False,False,True,2019,2026-05-13T19:21:14+07:00
+0403007754,Dewi Surya,TS_S2,JTI,P,PPPK,S3,Tenaga Pengajar,False,True,True,2017,2026-05-13T19:21:14+07:00
+0936623755,Citra Firmansyah,GD,JTI,L,Non-ASN,S2,Tenaga Pengajar,True,False,True,2024,2026-05-13T19:21:14+07:00
+0885358756,Joko Ramadhan,BIO,JSA,P,PNS,S3,Lektor Kepala,True,True,True,2021,2026-05-13T19:21:14+07:00
+0990516757,Dinda Prasetyo,TP,JTP,P,Non-ASN,S3,Guru Besar,False,False,False,2018,2026-05-13T19:21:14+07:00
+0242126758,Vina Santoso,TP,JTP,L,PPPK,S2,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0513455759,Hadi Damayanti,AR,JTI,P,PNS,S3,Tenaga Pengajar,False,True,False,2016,2026-05-13T19:21:14+07:00
+0321419760,Tina Putra,KIM,JSA,P,PPPK,S3,Guru Besar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0250768761,Gilang Hidayat,GD,JTI,P,PNS,S3,Tenaga Pengajar,False,True,False,2014,2026-05-13T19:21:14+07:00
+0436876762,Dewi Suryadi,TL,JTK,P,PNS,S2,Tenaga Pengajar,False,True,False,2023,2026-05-13T19:21:14+07:00
+0951028763,Qori Pratama,TLK,JTI,P,Non-ASN,S2,Lektor Kepala,False,False,False,2025,2026-05-13T19:21:14+07:00
+0629492764,Dian Handayani,KIM,JSA,L,PNS,S2,Lektor,False,False,False,2016,2026-05-13T19:21:14+07:00
+0758692765,Prima Ramadhani,TS_S2,JTI,L,PPPK,S2,Lektor Kepala,False,True,False,2019,2026-05-13T19:21:14+07:00
+0422371766,Tina Ramadhan,MTK,JMB,L,Non-ASN,S2,Tenaga Pengajar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0587101767,Zaki Safitri,TLK,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2021,2026-05-13T19:21:14+07:00
+0353090768,Elsa Surya,IF,JTK,P,PPPK,S2,Lektor Kepala,False,True,False,2021,2026-05-13T19:21:14+07:00
+0719844769,Qori Kusuma,TP,JTP,P,Non-ASN,S2,Lektor,False,True,False,2016,2026-05-13T19:21:14+07:00
+0353470770,Hadi Pratama,TP,JTP,L,Non-ASN,S3,Lektor,False,True,True,2021,2026-05-13T19:21:14+07:00
+0130214771,Fitri Anggraini,KIM,JSA,P,Non-ASN,S2,Asisten Ahli,False,True,True,2015,2026-05-13T19:21:14+07:00
+0871761772,Prima Hakim,SI,JTK,L,PNS,S3,Lektor,False,True,False,2015,2026-05-13T19:21:14+07:00
+0552807773,Elsa Fitriani,TL,JTK,L,Non-ASN,S2,Guru Besar,False,True,False,2017,2026-05-13T19:21:14+07:00
+0715905774,Joko Fauzi,AG,JTP,P,Non-ASN,S2,Lektor,False,True,False,2017,2026-05-13T19:21:14+07:00
+0980011775,Bella Mahendra,SK,JSA,P,Non-ASN,S3,Guru Besar,False,False,False,2020,2026-05-13T19:21:14+07:00
+0455034776,Lestari Damayanti,TE,JTK,P,PNS,S2,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0412450777,Jihan Laksono,FIS,JSA,L,PNS,S2,Lektor Kepala,False,True,True,2024,2026-05-13T19:21:14+07:00
+0315677778,Hendra Purnama,TP,JTP,P,Non-ASN,S2,Lektor,False,False,False,2021,2026-05-13T19:21:14+07:00
+0333764779,Lestari Aditya,TE,JTK,P,Non-ASN,S2,Guru Besar,False,False,False,2023,2026-05-13T19:21:14+07:00
+0316936780,Yusuf Wijaya,TP,JTP,L,PPPK,S2,Lektor Kepala,False,False,False,2022,2026-05-13T19:21:14+07:00
+0506082781,Okta Surya,TP,JTP,P,PPPK,S3,Tenaga Pengajar,False,True,False,2022,2026-05-13T19:21:14+07:00
+0451194782,Fajar Nugroho,GD,JTI,P,PPPK,S2,Tenaga Pengajar,False,False,False,2022,2026-05-13T19:21:14+07:00
+0748459783,Budi Prasetyo,TG,JTI,L,Non-ASN,S2,Tenaga Pengajar,False,False,True,2022,2026-05-13T19:21:14+07:00
+0228129784,Luna Ramadhan,TM,JTP,P,PPPK,S3,Lektor Kepala,False,True,False,2018,2026-05-13T19:21:14+07:00
+0208400785,Kartika Gunawan,TIF_S2,JTK,L,Non-ASN,S2,Lektor Kepala,True,True,False,2024,2026-05-13T19:21:14+07:00
+0549570786,Andi Laksono,TIF_S2,JTK,P,Non-ASN,S3,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:14+07:00
+0594492787,Gita Pratama,SK,JSA,L,PPPK,S3,Guru Besar,False,False,False,2025,2026-05-13T19:21:14+07:00
+0441671788,Fandi Damayanti,TLK,JTI,L,PNS,S2,Lektor Kepala,True,False,False,2022,2026-05-13T19:21:14+07:00
+0764151789,Yusuf Mahendra,TI,JTK,L,PPPK,S2,Guru Besar,False,False,True,2020,2026-05-13T19:21:14+07:00
+0196230790,Rizki Hakim,IF,JTK,L,Non-ASN,S2,Lektor,False,True,False,2022,2026-05-13T19:21:14+07:00
+0666870791,Kartika Pratama,TLK,JTI,L,Non-ASN,S2,Asisten Ahli,False,True,False,2024,2026-05-13T19:21:14+07:00
+0899186792,Ahmad Santoso,TG,JTI,L,Non-ASN,S2,Lektor Kepala,False,True,False,2017,2026-05-13T19:21:14+07:00
+0705492793,Sari Laksono,TM,JTP,L,Non-ASN,S3,Lektor,True,False,True,2018,2026-05-13T19:21:14+07:00
+0627720794,Dian Fitriani,MB,JMB,L,Non-ASN,S2,Lektor,False,True,False,2020,2026-05-13T19:21:14+07:00
+0201321795,Sinta Mahendra,TL,JTK,P,Non-ASN,S3,Lektor,False,False,True,2022,2026-05-13T19:21:14+07:00
+0874762796,Taufik Gunawan,TLK,JTI,P,PPPK,S2,Asisten Ahli,False,False,False,2016,2026-05-13T19:21:14+07:00
+0414889797,Ahmad Damayanti,TS_S2,JTI,L,PNS,S3,Lektor Kepala,False,True,False,2014,2026-05-13T19:21:14+07:00
+0646910798,Ahmad Ramadhan,BIO,JSA,P,PNS,S2,Tenaga Pengajar,False,False,False,2015,2026-05-13T19:21:14+07:00
+0644134799,Rizki Putra,BIO,JSA,P,PNS,S3,Tenaga Pengajar,False,False,True,2024,2026-05-13T19:21:14+07:00
+0797829000,Hadi Purnama,FIS,JSA,L,PPPK,S3,Asisten Ahli,False,True,False,2016,2026-05-13T19:21:19+07:00
+0480240001,Yusuf Firmansyah,TIF_S2,JTK,L,PNS,S2,Guru Besar,False,True,True,2015,2026-05-13T19:21:19+07:00
+0328400002,Kevin Anggraini,MTK,JMB,P,PPPK,S2,Asisten Ahli,False,True,False,2023,2026-05-13T19:21:19+07:00
+0139179003,Bayu Kusuma,AG,JTP,L,Non-ASN,S3,Guru Besar,False,False,True,2017,2026-05-13T19:21:19+07:00
+0904243004,Sari Suryadi,AR,JTI,P,PNS,S2,Asisten Ahli,False,False,False,2014,2026-05-13T19:21:19+07:00
+0506414005,Luna Putra,TP,JTP,L,PPPK,S3,Lektor Kepala,False,False,True,2024,2026-05-13T19:21:19+07:00
+0278189006,Yusuf Permana,TM,JTP,P,PNS,S2,Tenaga Pengajar,False,True,True,2017,2026-05-13T19:21:19+07:00
+0420015007,Dian Anggraini,KIM,JSA,L,PPPK,S2,Guru Besar,False,True,False,2024,2026-05-13T19:21:19+07:00
+0520355008,Ulfa Firmansyah,MTK,JMB,L,Non-ASN,S3,Tenaga Pengajar,False,True,False,2014,2026-05-13T19:21:19+07:00
+0405885009,Bayu Hakim,TS,JTI,L,Non-ASN,S3,Lektor,False,True,True,2016,2026-05-13T19:21:19+07:00
+0294970010,Tina Gunawan,GL,JTI,L,PNS,S3,Guru Besar,False,True,False,2020,2026-05-13T19:21:19+07:00
+0254582011,Sinta Safitri,TI,JTK,P,Non-ASN,S2,Guru Besar,False,True,False,2015,2026-05-13T19:21:19+07:00
+0642782012,Hendra Fauzi,TP,JTP,P,Non-ASN,S2,Tenaga Pengajar,True,False,False,2021,2026-05-13T19:21:19+07:00
+0912670013,Muhammad Hakim,TIF_S2,JTK,P,PNS,S3,Asisten Ahli,False,True,False,2017,2026-05-13T19:21:19+07:00
+0813915014,Sari Damayanti,SI,JTK,P,PNS,S2,Lektor Kepala,False,True,False,2024,2026-05-13T19:21:19+07:00
+0375523015,Dinda Safitri,TI,JTK,L,PPPK,S3,Guru Besar,False,True,False,2019,2026-05-13T19:21:19+07:00
+0353513016,Hadi Mahendra,IF,JTK,L,Non-ASN,S2,Lektor Kepala,False,False,True,2018,2026-05-13T19:21:19+07:00
+0532307017,Vina Surya,PWK,JTI,P,PNS,S2,Lektor,False,False,False,2018,2026-05-13T19:21:19+07:00
+0492926018,Ahmad Saputra,TS_S2,JTI,P,Non-ASN,S2,Lektor Kepala,False,True,False,2023,2026-05-13T19:21:19+07:00
+0122850019,Omar Gunawan,TM,JTP,P,PNS,S2,Tenaga Pengajar,False,True,False,2021,2026-05-13T19:21:19+07:00

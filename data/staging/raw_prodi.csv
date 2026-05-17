@@ -1,0 +1,26 @@
+prodi_id,nama_prodi,jenjang,jurusan_id,tahun_berdiri,status,ingested_at
+IF,Informatika,S1,JTK,2014,Aktif,2026-05-13T19:21:19+07:00
+TI,Teknik Informatika,S1,JTK,2017,Aktif,2026-05-13T19:21:19+07:00
+SI,Sistem Informasi,S1,JTK,2018,Aktif,2026-05-13T19:21:19+07:00
+TE,Teknik Elektro,S1,JTK,2014,Aktif,2026-05-13T19:21:19+07:00
+TL,Teknik Telekomunikasi,S1,JTK,2020,Aktif,2026-05-13T19:21:19+07:00
+BIO,Biologi,S1,JSA,2017,Aktif,2026-05-13T19:21:19+07:00
+KIM,Kimia,S1,JSA,2017,Aktif,2026-05-13T19:21:19+07:00
+FIS,Fisika,S1,JSA,2014,Aktif,2026-05-13T19:21:19+07:00
+FT,Farmasi,S1,JSA,2019,Aktif,2026-05-13T19:21:19+07:00
+SK,Sains Komunikasi,S1,JSA,2021,Aktif,2026-05-13T19:21:19+07:00
+TK,Teknik Kimia,S1,JTP,2019,Aktif,2026-05-13T19:21:19+07:00
+AG,Teknik Pertanian,S1,JTP,2017,Aktif,2026-05-13T19:21:19+07:00
+TP,Teknologi Pangan,S1,JTP,2019,Aktif,2026-05-13T19:21:19+07:00
+TM,Teknik Mesin,S1,JTP,2014,Aktif,2026-05-13T19:21:19+07:00
+TS,Teknik Sipil,S1,JTI,2014,Aktif,2026-05-13T19:21:19+07:00
+AR,Arsitektur,S1,JTI,2017,Aktif,2026-05-13T19:21:19+07:00
+PWK,Perencanaan Wilayah dan Kota,S1,JTI,2014,Aktif,2026-05-13T19:21:19+07:00
+GL,Teknik Geologi,S1,JTI,2017,Aktif,2026-05-13T19:21:19+07:00
+GD,Teknik Geodesi,S1,JTI,2019,Aktif,2026-05-13T19:21:19+07:00
+TG,Teknik Geofisika,S1,JTI,2018,Aktif,2026-05-13T19:21:19+07:00
+TLK,Teknik Lingkungan,S1,JTI,2019,Aktif,2026-05-13T19:21:19+07:00
+MTK,Matematika,S1,JMB,2017,Aktif,2026-05-13T19:21:19+07:00
+MB,Manajemen Bisnis,S1,JMB,2019,Aktif,2026-05-13T19:21:19+07:00
+TIF_S2,Teknik Informatika,S2,JTK,2022,Aktif,2026-05-13T19:21:19+07:00
+TS_S2,Teknik Sipil,S2,JTI,2021,Aktif,2026-05-13T19:21:19+07:00

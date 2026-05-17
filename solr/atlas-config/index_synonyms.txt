@@ -1,0 +1,2 @@
+# Index-time synonyms (optional). Referenced by schema.xml text_* analyzers.
+# Kosong / hanya komentar: sah untuk Solr; tambahkan baris "a,b,c" bila perlu.
