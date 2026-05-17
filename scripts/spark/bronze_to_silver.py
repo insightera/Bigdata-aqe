@@ -43,6 +43,30 @@ from pyspark.sql.window import Window
 
 logger = logging.getLogger("bronze_to_silver")
 
+
+def _select_unique_columns(df: DataFrame, columns: list[str] | None = None) -> DataFrame:
+    """
+    Pastikan tidak ada nama kolom duplikat sebelum write Iceberg.
+    Menghindari: [COLUMN_ALREADY_EXISTS] jurusan_id (mis. join ganda ke raw_prodi).
+    """
+    seen: set[str] = set()
+    positions: list[int] = []
+    order: list[str] = []
+    for i, field in enumerate(df.schema.fields):
+        if field.name in seen:
+            continue
+        seen.add(field.name)
+        positions.append(i)
+        order.append(field.name)
+
+    deduped = df.select([df[i] for i in positions])
+
+    if columns:
+        existing = [c for c in columns if c in order]
+        return deduped.select(*existing)
+    return deduped
+
+
 JURUSAN_MAP = {
     "JTK": "Teknik dan Komputer",
     "JSA": "Sains",
@@ -287,7 +311,14 @@ def transform_silver_dosen(spark: SparkSession) -> tuple[DataFrame, dict]:
         .drop("jenis_tridarma_count")
         .dropDuplicates(["dosen_id"])
     )
-    # jurusan_id sudah ada di bronze.raw_dosen (generator) — jangan join lagi ke raw_prodi
+    # Kolom eksplisit — jangan join raw_prodi (jurusan_id sudah di bronze.raw_dosen)
+    silver_dosen_cols = [
+        "dosen_id", "nama", "prodi_id", "jurusan_id", "jenis_kelamin", "status_asn",
+        "pendidikan_terakhir", "jabatan_fungsional", "sedang_tugas_belajar",
+        "sertifikat_dosen", "berasal_praktisi", "tahun_bergabung", "ingested_at",
+        "is_s3", "is_praktisi", "is_serdos", "is_aktif_tridarma",
+    ]
+    df = _select_unique_columns(df, silver_dosen_cols)
 
     return df, quality
 
@@ -581,6 +612,7 @@ def run_bronze_to_silver(aqe_scenario: str | None = None) -> dict:
                 }
                 continue
 
+            df = _select_unique_columns(df)
             iceberg_table = f"lakehouse.silver.{name}"
             df.writeTo(iceberg_table).using("iceberg").createOrReplace()
 
