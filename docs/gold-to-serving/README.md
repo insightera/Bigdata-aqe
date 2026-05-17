@@ -226,11 +226,11 @@ Setelah `aqe_full_experiment` sukses, layer Gold di MinIO/Iceberg biasanya beris
 | `fact_iku7_metode_pembelajaran` | Fakta | ✅ | Simulasi per prodi S1 |
 | `fact_iku8_akreditasi_internasional` | Fakta | ✅ | `silver_akreditasi_aktif` |
 | `fact_tata_kelola` | Fakta | ✅ | `raw_keuangan` |
-| `fact_iku1_lulusan` | Fakta | ⚠️ opsional | Gagal jika `silver_lulusan` kosong/error |
-| `fact_iku2_mbkm` | Fakta | ⚠️ opsional | Bergantung Silver mahasiswa/prestasi |
-| `fact_iku3_dosen_tridarma` | Fakta | ⚠️ opsional | Bergantung kegiatan dosen |
-| `fact_iku5_penelitian_pkm` | Fakta | ⚠️ opsional | Bergantung union penelitian/PkM |
-| `fact_rekap_iku_institusi` | Fakta | ⚠️ opsional | Hanya jika semua fakta IKU terbentuk |
+| `fact_iku1_lulusan` | Fakta | ✅ | `silver_lulusan` + parse `tanggal_lulus` |
+| `fact_iku2_mbkm` | Fakta | ✅ | MBKM **atau** prestasi nasional (logika OR) |
+| `fact_iku3_dosen_tridarma` | Fakta | ✅ | `raw_kegiatan_dosen` ⋈ `silver_dosen` |
+| `fact_iku5_penelitian_pkm` | Fakta | ✅ | `silver_penelitian_pkm` + `jurusan_id` |
+| `fact_rekap_iku_institusi` | Fakta | ✅ | Agregat dari fakta IKU yang berhasil ditulis |
 
 > Jika di MinIO hanya terlihat **5 dimensi + 5 fakta** (seperti screenshot eksperimen), dashboard fokus ke **IKU-4, IKU-6, IKU-7, IKU-8**, dan **tata kelola** — bukan 8 IKU penuh.
 

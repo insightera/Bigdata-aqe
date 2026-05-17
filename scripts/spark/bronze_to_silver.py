@@ -239,6 +239,9 @@ def transform_silver_mahasiswa(spark: SparkSession) -> tuple[DataFrame, dict]:
         .withColumn("is_mbkm", F.col("sks_luar_kampus") >= 20)
         .dropDuplicates(["mahasiswa_id"])
     )
+    # status_aktif diperlukan Gold IKU-2 (tanpa join ulang ke bronze)
+    if "status_aktif" not in df.columns:
+        df = df.withColumn("status_aktif", F.lit("Aktif"))
 
     return df, quality
 
@@ -255,6 +258,13 @@ def transform_silver_lulusan(spark: SparkSession) -> tuple[DataFrame, dict]:
 
     df = (
         lls
+        .withColumn(
+            "tanggal_lulus",
+            F.coalesce(
+                F.to_date(F.col("tanggal_lulus")),
+                F.to_date(F.col("tanggal_lulus"), "yyyy-MM-dd"),
+            ),
+        )
         .withColumn("is_employed", F.col("status_pasca_lulus") == "Bekerja")
         .withColumn("is_lanjut_studi", F.col("status_pasca_lulus") == "Studi Lanjut")
         .withColumn("is_wirausaha", F.col("status_pasca_lulus") == "Wirausaha")
@@ -355,8 +365,10 @@ def transform_silver_penelitian_pkm(spark: SparkSession) -> tuple[DataFrame, dic
         ),
     }
     combined_quality["status"] = (
-        "PASS" if combined_quality["quality_score"] >= 80
-        else "QUARANTINE" if combined_quality["quality_score"] >= 60
+        "PASS"
+        if quality_pen["status"] == "PASS" or quality_pkm["status"] == "PASS"
+        else "QUARANTINE"
+        if combined_quality["quality_score"] >= 60
         else "REJECT"
     )
 

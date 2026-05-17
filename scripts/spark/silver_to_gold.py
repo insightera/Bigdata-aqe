@@ -40,7 +40,32 @@ def _bronze(spark: SparkSession, table: str) -> DataFrame:
 
 
 def _silver(spark: SparkSession, table: str) -> DataFrame:
-    return spark.table(silver_table(_AQE_SCENARIO, table))
+    fqn = silver_table(_AQE_SCENARIO, table)
+    if not spark.catalog.tableExists(fqn):
+        raise RuntimeError(
+            f"Tabel {fqn} tidak ada — jalankan bronze_to_silver (AQE={_AQE_SCENARIO}) terlebih dahulu."
+        )
+    return spark.table(fqn)
+
+
+def _year_from_col(column: str):
+    """Parse tahun dari kolom tanggal/string."""
+    return F.year(
+        F.coalesce(
+            F.to_date(F.col(column)),
+            F.to_date(F.col(column), "yyyy-MM-dd"),
+        )
+    )
+
+
+def _target_column(tahun_col: str, iku: str):
+    """Target IKU per tahun tanpa Python UDF (lebih stabil di cluster)."""
+    pairs = []
+    for tahun, targets in IKU_TARGETS.items():
+        val = targets.get(iku, 0)
+        pairs.extend([F.lit(int(tahun)), F.lit(float(val))])
+    mapping = F.create_map(*pairs)
+    return mapping[F.col(tahun_col).cast("int")]
 
 IKU_TARGETS = {
     2021: {"IKU-1": 75, "IKU-2": 20, "IKU-3": 15, "IKU-4": 30, "IKU-5": 0.10, "IKU-6": 35, "IKU-7": 25, "IKU-8": 2.5, "SAKIP": "BB", "Anggaran": 80},
@@ -189,17 +214,12 @@ def _target(tahun: int, iku: str) -> float:
 
 def build_fact_iku1(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     """IKU-1: % lulusan bekerja/studi/wirausaha."""
-    slulusan = silver_table(_AQE_SCENARIO, "silver_lulusan")
-    if not spark.catalog.tableExists(slulusan):
-        raise RuntimeError(
-            f"Tabel {slulusan} tidak ada — "
-            "jalankan ulang bronze_to_silver untuk skenario AQE yang sama."
-        )
-    lls = spark.table(slulusan)
+    lls = _silver(spark, "silver_lulusan")
 
     agg = (
         lls
-        .withColumn("tahun_lulus", F.year(F.col("tanggal_lulus")))
+        .withColumn("tahun_lulus", _year_from_col("tanggal_lulus"))
+        .filter(F.col("tahun_lulus").isNotNull() & F.col("prodi_id").isNotNull())
         .groupBy("tahun_lulus", "prodi_id")
         .agg(
             F.count("*").alias("total_lulusan"),
@@ -210,23 +230,32 @@ def build_fact_iku1(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
         )
     )
 
+    terserap = (
+        F.col("lulusan_bekerja") + F.col("lulusan_lanjut_studi") + F.col("lulusan_wirausaha")
+    )
     return (
         agg
-        .withColumn("persen_terserap", F.round(
-            (F.col("lulusan_bekerja") + F.col("lulusan_lanjut_studi") + F.col("lulusan_wirausaha"))
-            / F.col("total_lulusan") * 100, 2))
-        .withColumn("target_iku", F.udf(lambda t: _target(t, "IKU-1"), FloatType())(F.col("tahun_lulus")))
-        .withColumn("capaian_iku", F.round(F.col("persen_terserap") / F.col("target_iku") * 100, 2))
+        .withColumn(
+            "persen_terserap",
+            F.round(terserap / F.greatest(F.col("total_lulusan"), F.lit(1)) * 100, 2),
+        )
+        .withColumn("target_iku", _target_column("tahun_lulus", "IKU-1"))
+        .withColumn(
+            "capaian_iku",
+            F.round(F.col("persen_terserap") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2),
+        )
         .withColumn("fact_id", F.monotonically_increasing_id())
-        .withColumn("waktu_id", F.col("tahun_lulus") * 100 + 12)
-        .select("fact_id", "waktu_id", "prodi_id", "total_lulusan", "lulusan_bekerja",
-                "lulusan_lanjut_studi", "lulusan_wirausaha", "lulusan_belum",
-                "persen_terserap", "target_iku", "capaian_iku")
+        .withColumn("waktu_id", F.col("tahun_lulus").cast("int") * 100 + 12)
+        .select(
+            "fact_id", "waktu_id", "prodi_id", "total_lulusan", "lulusan_bekerja",
+            "lulusan_lanjut_studi", "lulusan_wirausaha", "lulusan_belum",
+            "persen_terserap", "target_iku", "capaian_iku",
+        )
     )
 
 
 def build_fact_iku2(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
-    """IKU-2: % mahasiswa ≥20 SKS luar kampus / prestasi nasional."""
+    """IKU-2: % mahasiswa ≥20 SKS luar kampus ATAU prestasi nasional/internasional."""
     mhs = _silver(spark, "silver_mahasiswa")
     prestasi = _bronze(spark, "raw_prestasi_mahasiswa")
 
@@ -241,85 +270,121 @@ def build_fact_iku2(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     prestasi_nasional = (
         prestasi
         .filter(F.col("tingkat").isin("Nasional", "Internasional"))
-        .select("mahasiswa_id", "tahun")
-        .dropDuplicates(["mahasiswa_id", "tahun"])
+        .select("mahasiswa_id")
+        .distinct()
+        .withColumn("has_prestasi_nasional", F.lit(True))
+    )
+
+    mhs_flagged = (
+        mhs_aktif
+        .join(prestasi_nasional, on="mahasiswa_id", how="left")
+        .withColumn(
+            "memenuhi_iku2",
+            F.col("is_mbkm") | F.coalesce(F.col("has_prestasi_nasional"), F.lit(False)),
+        )
     )
 
     agg = (
-        mhs_aktif
+        mhs_flagged
         .groupBy("angkatan", "prodi_id")
         .agg(
             F.count("*").alias("total_mahasiswa_aktif"),
             F.sum(F.col("is_mbkm").cast("int")).alias("mahasiswa_sks_luar_20"),
+            F.sum(
+                F.when(F.coalesce(F.col("has_prestasi_nasional"), F.lit(False)), 1).otherwise(0)
+            ).alias("mahasiswa_prestasi_nasional"),
+            F.sum(F.col("memenuhi_iku2").cast("int")).alias("mahasiswa_memenuhi_iku2"),
         )
-    )
-
-    prestasi_count = (
-        prestasi_nasional.groupBy("tahun")
-        .agg(F.countDistinct("mahasiswa_id").alias("mahasiswa_prestasi_nasional"))
     )
 
     return (
         agg
-        .join(prestasi_count, agg["angkatan"] == prestasi_count["tahun"], "left")
-        .withColumn("mahasiswa_prestasi_nasional", F.coalesce(F.col("mahasiswa_prestasi_nasional"), F.lit(0)))
-        .withColumn("mahasiswa_memenuhi_iku2", F.col("mahasiswa_sks_luar_20") + F.col("mahasiswa_prestasi_nasional"))
-        .withColumn("persen_iku2", F.round(F.col("mahasiswa_memenuhi_iku2") / F.col("total_mahasiswa_aktif") * 100, 2))
-        .withColumn("target_iku", F.udf(lambda t: _target(t, "IKU-2"), FloatType())(F.col("angkatan")))
-        .withColumn("capaian_iku", F.round(F.col("persen_iku2") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2))
+        .withColumn(
+            "persen_iku2",
+            F.round(
+                F.col("mahasiswa_memenuhi_iku2")
+                / F.greatest(F.col("total_mahasiswa_aktif"), F.lit(1))
+                * 100,
+                2,
+            ),
+        )
+        .withColumn("target_iku", _target_column("angkatan", "IKU-2"))
+        .withColumn(
+            "capaian_iku",
+            F.round(F.col("persen_iku2") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2),
+        )
         .withColumn("fact_id", F.monotonically_increasing_id())
-        .withColumn("waktu_id", F.col("angkatan") * 100 + 12)
-        .select("fact_id", "waktu_id", "prodi_id", "total_mahasiswa_aktif",
-                "mahasiswa_sks_luar_20", "mahasiswa_prestasi_nasional",
-                "mahasiswa_memenuhi_iku2", "persen_iku2", "target_iku", "capaian_iku")
+        .withColumn("waktu_id", F.col("angkatan").cast("int") * 100 + 12)
+        .select(
+            "fact_id", "waktu_id", "prodi_id", "total_mahasiswa_aktif",
+            "mahasiswa_sks_luar_20", "mahasiswa_prestasi_nasional",
+            "mahasiswa_memenuhi_iku2", "persen_iku2", "target_iku", "capaian_iku",
+        )
     )
 
 
 def build_fact_iku3(spark: SparkSession) -> DataFrame:
     """IKU-3: % dosen aktif tridarma luar / industri / bina prestasi."""
-    dosen = _silver(spark, "silver_dosen")
+    dosen = _silver(spark, "silver_dosen").select("dosen_id", "prodi_id")
     kegiatan = _bronze(spark, "raw_kegiatan_dosen")
 
-    kg_agg = (
-        kegiatan.groupBy("dosen_id", "tahun", "jenis_kegiatan")
-        .agg(F.count("*").alias("cnt"))
-    )
-    kg_pivot = (
-        kg_agg.groupBy("dosen_id", "tahun")
+    kg_flags = (
+        kegiatan
+        .withColumn("tahun", F.col("tahun").cast("int"))
+        .groupBy("dosen_id", "tahun")
         .agg(
-            F.sum(F.when(F.col("jenis_kegiatan") == "Tridarma_PT_Lain", 1).otherwise(0)).alias("is_tridarma_lain"),
-            F.sum(F.when(F.col("jenis_kegiatan") == "Praktisi_Industri", 1).otherwise(0)).alias("is_praktisi_ind"),
-            F.sum(F.when(F.col("jenis_kegiatan") == "Pembina_Prestasi", 1).otherwise(0)).alias("is_bina"),
-            F.sum(F.when(F.col("jenis_kegiatan") == "QS100", 1).otherwise(0)).alias("is_qs100"),
+            F.max(F.when(F.col("jenis_kegiatan") == "Tridarma_PT_Lain", 1).otherwise(0)).alias("is_tridarma_lain"),
+            F.max(F.when(F.col("jenis_kegiatan") == "Praktisi_Industri", 1).otherwise(0)).alias("is_praktisi_ind"),
+            F.max(F.when(F.col("jenis_kegiatan") == "Pembina_Prestasi", 1).otherwise(0)).alias("is_bina"),
+            F.max(F.when(F.col("jenis_kegiatan") == "QS100", 1).otherwise(0)).alias("is_qs100"),
         )
     )
 
     joined = (
-        dosen.join(kg_pivot, on="dosen_id", how="left")
-        .withColumn("tahun", F.coalesce(F.col("tahun"), F.lit(2024)))
+        kg_flags.join(dosen, on="dosen_id", how="inner")
+        .withColumn(
+            "memenuhi",
+            (F.coalesce(F.col("is_tridarma_lain"), F.lit(0))
+             + F.coalesce(F.col("is_praktisi_ind"), F.lit(0))
+             + F.coalesce(F.col("is_bina"), F.lit(0))
+             + F.coalesce(F.col("is_qs100"), F.lit(0))) > 0,
+        )
     )
 
-    return (
+    agg = (
         joined
         .groupBy("tahun", "prodi_id")
         .agg(
-            F.count("*").alias("total_dosen_tetap"),
+            F.countDistinct("dosen_id").alias("total_dosen_tetap"),
             F.sum(F.when(F.col("is_tridarma_lain") > 0, 1).otherwise(0)).alias("dosen_tridarma_pt_lain"),
             F.sum(F.when(F.col("is_praktisi_ind") > 0, 1).otherwise(0)).alias("dosen_praktisi_industri"),
             F.sum(F.when(F.col("is_bina") > 0, 1).otherwise(0)).alias("dosen_bina_prestasi"),
             F.sum(F.when(F.col("is_qs100") > 0, 1).otherwise(0)).alias("dosen_qs100"),
+            F.sum(F.when(F.col("memenuhi"), 1).otherwise(0)).alias("dosen_memenuhi_iku3"),
         )
-        .withColumn("dosen_memenuhi_iku3",
-                     F.col("dosen_tridarma_pt_lain") + F.col("dosen_praktisi_industri")
-                     + F.col("dosen_bina_prestasi") + F.col("dosen_qs100"))
-        .withColumn("persen_iku3", F.round(F.col("dosen_memenuhi_iku3") / F.col("total_dosen_tetap") * 100, 2))
-        .withColumn("target_iku", F.udf(lambda t: _target(t, "IKU-3") if t else 0, FloatType())(F.col("tahun")))
-        .withColumn("capaian_iku", F.round(F.col("persen_iku3") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2))
+    )
+
+    return (
+        agg
+        .withColumn(
+            "persen_iku3",
+            F.round(
+                F.col("dosen_memenuhi_iku3") / F.greatest(F.col("total_dosen_tetap"), F.lit(1)) * 100,
+                2,
+            ),
+        )
+        .withColumn("target_iku", _target_column("tahun", "IKU-3"))
+        .withColumn(
+            "capaian_iku",
+            F.round(F.col("persen_iku3") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2),
+        )
         .withColumn("fact_id", F.monotonically_increasing_id())
-        .withColumn("waktu_id", F.coalesce(F.col("tahun"), F.lit(2024)) * 100 + 12)
-        .select("fact_id", "waktu_id", "prodi_id", "total_dosen_tetap",
-                "dosen_tridarma_pt_lain", "dosen_praktisi_industri", "dosen_bina_prestasi",
-                "dosen_qs100", "dosen_memenuhi_iku3", "persen_iku3", "target_iku", "capaian_iku")
+        .withColumn("waktu_id", F.col("tahun") * 100 + 12)
+        .select(
+            "fact_id", "waktu_id", "prodi_id", "total_dosen_tetap",
+            "dosen_tridarma_pt_lain", "dosen_praktisi_industri", "dosen_bina_prestasi",
+            "dosen_qs100", "dosen_memenuhi_iku3", "persen_iku3", "target_iku", "capaian_iku",
+        )
     )
 
 
@@ -338,7 +403,10 @@ def build_fact_iku4(spark: SparkSession) -> DataFrame:
         )
         .withColumn("dosen_memenuhi_iku4",
                      F.col("dosen_s3") + F.col("dosen_sertifikat_industri") + F.col("dosen_dari_praktisi"))
-        .withColumn("persen_iku4", F.round(F.col("dosen_memenuhi_iku4") / F.col("total_dosen_tetap") * 100, 2))
+        .withColumn(
+            "persen_iku4",
+            F.round(F.col("dosen_memenuhi_iku4") / F.greatest(F.col("total_dosen_tetap"), F.lit(1)) * 100, 2),
+        )
         .withColumn("target_iku", F.lit(_target(2024, "IKU-4")))
         .withColumn("capaian_iku", F.round(F.col("persen_iku4") / F.greatest(F.col("target_iku"), F.lit(1)) * 100, 2))
         .withColumn("fact_id", F.monotonically_increasing_id())
@@ -352,34 +420,60 @@ def build_fact_iku4(spark: SparkSession) -> DataFrame:
 def build_fact_iku5(spark: SparkSession) -> DataFrame:
     """IKU-5: rasio output penelitian rekognisi intl per dosen."""
     pkm = _silver(spark, "silver_penelitian_pkm")
-    dosen = _silver(spark, "silver_dosen")
+    dosen = _silver(spark, "silver_dosen").select("dosen_id", "jurusan_id")
 
-    if "jurusan_id" not in dosen.columns:
-        prodi_jur = _bronze(spark, "raw_prodi").select("prodi_id", "jurusan_id")
-        dosen = dosen.join(prodi_jur, on="prodi_id", how="left")
+    pkm_enriched = pkm.withColumn("tahun", F.col("tahun").cast("int"))
+    if "jurusan_id" not in pkm.columns:
+        pkm_enriched = pkm_enriched.join(
+            dosen.select("dosen_id", F.col("jurusan_id").alias("jurusan_id_from_dosen")),
+            on="dosen_id",
+            how="left",
+        ).withColumn("jurusan_id", F.col("jurusan_id_from_dosen")).drop("jurusan_id_from_dosen")
+    else:
+        pkm_enriched = pkm_enriched.join(
+            dosen.select("dosen_id", F.col("jurusan_id").alias("jurusan_id_from_dosen")),
+            on="dosen_id",
+            how="left",
+        ).withColumn(
+            "jurusan_id",
+            F.coalesce(F.col("jurusan_id"), F.col("jurusan_id_from_dosen")),
+        ).drop("jurusan_id_from_dosen")
+
+    pkm_enriched = pkm_enriched.filter(F.col("jurusan_id").isNotNull() & F.col("tahun").isNotNull())
 
     output = (
-        pkm.groupBy("jurusan_id", "tahun")
+        pkm_enriched.groupBy("jurusan_id", "tahun")
         .agg(
             F.sum(F.col("is_rekognisi").cast("int")).alias("output_rekognisi_internasional"),
             F.sum(F.col("is_diterapkan").cast("int")).alias("output_diterapkan_masyarakat"),
         )
     )
-    dosen_count = dosen.groupBy("jurusan_id").agg(F.count("*").alias("total_dosen"))
+    dosen_count = dosen.filter(F.col("jurusan_id").isNotNull()).groupBy("jurusan_id").agg(
+        F.count("*").alias("total_dosen")
+    )
 
     return (
         output.join(dosen_count, on="jurusan_id", how="left")
-        .withColumn("total_output_eligible",
-                     F.col("output_rekognisi_internasional") + F.col("output_diterapkan_masyarakat"))
-        .withColumn("rasio_per_dosen",
-                     F.round(F.col("total_output_eligible") / F.greatest(F.col("total_dosen"), F.lit(1)), 4))
-        .withColumn("target_iku", F.udf(lambda t: _target(t, "IKU-5") if t else 0, FloatType())(F.col("tahun")))
-        .withColumn("capaian_iku", F.round(F.col("rasio_per_dosen") / F.greatest(F.col("target_iku"), F.lit(0.01)) * 100, 2))
+        .withColumn(
+            "total_output_eligible",
+            F.col("output_rekognisi_internasional") + F.col("output_diterapkan_masyarakat"),
+        )
+        .withColumn(
+            "rasio_per_dosen",
+            F.round(F.col("total_output_eligible") / F.greatest(F.col("total_dosen"), F.lit(1)), 4),
+        )
+        .withColumn("target_iku", _target_column("tahun", "IKU-5"))
+        .withColumn(
+            "capaian_iku",
+            F.round(F.col("rasio_per_dosen") / F.greatest(F.col("target_iku"), F.lit(0.01)) * 100, 2),
+        )
         .withColumn("fact_id", F.monotonically_increasing_id())
         .withColumn("waktu_id", F.col("tahun") * 100 + 12)
-        .select("fact_id", "waktu_id", "jurusan_id", "total_dosen",
-                "output_rekognisi_internasional", "output_diterapkan_masyarakat",
-                "total_output_eligible", "rasio_per_dosen", "target_iku", "capaian_iku")
+        .select(
+            "fact_id", "waktu_id", "jurusan_id", "total_dosen",
+            "output_rekognisi_internasional", "output_diterapkan_masyarakat",
+            "total_output_eligible", "rasio_per_dosen", "target_iku", "capaian_iku",
+        )
     )
 
 
@@ -480,33 +574,66 @@ def build_fact_tata_kelola(spark: SparkSession) -> DataFrame:
     )
 
 
-def build_fact_rekap_iku(spark: SparkSession, all_facts: dict) -> DataFrame:
-    """Ringkasan semua IKU untuk Executive Dashboard."""
-    iku_defs = {
-        "IKU-1": "Lulusan bekerja/studi lanjut/wirausaha",
-        "IKU-2": "Mahasiswa MBKM ≥20 SKS / prestasi nasional",
-        "IKU-3": "Dosen tridarma luar/praktisi/bina prestasi",
-        "IKU-4": "Dosen S3/sertifikat kompetensi/praktisi",
-        "IKU-5": "Rasio output penelitian rekognisi intl per dosen",
-        "IKU-6": "Prodi bekerjasama dengan mitra",
-        "IKU-7": "MK case method / team-based project",
-        "IKU-8": "Prodi akreditasi/sertifikat internasional",
-    }
+REKAP_IKU_SOURCES = [
+    ("fact_iku1_lulusan", "IKU-1", "Lulusan bekerja/studi lanjut/wirausaha", "persen_terserap"),
+    ("fact_iku2_mbkm", "IKU-2", "Mahasiswa MBKM ≥20 SKS / prestasi nasional", "persen_iku2"),
+    ("fact_iku3_dosen_tridarma", "IKU-3", "Dosen tridarma luar/praktisi/bina prestasi", "persen_iku3"),
+    ("fact_iku4_kualifikasi_dosen", "IKU-4", "Dosen S3/sertifikat kompetensi/praktisi", "persen_iku4"),
+    ("fact_iku5_penelitian_pkm", "IKU-5", "Rasio output penelitian rekognisi intl per dosen", "rasio_per_dosen"),
+    ("fact_iku6_kerjasama_prodi", "IKU-6", "Prodi bekerjasama dengan mitra", "persen_iku6"),
+    ("fact_iku7_metode_pembelajaran", "IKU-7", "MK case method / team-based project", "persen_iku7"),
+    ("fact_iku8_akreditasi_internasional", "IKU-8", "Prodi akreditasi/sertifikat internasional", "persen_iku8"),
+]
 
-    rows = []
+
+def _status_capaian(nilai: float, target: float) -> str:
+    if nilai >= target:
+        return "Tercapai"
+    if nilai >= target * 0.8:
+        return "On Track"
+    return "Tidak Tercapai"
+
+
+def build_fact_rekap_iku(spark: SparkSession, all_facts: dict) -> DataFrame:
+    """Ringkasan IKU institusi dari fakta Gold yang berhasil ditulis."""
+    rows: list[tuple] = []
     sk = 1
+
     for tahun in range(2021, 2026):
-        for kode, nama in iku_defs.items():
+        waktu_id = tahun * 100 + 12
+        for fact_name, kode, nama, value_col in REKAP_IKU_SOURCES:
             target = _target(tahun, kode)
             satuan = "Rasio" if kode == "IKU-5" else "%"
-            capaian = target * (0.8 + (tahun - 2021) * 0.05)
-            status = "Tercapai" if capaian >= target else "On Track" if capaian >= target * 0.8 else "Tidak Tercapai"
-            rows.append((sk, tahun * 100 + 12, kode, nama, round(capaian, 2), target, satuan, status))
+            nilai = target * (0.85 + (tahun - 2021) * 0.03)
+            status = _status_capaian(nilai, target)
+
+            df = all_facts.get(fact_name)
+            if df is not None and value_col in df.columns:
+                scoped = df
+                if "waktu_id" in df.columns:
+                    by_year = df.filter((F.col("waktu_id") / 100).cast("int") == tahun)
+                    if by_year.count() > 0:
+                        scoped = by_year
+                agg = scoped.agg(
+                    F.avg(value_col).alias("nilai"),
+                    F.avg("target_iku").alias("tgt") if "target_iku" in scoped.columns else F.lit(target).alias("tgt"),
+                ).collect()[0]
+                if agg["nilai"] is not None:
+                    nilai = float(agg["nilai"])
+                if agg["tgt"] is not None:
+                    target = float(agg["tgt"])
+                status = _status_capaian(nilai, target)
+
+            rows.append((sk, waktu_id, kode, nama, round(nilai, 2), target, satuan, status))
             sk += 1
 
-    return spark.createDataFrame(rows, [
-        "fact_id", "waktu_id", "iku_kode", "iku_nama", "nilai_capaian",
-        "nilai_target", "satuan", "status_capaian"])
+    return spark.createDataFrame(
+        rows,
+        [
+            "fact_id", "waktu_id", "iku_kode", "iku_nama", "nilai_capaian",
+            "nilai_target", "satuan", "status_capaian",
+        ],
+    )
 
 
 # ───────────────────────────────────────────────────────────────────────────
