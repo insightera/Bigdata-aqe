@@ -82,14 +82,28 @@ Optimasi **AQE** terjadi utama di **Silver** (Spark). Gold dan query Trino **men
 
 ## 3. Verifikasi Gold sebelum serving
 
-### 3.1 Pastikan tabel Gold ada (Spark)
+### 3.1 Pastikan tabel Gold ada
+
+**Disarankan — Trino** (tanpa Ivy/JAR di Spark CLI):
 
 ```bash
-docker exec lhaqe-spark-master /opt/spark/bin/spark-sql \
-  -e "SHOW TABLES IN lakehouse.gold"
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
 ```
 
-### 3.2 Uji Trino CLI
+**Alternatif — Spark SQL** (butuh JAR di `lib/`; unduh dulu):
+
+```bash
+./scripts/download-jars.sh
+docker compose up -d spark-master spark-worker-1 spark-worker-2
+
+# Wrapper (menonaktifkan spark.jars.packages / Ivy)
+chmod +x scripts/spark-sql-lakehouse.sh
+./scripts/spark-sql-lakehouse.sh "SHOW TABLES IN lakehouse.gold"
+```
+
+> Jangan memanggil `spark-sql` mentah tanpa JAR lokal — error `FileNotFoundException` di `/home/spark/.ivy2/cache` artinya Spark mencoba unduh paket Maven dan cache tidak writable.
+
+### 3.2 Uji Trino CLI (interaktif)
 
 ```bash
 docker exec -it lhaqe-trino trino --server http://localhost:8080
@@ -300,6 +314,7 @@ SHOW STATS FOR lakehouse.gold.fact_rekap_iku_institusi;
 
 | Gejala | Penyebab | Solusi |
 |--------|----------|--------|
+| Spark: `ivy2/cache` Permission denied / FileNotFoundException | `spark.jars.packages` + folder `lib/` kosong | `./scripts/download-jars.sh`; restart Spark; pakai `./scripts/spark-sql-lakehouse.sh` atau Trino |
 | `Schema gold not found` | Pipeline Gold belum jalan | Trigger `silver_to_gold_pipeline` |
 | Trino: table not found | Metastore belum sync | `SHOW TABLES FROM lakehouse.gold`; restart hive-metastore |
 | Superset: connection failed | URI salah / Trino down | Pakai `trino:8080` dari dalam Docker |

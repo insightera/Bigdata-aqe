@@ -67,7 +67,13 @@ echo -e "  ${GREEN}✅ Docker + Compose OK${NC}"
 echo -e "  ${YELLOW}Recommended: 12GB+ RAM, 20GB+ disk (profil data aqe)${NC}"
 
 step "Downloading required JARs"
-mkdir -p lib metrics
+mkdir -p lib metrics jars
+# Spark mount ./lib → /opt/spark/extra-jars (hindari Ivy/Maven di spark-sql)
+if [ -d lib ] && [ "$(ls -A lib/*.jar 2>/dev/null)" ]; then
+  cp -n lib/*.jar jars/ 2>/dev/null || true
+fi
+# Airflow (uid 50000) harus bisa menulis JSON metrik eksperimen
+chmod 1777 metrics 2>/dev/null || chmod 777 metrics 2>/dev/null || true
 JARS=(
   "postgresql-42.6.0.jar|https://repo1.maven.org/maven2/org/postgresql/postgresql/42.6.0/postgresql-42.6.0.jar"
   "hadoop-aws-3.3.4.jar|https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar"

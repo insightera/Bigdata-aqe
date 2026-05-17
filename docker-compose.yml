@@ -34,6 +34,7 @@ x-airflow-common-env: &airflow-common-env
   AIRFLOW__SCHEDULER__TASK_QUEUED_TIMEOUT: "600"
   SPARK_MASTER: "spark://spark-master:7077"
   SPARK_AQE_SCENARIO: "${SPARK_AQE_SCENARIO:-OFF}"
+  AQE_METRICS_DIR: "/opt/airflow/metrics"
 
 services:
 
@@ -195,7 +196,7 @@ services:
     volumes:
       - ./conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
       - ./conf/core-site.xml:/opt/spark/conf/core-site.xml
-      - ./jars:/opt/spark/extra-jars
+      - ./lib:/opt/spark/extra-jars:ro
       - ./metrics:/opt/spark/metrics
     ports:
       - "${LHAQE_SPARK_MASTER_UI_PORT:-18080}:8080"
@@ -226,7 +227,7 @@ services:
     volumes:
       - ./conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
       - ./conf/core-site.xml:/opt/spark/conf/core-site.xml
-      - ./jars:/opt/spark/extra-jars
+      - ./lib:/opt/spark/extra-jars:ro
 
   spark-worker-2:
     image: apache/spark:3.5.1-scala2.12-java17-python3-ubuntu
@@ -247,7 +248,7 @@ services:
     volumes:
       - ./conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
       - ./conf/core-site.xml:/opt/spark/conf/core-site.xml
-      - ./jars:/opt/spark/extra-jars
+      - ./lib:/opt/spark/extra-jars:ro
 
   # ─────────────────────────────────────────────
   # TRINO (query engine — Gold/Silver)
@@ -279,6 +280,7 @@ services:
   airflow-init:
     build: ./airflow
     container_name: lhaqe-airflow-init
+    user: "0:0"
     networks: [lakehouse-net]
     depends_on:
       postgres:
@@ -292,8 +294,11 @@ services:
       - ./metrics:/opt/airflow/metrics
     entrypoint: >
       /bin/bash -c "
-        airflow db init &&
-        airflow users create --username airflow --password airflow --firstname Air --lastname Flow --role Admin --email airflow@lakehouse.local || true;
+        mkdir -p /opt/airflow/metrics &&
+        chmod 1777 /opt/airflow/metrics &&
+        chown -R 50000:0 /opt/airflow/metrics &&
+        su -s /bin/bash airflow -c 'airflow db init' &&
+        su -s /bin/bash airflow -c 'airflow users create --username airflow --password airflow --firstname Air --lastname Flow --role Admin --email airflow@lakehouse.local' || true;
         echo 'Airflow DB initialized';
       "
     restart: "no"

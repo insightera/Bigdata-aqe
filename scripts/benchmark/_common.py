@@ -10,7 +10,14 @@ from typing import Any
 
 
 def metrics_dir() -> Path:
-    return Path(os.environ.get("AQE_METRICS_DIR", "metrics"))
+    """Direktori metrik: di Docker Airflow = /opt/airflow/metrics (volume ./metrics)."""
+    env = os.environ.get("AQE_METRICS_DIR")
+    if env:
+        return Path(env)
+    docker_mount = Path("/opt/airflow/metrics")
+    if docker_mount.is_dir():
+        return docker_mount
+    return Path("metrics")
 
 
 def utc_now() -> datetime:
@@ -18,9 +25,16 @@ def utc_now() -> datetime:
 
 
 def write_json(path: Path, payload: dict[str, Any]) -> Path:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
-    return path
+    out = path if path.is_absolute() else metrics_dir() / path.name
+    out.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        out.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+    except PermissionError as exc:
+        raise PermissionError(
+            f"Tidak bisa menulis {out}. Di host jalankan: "
+            f"mkdir -p metrics && chmod 1777 metrics"
+        ) from exc
+    return out
 
 
 def load_json(path: Path) -> dict[str, Any]:

@@ -2,10 +2,11 @@
 # Download required JARs for Hive Metastore and Airflow/PySpark
 set -e
 
-LIB_DIR="$(cd "$(dirname "$0")/.." && pwd)/lib"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LIB_DIR="$ROOT/lib"
 mkdir -p "$LIB_DIR"
 
-echo "Downloading JARs to $LIB_DIR ..."
+echo "Downloading JARs to $LIB_DIR (dipakai Spark: /opt/spark/extra-jars) ..."
 
 # PostgreSQL JDBC (for Hive Metastore)
 [ -f "$LIB_DIR/postgresql-42.6.0.jar" ] || \

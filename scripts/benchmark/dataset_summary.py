@@ -16,8 +16,30 @@ from benchmark._common import metrics_dir, utc_now, write_json
 
 DEFAULT_STAGING = os.environ.get(
     "STAGING_DATA_DIR",
-    os.path.join(os.path.dirname(__file__), "../../data/staging"),
+    "/opt/airflow/data/staging"
+    if Path("/opt/airflow/data/staging").is_dir()
+    else os.path.join(os.path.dirname(__file__), "../../data/staging"),
 )
+
+
+def _count_csv_rows(csv_path: Path) -> int:
+    """Hitung baris data (tanpa header) — streaming, hemat memori."""
+    with csv_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        return sum(1 for _ in reader)
+
+
+def _prodi_counts_streaming(csv_path: Path) -> Counter:
+    """Hitung distribusi prodi_id pada raw_mahasiswa tanpa load semua baris ke RAM."""
+    counts: Counter = Counter()
+    with csv_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        if not reader.fieldnames or "prodi_id" not in reader.fieldnames:
+            return counts
+        for row in reader:
+            counts[row.get("prodi_id", "")] += 1
+    return counts
 
 
 def summarize_staging(staging_dir: Path, skew_prodi: str = "SD") -> dict:
@@ -28,10 +50,7 @@ def summarize_staging(staging_dir: Path, skew_prodi: str = "SD") -> dict:
 
     for csv_path in sorted(staging_dir.glob("*.csv")):
         size = csv_path.stat().st_size
-        with csv_path.open(newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            rows = list(reader)
-        n = len(rows)
+        n = _count_csv_rows(csv_path)
         total_rows += n
         total_bytes += size
         tables.append({
@@ -40,8 +59,8 @@ def summarize_staging(staging_dir: Path, skew_prodi: str = "SD") -> dict:
             "size_bytes": size,
             "size_mb": round(size / (1024**2), 2),
         })
-        if csv_path.name == "raw_mahasiswa.csv" and rows and "prodi_id" in rows[0]:
-            prodi_counts.update(r.get("prodi_id", "") for r in rows)
+        if csv_path.name == "raw_mahasiswa.csv":
+            prodi_counts = _prodi_counts_streaming(csv_path)
 
     skew_info = {}
     if prodi_counts:
