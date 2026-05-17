@@ -102,6 +102,8 @@ chmod +x scripts/spark-sql-lakehouse.sh
 ```
 
 > Jangan memanggil `spark-sql` mentah tanpa JAR lokal — error `FileNotFoundException` di `/home/spark/.ivy2/cache` artinya Spark mencoba unduh paket Maven dan cache tidak writable.
+>
+> Error `path must be absolute` pada event log S3A: gunakan `./scripts/spark-sql-lakehouse.sh` (event log dimatikan untuk CLI) atau cek Gold lewat Trino.
 
 ### 3.2 Uji Trino CLI (interaktif)
 
