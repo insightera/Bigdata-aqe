@@ -43,8 +43,12 @@ JURUSAN = {
     "JMB": "Matematika dan Bisnis",
 }
 
+# Hot key default eksperimen AQE (skew join) — Sains Data
+DEFAULT_SKEW_PRODI = "SD"
+
 PRODI_MASTER: list[dict] = [
     {"prodi_id": "IF", "nama_prodi": "Informatika", "jenjang": "S1", "jurusan_id": "JTK", "tahun_berdiri": 2014},
+    {"prodi_id": "SD", "nama_prodi": "Sains Data", "jenjang": "S1", "jurusan_id": "JTK", "tahun_berdiri": 2020},
     {"prodi_id": "TI", "nama_prodi": "Teknik Informatika", "jenjang": "S1", "jurusan_id": "JTK", "tahun_berdiri": 2017},
     {"prodi_id": "SI", "nama_prodi": "Sistem Informasi", "jenjang": "S1", "jurusan_id": "JTK", "tahun_berdiri": 2018},
     {"prodi_id": "TE", "nama_prodi": "Teknik Elektro", "jenjang": "S1", "jurusan_id": "JTK", "tahun_berdiri": 2014},
@@ -565,8 +569,8 @@ def main():
         help="Random seed untuk reprodusibilitas",
     )
     parser.add_argument(
-        "--skew-prodi", type=str, default="IF",
-        help="prodi_id yang dipakai sebagai hot key skew (default: IF / Informatika)",
+        "--skew-prodi", type=str, default=DEFAULT_SKEW_PRODI,
+        help="prodi_id yang dipakai sebagai hot key skew (default: SD / Sains Data)",
     )
     parser.add_argument(
         "--skew-fraction", type=float, default=None,

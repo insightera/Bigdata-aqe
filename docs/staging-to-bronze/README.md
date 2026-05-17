@@ -35,7 +35,7 @@ docker compose up -d
 Dari root repositori:
 
 ```bash
-# Default penelitian AQE (~1M mahasiswa, ~1,5–2,5 juta baris total, skew 75% ke prodi IF)
+# Default penelitian AQE (~1M mahasiswa, ~1,5–2,5 juta baris total, skew 75% ke prodi SD / Sains Data)
 python3 scripts/generate_bronze_data.py --mode full
 
 # Uji cepat (~77 ribu baris)

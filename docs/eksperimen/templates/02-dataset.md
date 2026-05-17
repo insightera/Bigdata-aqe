@@ -7,7 +7,7 @@
 | Perintah | `python3 scripts/generate_bronze_data.py --mode full --profile aqe` |
 | Profil | aqe / dev / aqe-large |
 | Scale | 1.0 |
-| Skew prodi | IF |
+| Skew prodi | SD |
 | Skew fraction | 0.75 |
 | Seed | 42 |
 
@@ -32,7 +32,7 @@
 
 | Metrik | Nilai |
 |--------|-------|
-| Key yang di-skew | prodi_id = IF |
+| Key yang di-skew | prodi_id = SD (Sains Data) |
 | Fraksi baris ke hot key | % |
 | Top-3 prodi_id (count) | 1. … 2. … 3. … |
 | Metode identifikasi | COUNT GROUP BY prodi_id (Bronze/Spark) |

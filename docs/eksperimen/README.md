@@ -111,7 +111,7 @@ docker compose ps             # semua lhaqe-* healthy
 | Spark version | 3.5.1 | §3.2.2 |
 | `SPARK_SHUFFLE_PARTITIONS` | 200 | §3.2.3 |
 | Parameter AQE OFF / ON | lihat [`../../README.md`](../../README.md) §6 | §3.2.3 |
-| Profil data | `aqe`, skew 75% → IF | §3.3 |
+| Profil data | `aqe`, skew 75% → SD (Sains Data) | §3.3 |
 
 ---
 

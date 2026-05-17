@@ -235,8 +235,8 @@ Sebelum menjalankan pipeline, buat CSV sintetis domain ITERA di `data/staging/`.
 | Profil | Mahasiswa | Perkiraan total baris | Skew default |
 |--------|-----------|------------------------|--------------|
 | `dev` | 50.000 | ~77 ribu | tidak (`--no-skew`) |
-| **`aqe`** (default) | **1.000.000** | **~1,5–2,5 juta** | 75% baris → `prodi_id=IF` |
-| `aqe-large` | 2.000.000 | ~3 juta+ | 80% → `IF` |
+| **`aqe`** (default) | **1.000.000** | **~1,5–2,5 juta** | 75% baris → `prodi_id=SD` |
+| `aqe-large` | 2.000.000 | ~3 juta+ | 80% → `SD` |
 
 Tabel turunan (lulusan, MBKM, kegiatan/penelitian dosen, dll.) ikut membesar sehingga beban join/agregasi di Silver meningkat.
 
@@ -245,7 +245,7 @@ Tabel turunan (lulusan, MBKM, kegiatan/penelitian dosen, dll.) ikut membesar seh
 Jalankan dari **root repositori**:
 
 ```bash
-# Default penelitian AQE (~1M mahasiswa, skew 75% ke prodi Informatika)
+# Default penelitian AQE (~1M mahasiswa, skew 75% ke prodi Sains Data)
 python3 scripts/generate_bronze_data.py --mode full
 
 # Lihat rencana volume tanpa menulis file
@@ -275,7 +275,7 @@ python3 scripts/generate_bronze_data.py --mode append --batch-size 5000
 | `--mode append` | Tambah batch baru ke CSV yang ada |
 | `--profile dev\|aqe\|aqe-large` | Preset jumlah baris (default: `aqe`) |
 | `--scale N` | Pengali di atas profil (mis. `aqe` + `2.0` → ~2M mahasiswa) |
-| `--skew-prodi IF` | Hot key untuk join (default: Informatika) |
+| `--skew-prodi SD` | Hot key untuk join (default: Sains Data) |
 | `--skew-fraction 0.75` | Fraksi baris ke prodi skew (0–1) |
 | `--no-skew` | Distribusi prodi merata |
 | `--dry-run` | Tampilkan rencana volume, tanpa menulis file |

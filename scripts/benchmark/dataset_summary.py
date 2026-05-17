@@ -20,7 +20,7 @@ DEFAULT_STAGING = os.environ.get(
 )
 
 
-def summarize_staging(staging_dir: Path, skew_prodi: str = "IF") -> dict:
+def summarize_staging(staging_dir: Path, skew_prodi: str = "SD") -> dict:
     tables = []
     total_rows = 0
     total_bytes = 0
@@ -71,7 +71,7 @@ def summarize_staging(staging_dir: Path, skew_prodi: str = "IF") -> dict:
 def main():
     parser = argparse.ArgumentParser(description="Summarize staging CSV dataset")
     parser.add_argument("--staging-dir", default=DEFAULT_STAGING)
-    parser.add_argument("--skew-prodi", default="IF")
+    parser.add_argument("--skew-prodi", default="SD", help="Hot key skew (default: SD / Sains Data)")
     args = parser.parse_args()
 
     staging = Path(args.staging_dir)
