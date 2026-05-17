@@ -310,11 +310,49 @@ Catat execution time per tahap → **§4.1.5**.
 
 ## 9. Fase 6 — Serving layer & validasi bisnis
 
-Setelah Gold terisi:
+Setelah task **`silver_to_gold_on`** di DAG `aqe_full_experiment` sukses, layer Gold di MinIO (`warehouse` → namespace `gold`) biasanya memuat:
 
-1. Trino: verifikasi query ([`../gold-to-serving/README.md`](../gold-to-serving/README.md))
-2. Superset: dashboard IKU
-3. Catat latency query Trino (OFF vs ON di Silver) → kolom Gold di **§4.1.6**
+| Layer | Tabel (tipikal) |
+|-------|-----------------|
+| **Dimensi (5)** | `dim_waktu`, `dim_prodi`, `dim_dosen`, `dim_mahasiswa`, `dim_topik_penelitian` |
+| **Fakta (5+)** | `fact_iku4_kualifikasi_dosen`, `fact_iku6_kerjasama_prodi`, `fact_iku7_metode_pembelajaran`, `fact_iku8_akreditasi_internasional`, `fact_tata_kelola` |
+| **Opsional** | `fact_iku1`…`iku5`, `fact_rekap_iku_institusi` (jika builder tidak error) |
+
+Verifikasi:
+
+```bash
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
+```
+
+### 9.1 Trino & Superset
+
+Panduan lengkap: [`../gold-to-serving/README.md`](../gold-to-serving/README.md)
+
+1. Koneksi Superset → `trino://admin@trino:8080/lakehouse`
+2. Buat **dataset fisik** per tabel yang ada (§5.3.2)
+3. Buat **dataset virtual** SQL untuk join fact–dim (§6)
+
+### 9.2 KPI dashboard Superset (disarankan)
+
+Selaras data aktual dari eksperimen — **bukan asumsi 8 IKU penuh** jika `fact_rekap` belum ada:
+
+| Dashboard | KPI utama | Tabel / dataset |
+|-----------|-----------|-----------------|
+| **Executive IKU (subset)** | IKU-4 kualifikasi dosen; IKU-6 kerjasama prodi; IKU-7 metode pembelajaran; IKU-8 akreditasi internasional; tata kelola (realisasi anggaran, SAKIP) | Fakta IKU-4/6/7/8 + `fact_tata_kelola` + `v_rekap_iku_subset` |
+| **Profil institusi** | Jumlah dosen/mahasiswa per prodi & angkatan; sebaran jurusan | `dim_*` |
+| **Prodi Sains Data (SD)** | Capaian IKU-4/7 untuk `prodi_id=SD` (hot key skew eksperimen) | Filter `dim_prodi` + fakta join |
+| **Evaluasi AQE** | Speedup pipeline, latency Trino | **Grafana** + `metrics/*.json` (bukan Superset) |
+
+**Filter global:** `dim_waktu.tahun`, `dim_prodi.nama_prodi` / `nama_jurusan`.
+
+### 9.3 Yang dicatat untuk laporan
+
+| Item | Cara | Subbab |
+|------|------|--------|
+| Daftar tabel Gold aktual | Screenshot MinIO atau output `SHOW TABLES` | §4.1.1 / konteks |
+| Screenshot dashboard Superset | Minimal 1 executive + 1 drill-down SD | Lampiran |
+| Latency Trino W4–W6 | `metrics/workloads_trino_ctx_OFF_*.json` vs `ON` | **§4.1.6** |
+| Validasi bisnis | Narasi: KPI mana yang terpenuhi / di bawah target | §4.2 |
 
 ---
 
@@ -392,7 +430,7 @@ open http://localhost:18089   # Superset
 | **H1** | Fase 0–1: stack + generate data + catat lingkungan & dataset |
 | **H2** | Fase 2: produksi full pipeline + verifikasi Trino |
 | **H3** | Fase 3–4: AQE OFF/ON + screenshot Spark + isi template 04–05 |
-| **H4** | Fase 6–7: Superset + kompilasi grafik BAB IV |
+| **H4** | Fase 6–7: Superset (IKU-4/6/7/8 + SD) + kompilasi grafik BAB IV |
 | **H5** | Fase 8: pembahasan |
 
 ---

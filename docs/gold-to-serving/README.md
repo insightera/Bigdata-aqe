@@ -167,21 +167,133 @@ Klik **Test connection** → **Connect**.
 
 ### 5.3 Buat dataset
 
-Untuk setiap tabel Gold yang akan divisualisasikan:
+Sesuaikan dengan **tabel yang benar-benar ada** setelah pipeline Gold (`silver_to_gold` / task `silver_to_gold_on` di DAG [`aqe_full_experiment`](../../scripts/dags/aqe_full_experiment.py)). Cek dulu:
+
+```bash
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
+# atau di MinIO: bucket warehouse → namespace gold (lihat folder Iceberg)
+```
+
+#### 5.3.1 Inventaris Gold (hasil eksperimen tipikal)
+
+Setelah `aqe_full_experiment` sukses, layer Gold di MinIO/Iceberg biasanya berisi:
+
+| Tabel | Tipe | Status | Sumber Silver/Bronze |
+|-------|------|--------|----------------------|
+| `dim_waktu` | Dimensi | ✅ | Generated (2020–2025) |
+| `dim_prodi` | Dimensi | ✅ | `raw_prodi` |
+| `dim_dosen` | Dimensi | ✅ | `silver_dosen` |
+| `dim_mahasiswa` | Dimensi | ✅ | `silver_mahasiswa` |
+| `dim_topik_penelitian` | Dimensi | ✅ | Master topik riset |
+| `fact_iku4_kualifikasi_dosen` | Fakta | ✅ | `silver_dosen` |
+| `fact_iku6_kerjasama_prodi` | Fakta | ✅ | `silver_kerjasama_aktif` |
+| `fact_iku7_metode_pembelajaran` | Fakta | ✅ | Simulasi per prodi S1 |
+| `fact_iku8_akreditasi_internasional` | Fakta | ✅ | `silver_akreditasi_aktif` |
+| `fact_tata_kelola` | Fakta | ✅ | `raw_keuangan` |
+| `fact_iku1_lulusan` | Fakta | ⚠️ opsional | Gagal jika `silver_lulusan` kosong/error |
+| `fact_iku2_mbkm` | Fakta | ⚠️ opsional | Bergantung Silver mahasiswa/prestasi |
+| `fact_iku3_dosen_tridarma` | Fakta | ⚠️ opsional | Bergantung kegiatan dosen |
+| `fact_iku5_penelitian_pkm` | Fakta | ⚠️ opsional | Bergantung union penelitian/PkM |
+| `fact_rekap_iku_institusi` | Fakta | ⚠️ opsional | Hanya jika semua fakta IKU terbentuk |
+
+> Jika di MinIO hanya terlihat **5 dimensi + 5 fakta** (seperti screenshot eksperimen), dashboard fokus ke **IKU-4, IKU-6, IKU-7, IKU-8**, dan **tata kelola** — bukan 8 IKU penuh.
+
+#### 5.3.2 Langkah membuat dataset fisik (Superset)
+
+Untuk **setiap tabel yang ada** di `SHOW TABLES`:
 
 1. **Data → Datasets → + Dataset**
 2. Database: `Lakehouse Trino`
 3. Schema: `gold`
-4. Table: pilih tabel (mis. `fact_rekap_iku_institusi`)
+4. Table: pilih nama tabel (contoh: `fact_iku4_kualifikasi_dosen`)
 
-**Dataset inti untuk dashboard IKU:**
+**Daftar dataset fisik yang disarankan (minimum, sesuai data aktual):**
 
-| Dataset | Tipe | Penggunaan dashboard |
-|---------|------|----------------------|
-| `fact_rekap_iku_institusi` | Fact | Executive summary 8 IKU |
-| `fact_iku1_lulusan` | Fact | Drill-down per prodi |
-| `dim_prodi` | Dimension | Filter jurusan/prodi |
-| `dim_waktu` | Dimension | Filter tahun/semester |
+| # | Dataset Superset | Tabel Trino | Kolom kunci untuk chart |
+|---|------------------|-------------|-------------------------|
+| 1 | `dim_prodi` | `dim_prodi` | `prodi_id`, `nama_prodi`, `nama_jurusan`, `jenjang` |
+| 2 | `dim_waktu` | `dim_waktu` | `waktu_id`, `tahun`, `semester` |
+| 3 | `dim_dosen` | `dim_dosen` | `dosen_id`, `prodi_id`, `is_s3`, `is_serdos`, `is_praktisi` |
+| 4 | `dim_mahasiswa` | `dim_mahasiswa` | `mahasiswa_id`, `prodi_id`, `angkatan` |
+| 5 | `fact_iku4_kualifikasi_dosen` | `fact_iku4_kualifikasi_dosen` | `persen_iku4`, `target_iku`, `capaian_iku`, `prodi_id` |
+| 6 | `fact_iku6_kerjasama_prodi` | `fact_iku6_kerjasama_prodi` | `persen_iku6`, `prodi_berkerjasama`, `total_prodi_s1` |
+| 7 | `fact_iku7_metode_pembelajaran` | `fact_iku7_metode_pembelajaran` | `persen_iku7`, `mk_case_method`, `mk_team_based`, `prodi_id` |
+| 8 | `fact_iku8_akreditasi_internasional` | `fact_iku8_akreditasi_internasional` | `persen_iku8`, `prodi_akreditasi_internasional` |
+| 9 | `fact_tata_kelola` | `fact_tata_kelola` | `persen_realisasi`, `pagu_total`, `realisasi_total`, `predikat_sakip` |
+
+**Dataset virtual (SQL Lab → Save as dataset)** — untuk join star schema; buat setelah dataset fisik ada:
+
+| Dataset virtual | Join utama | Gunakan untuk |
+|-----------------|------------|---------------|
+| `v_iku4_per_prodi` | `fact_iku4` ⋈ `dim_prodi` | Bar capaian IKU-4 per prodi |
+| `v_iku7_per_prodi` | `fact_iku7` ⋈ `dim_prodi` | Metode pembelajaran per prodi |
+| `v_iku4_sd` | filter `nama_prodi` = **Sains Data** | KPI fokus prodi SD (skew eksperimen) |
+| `v_tata_kelola_tahun` | `fact_tata_kelola` ⋈ `dim_waktu` | Trend anggaran & SAKIP |
+
+Contoh SQL virtual **IKU-4 per prodi** (salin di SQL Lab):
+
+```sql
+SELECT
+  p.prodi_id,
+  p.nama_prodi,
+  p.nama_jurusan,
+  f.total_dosen_tetap,
+  f.dosen_s3,
+  f.dosen_sertifikat_industri,
+  f.dosen_dari_praktisi,
+  f.persen_iku4,
+  f.target_iku,
+  f.capaian_iku
+FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
+JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+ORDER BY f.persen_iku4 DESC;
+```
+
+#### 5.3.3 KPI yang dapat ditampilkan di dashboard (berdasarkan data aktual)
+
+**Dashboard A — Executive IKU (subset 4 indikator + tata kelola)**
+
+| Panel | KPI | Dataset / metrik | Visualisasi |
+|-------|-----|------------------|-------------|
+| A1 | **IKU-4** — % dosen memenuhi kualifikasi (S3 / sertifikat / praktisi) | `persen_iku4` vs `target_iku` | Bullet / bar per `nama_prodi` |
+| A2 | **IKU-6** — % prodi S1 yang berkerjasama dengan mitra | `persen_iku6`, `prodi_berkerjasama` / `total_prodi_s1` | Big number + trend per `tahun` (`dim_waktu`) |
+| A3 | **IKU-7** — % MK case method & team-based | `persen_iku7`, `mk_case_method`, `mk_team_based` | Stacked bar per prodi |
+| A4 | **IKU-8** — % prodi berakreditasi/sertifikasi internasional | `persen_iku8`, `prodi_akreditasi_internasional` | Gauge |
+| A5 | **Tata kelola** — realisasi anggaran & predikat SAKIP | `persen_realisasi`, `predikat_sakip` | Line (tahun) + tabel |
+| A6 | **Capaian vs target** (4 IKU) | `capaian_iku` dari fakta 4/6/7/8 | Heatmap atau bar grouped |
+
+**Dashboard B — Profil institusi (dimensi)**
+
+| Panel | KPI | Dataset | Visualisasi |
+|-------|-----|---------|-------------|
+| B1 | Jumlah dosen per prodi | `dim_dosen` + `dim_prodi` | Bar `COUNT(dosen_id)` |
+| B2 | Mahasiswa per angkatan & prodi | `dim_mahasiswa` + `dim_prodi` | Line / area |
+| B3 | Sebaran prodi per jurusan | `dim_prodi` | Pie `nama_jurusan` |
+| B4 | Topik penelitian strategis | `dim_topik_penelitian` | Table |
+
+**Dashboard C — Fokus prodi Sains Data (SD)** — selaras skew eksperimen AQE
+
+| Panel | KPI | Catatan |
+|-------|-----|---------|
+| C1 | Kualifikasi dosen prodi SD | `v_iku4_sd` — bandingkan `persen_iku4` dengan rata institusi |
+| C2 | Metode pembelajaran SD | `fact_iku7` filter `prodi_id = 'SD'` |
+| C3 | Mahasiswa & dosen SD | `dim_mahasiswa` / `dim_dosen` filter `prodi_id = 'SD'` |
+
+**Dashboard D — Evaluasi AQE (penelitian)** — data teknis, bukan KPI bisnis
+
+| Panel | KPI | Sumber |
+|-------|-----|--------|
+| D1 | Durasi pipeline Gold | `metrics/silver_to_gold_*.json` |
+| D2 | Latency query Trino W4–W6 | `metrics/workloads_trino_ctx_*.json` |
+| D3 | Speedup Silver AQE | Grafana / `aqe_comparison_*.json` |
+
+> Panel D lebih natural di **Grafana** ([`../monitoring-grafana/README.md`](../monitoring-grafana/README.md)); Superset untuk **KPI ITERA**.
+
+**Filter global dashboard (Native filters):**
+
+- `dim_waktu.tahun` (2021–2025)
+- `dim_prodi.nama_prodi` / `nama_jurusan`
+- `dim_prodi.prodi_id` (preset **SD** untuk analisis skew)
 
 ### 5.4 Relasi antar dataset (opsional)
 
@@ -197,118 +309,148 @@ Untuk join antar dataset di Superset 4.x: gunakan **Virtual dataset** (SQL Lab) 
 
 ## 6. Contoh virtual dataset (SQL Lab → Save as dataset)
 
-### 6.1 Rekap IKU per tahun (executive)
+Gunakan query di bawah **hanya jika tabelnya ada** (`SHOW TABLES FROM lakehouse.gold`).
+
+### 6.1 Ringkasan capaian IKU-4/6/7/8 (executive — tanpa `fact_rekap`)
+
+Menggantikan rekap 8 IKU jika `fact_rekap_iku_institusi` belum terbentuk:
 
 ```sql
-SELECT
-  w.tahun,
-  r.iku_kode,
-  r.iku_nama,
-  r.nilai_capaian,
-  r.nilai_target,
-  r.status_capaian,
-  CASE
-    WHEN r.nilai_target > 0 THEN r.nilai_capaian / r.nilai_target
-    ELSE NULL
-  END AS rasio_capaian
-FROM lakehouse.gold.fact_rekap_iku_institusi r
-JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
-ORDER BY w.tahun, r.iku_kode;
+SELECT w.tahun, 'IKU-4' AS iku_kode, AVG(f.persen_iku4) AS nilai_capaian, AVG(f.target_iku) AS nilai_target, AVG(f.capaian_iku) AS capaian_iku
+FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+GROUP BY w.tahun
+UNION ALL
+SELECT w.tahun, 'IKU-6', AVG(f.persen_iku6), AVG(f.target_iku), AVG(f.capaian_iku)
+FROM lakehouse.gold.fact_iku6_kerjasama_prodi f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+GROUP BY w.tahun
+UNION ALL
+SELECT w.tahun, 'IKU-7', AVG(f.persen_iku7), AVG(f.target_iku), AVG(f.capaian_iku)
+FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+GROUP BY w.tahun
+UNION ALL
+SELECT w.tahun, 'IKU-8', AVG(f.persen_iku8), AVG(f.target_iku), AVG(f.capaian_iku)
+FROM lakehouse.gold.fact_iku8_akreditasi_internasional f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+GROUP BY w.tahun
+ORDER BY tahun, iku_kode;
 ```
 
-Simpan sebagai dataset **「IKU Rekap Institusi」** → buat chart **Bar chart** (iku_kode × nilai_capaian), **gauge** atau **big number** per IKU.
+Simpan sebagai **`v_rekap_iku_subset`** → chart **bar** (`iku_kode` × `nilai_capaian`).
 
-### 6.2 IKU-1 per program studi (drill-down)
+### 6.2 IKU-7 metode pembelajaran per prodi (drill-down)
 
 ```sql
 SELECT
   p.nama_prodi,
   p.nama_jurusan,
-  p.jenjang,
-  f.total_lulusan,
-  f.persen_terserap,
+  f.total_mk,
+  f.mk_case_method,
+  f.mk_team_based,
+  f.persen_iku7,
   f.target_iku,
   f.capaian_iku
+FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+ORDER BY f.capaian_iku DESC;
+```
+
+Chart: **stacked bar** (`mk_case_method`, `mk_team_based`) atau **table** dengan filter `nama_prodi = 'Sains Data'`.
+
+### 6.3 Tata kelola — realisasi anggaran per tahun
+
+```sql
+SELECT
+  w.tahun,
+  f.pagu_total,
+  f.realisasi_total,
+  f.persen_realisasi,
+  f.predikat_sakip,
+  f.nilai_sakip,
+  f.target_kinerja_anggaran
+FROM lakehouse.gold.fact_tata_kelola f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+ORDER BY w.tahun;
+```
+
+Chart: **line** (`tahun` × `persen_realisasi`) + **big number** predikat SAKIP.
+
+### 6.4 (Opsional) Jika `fact_rekap_iku_institusi` ada
+
+```sql
+SELECT w.tahun, r.iku_kode, r.iku_nama, r.nilai_capaian, r.nilai_target, r.status_capaian
+FROM lakehouse.gold.fact_rekap_iku_institusi r
+JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
+ORDER BY w.tahun, r.iku_kode;
+```
+
+### 6.5 (Opsional) Jika `fact_iku1_lulusan` ada
+
+```sql
+SELECT p.nama_prodi, f.total_lulusan, f.persen_terserap, f.target_iku, f.capaian_iku
 FROM lakehouse.gold.fact_iku1_lulusan f
 JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
 ORDER BY f.capaian_iku DESC;
 ```
 
-Chart: **table** atau **bar** — filter interaktif `nama_jurusan` di dashboard.
-
-### 6.3 Pivot capaian vs target (OLAP roll-up)
-
-```sql
-SELECT
-  w.tahun,
-  p.nama_jurusan,
-  r.iku_kode,
-  AVG(r.nilai_capaian) AS avg_capaian,
-  AVG(r.nilai_target) AS avg_target
-FROM lakehouse.gold.fact_rekap_iku_institusi r
-JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
-CROSS JOIN lakehouse.gold.dim_prodi p
-GROUP BY 1, 2, 3
-ORDER BY 1, 2, 3;
-```
-
-*(Sesuaikan join jika fact sudah membawa `prodi_id` — lihat skema aktual di `SHOW COLUMNS`.)*
-
 ---
 
 ## 7. Susunan dashboard Superset (rekomendasi)
 
-### Dashboard: **Executive IKU ITERA**
+Selaras **§5.3.3** dan inventaris Gold dari `aqe_full_experiment`.
+
+### Dashboard: **Executive IKU ITERA (subset)**
 
 | No | Chart | Sumber | Tipe visual |
 |----|-------|--------|-------------|
-| 1 | Ringkasan 8 IKU | `fact_rekap_iku_institusi` | Bar / bullet |
-| 2 | Status capaian (Tercapai / On track) | `status_capaian` | Pie |
-| 3 | Trend per tahun | join `dim_waktu` | Line |
-| 4 | IKU-1 per prodi | `fact_iku1` + `dim_prodi` | Table + bar |
-| 5 | Filter global | `dim_waktu`, `dim_prodi` | Native filter |
+| 1 | Capaian IKU-4/6/7/8 | `v_rekap_iku_subset` (§6.1) | Grouped bar |
+| 2 | IKU-4 per prodi | `v_iku4_per_prodi` | Bar horizontal |
+| 3 | IKU-6 kerjasama mitra | `fact_iku6_kerjasama_prodi` + `dim_waktu` | Big number + line |
+| 4 | IKU-7 metode pembelajaran | §6.2 | Stacked bar |
+| 5 | IKU-8 akreditasi internasional | `fact_iku8_akreditasi_internasional` | Gauge |
+| 6 | Tata kelola & anggaran | §6.3 | Line + table |
+| 7 | Filter global | `dim_waktu`, `dim_prodi` | Native filter |
+
+### Dashboard: **Prodi Sains Data (SD)**
+
+| No | Chart | Sumber |
+|----|-------|--------|
+| 1 | Kualifikasi dosen SD | `v_iku4_sd` |
+| 2 | Mahasiswa per angkatan | `dim_mahasiswa` WHERE `prodi_id='SD'` |
+| 3 | Capaian IKU-7 SD vs rata institusi | `fact_iku7` + agregat institusi |
 
 ### Dashboard: **Evaluasi AQE (penelitian)**
 
-Jika metrik eksperimen diekspor ke Postgres atau tabel Gold khusus:
-
-| Panel | Data |
-|-------|------|
-| Execution time OFF vs ON | `metrics/*.json` → ETL ke tabel `gold.experiment_aqe` (opsional) |
-| Speedup % | calculated di Superset |
-
-Untuk fase awal, panel AQE bisa tetap di **Grafana** ([`../monitoring-grafana/README.md`](../monitoring-grafana/README.md)); dashboard Superset fokus **KPI bisnis**.
+Panel teknis → **Grafana** ([`../monitoring-grafana/README.md`](../monitoring-grafana/README.md)); Superset untuk KPI bisnis ITERA.
 
 ---
 
 ## 8. Workload query Trino (untuk pengukuran performa)
 
-Jalankan query yang sama setelah pipeline Silver dengan **AQE OFF** dan **AQE ON**, catat waktu di Trino:
+Jalankan setelah pipeline Silver **AQE OFF** lalu **ON** (task `trino_workloads_*` di `aqe_full_experiment`). Query disesuaikan tabel Gold yang ada:
 
 ```sql
--- Join workload
-SELECT p.nama_prodi, COUNT(*) AS n
-FROM lakehouse.gold.fact_iku1_lulusan f
+-- W4 Join (Gold) — IKU-4 + dim_prodi
+SELECT p.nama_prodi, AVG(f.persen_iku4) AS avg_iku4
+FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
 JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
 GROUP BY p.nama_prodi;
 
--- Aggregation workload
-SELECT w.tahun, AVG(r.nilai_capaian) AS avg_capaian
-FROM lakehouse.gold.fact_rekap_iku_institusi r
-JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
+-- W5 Aggregation — IKU-7 per tahun
+SELECT w.tahun, AVG(f.persen_iku7) AS avg_iku7
+FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun;
 
--- Filtering workload
+-- W6 Filtering — prodi capaian IKU-8 di bawah target
 SELECT *
-FROM lakehouse.gold.fact_rekap_iku_institusi
-WHERE status_capaian = 'Tidak Tercapai';
+FROM lakehouse.gold.fact_iku8_akreditasi_internasional
+WHERE capaian_iku < 100;
 ```
 
-Catat dari Trino UI atau:
-
-```sql
-SHOW STATS FOR lakehouse.gold.fact_rekap_iku_institusi;
-```
+Otomatis: `python3 scripts/benchmark/run_trino_workloads.py --aqe-context ON --trino-url http://localhost:18088`
 
 ---
 
@@ -328,11 +470,11 @@ SHOW STATS FOR lakehouse.gold.fact_rekap_iku_institusi;
 ## 10. Ringkasan alur kerja (checklist)
 
 1. [ ] `./start.sh` — Trino + Superset healthy  
-2. [ ] Pipeline Gold selesai (`silver_to_gold_pipeline`)  
-3. [ ] `SHOW TABLES FROM lakehouse.gold` di Trino  
+2. [ ] Pipeline Gold selesai (`aqe_full_experiment` → `silver_to_gold_on` atau `silver_to_gold_pipeline`)  
+3. [ ] `SHOW TABLES FROM lakehouse.gold` — minimal 5 dim + 5 fakta (IKU-4,6,7,8, tata kelola)  
 4. [ ] Koneksi Superset → Trino (`Lakehouse Trino`)  
-5. [ ] Dataset + virtual SQL untuk fact/dim  
-6. [ ] Dashboard Executive IKU  
-7. [ ] (Opsional) Ukur query latency Trino untuk laporan dampak AQE di Gold  
+5. [ ] Dataset fisik §5.3.2 + virtual SQL §6  
+6. [ ] Dashboard **Executive IKU (subset)** + opsional **Prodi SD**  
+7. [ ] Latency Trino W4–W6 → `metrics/workloads_trino_*.json` (§4.1.6)  
 
 **Dokumen terkait:** [`../README.md`](../README.md) · [`../silver-to-gold/README.md`](../silver-to-gold/README.md) · [`../monitoring-grafana/README.md`](../monitoring-grafana/README.md)
