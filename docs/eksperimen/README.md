@@ -219,7 +219,7 @@ Spark UI → **`bronze_to_silver_AQE_ON`**.
 ### 6.3 Hitung speedup
 
 $$
-\text{Speedup (\percent)} = \frac{T_{\text{OFF}} - T_{\text{ON}}}{T_{\text{OFF}}} \times 100
+\text{Speedup ($\%$)} = \frac{T_{\text{OFF}} - T_{\text{ON}}}{T_{\text{OFF}}} \times 100
 $$
 
 Gunakan `duration_sec` dari file JSON atau durasi Airflow task `bronze_to_silver`.
