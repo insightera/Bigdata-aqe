@@ -20,9 +20,27 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.types import IntegerType, FloatType
 
+from spark.aqe_config import app_name_with_aqe, apply_aqe_configs, resolve_aqe_scenario
+from spark.lakehouse_catalog import (
+    bronze_table,
+    configure_spark_catalog,
+    silver_table,
+    write_iceberg_table,
+)
 from spark.spark_python import apply_cluster_resource_configs, apply_pyspark_python_configs
 
 logger = logging.getLogger("silver_to_gold")
+
+# Skenario AQE aktif untuk run_silver_to_gold (silver_aqe_off / silver_aqe_on).
+_AQE_SCENARIO = "OFF"
+
+
+def _bronze(spark: SparkSession, table: str) -> DataFrame:
+    return spark.table(bronze_table(table))
+
+
+def _silver(spark: SparkSession, table: str) -> DataFrame:
+    return spark.table(silver_table(_AQE_SCENARIO, table))
 
 IKU_TARGETS = {
     2021: {"IKU-1": 75, "IKU-2": 20, "IKU-3": 15, "IKU-4": 30, "IKU-5": 0.10, "IKU-6": 35, "IKU-7": 25, "IKU-8": 2.5, "SAKIP": "BB", "Anggaran": 80},
@@ -65,10 +83,11 @@ def _resolve_jars() -> str:
     return ""
 
 
-def get_spark_session():
+def get_spark_session(aqe_context: str | None = None):
     import os
     import socket
 
+    scenario = resolve_aqe_scenario(aqe_context)
     spark_master = os.environ.get("SPARK_MASTER", "spark://spark-master:7077")
 
     try:
@@ -79,27 +98,13 @@ def get_spark_session():
         spark_master = "local[*]"
         logger.warning("Spark master unreachable — falling back to %s", spark_master)
 
-    builder = (
+    builder = configure_spark_catalog(
         SparkSession.builder
-        .appName("silver_to_gold")
-        .master(spark_master)
-        .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions")
-        .config("spark.sql.catalog.lakehouse", "org.apache.iceberg.spark.SparkCatalog")
-        .config("spark.sql.catalog.lakehouse.type", "hive")
-        .config("spark.sql.catalog.lakehouse.uri", "thrift://hive-metastore:9083")
-        .config("spark.sql.catalog.lakehouse.warehouse", "s3a://warehouse/")
-        .config("spark.sql.defaultCatalog", "lakehouse")
-        .config("spark.hadoop.fs.s3a.endpoint", "http://minio:9000")
-        .config("spark.hadoop.fs.s3a.access.key", "minioadmin")
-        .config("spark.hadoop.fs.s3a.secret.key", "minioadmin123")
-        .config("spark.hadoop.fs.s3a.path.style.access", "true")
-        .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-        .config("spark.hadoop.fs.s3a.connection.ssl.enabled", "false")
-        .config(
-            "spark.hadoop.fs.s3a.aws.credentials.provider",
-            "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider",
-        )
+        .appName(app_name_with_aqe("silver_to_gold", scenario))
+        .master(spark_master),
+        scenario,
     )
+    builder = apply_aqe_configs(builder, scenario)
 
     local_jars = _resolve_jars()
     if local_jars:
@@ -133,7 +138,7 @@ def build_dim_waktu(spark: SparkSession) -> DataFrame:
 
 
 def build_dim_prodi(spark: SparkSession) -> DataFrame:
-    prodi = spark.table("lakehouse.bronze.raw_prodi")
+    prodi = _bronze(spark, "raw_prodi")
     jurusan_map = F.create_map(*[item for k, v in JURUSAN_MAP.items() for item in (F.lit(k), F.lit(v))])
     return (
         prodi
@@ -146,7 +151,7 @@ def build_dim_prodi(spark: SparkSession) -> DataFrame:
 
 def build_dim_dosen(spark: SparkSession) -> DataFrame:
     return (
-        spark.table("lakehouse.silver.silver_dosen")
+        _silver(spark, "silver_dosen")
         .select(
             "dosen_id", "nama", "prodi_id", "status_asn",
             F.col("pendidikan_terakhir").alias("pendidikan"),
@@ -158,7 +163,7 @@ def build_dim_dosen(spark: SparkSession) -> DataFrame:
 
 def build_dim_mahasiswa(spark: SparkSession) -> DataFrame:
     return (
-        spark.table("lakehouse.silver.silver_mahasiswa")
+        _silver(spark, "silver_mahasiswa")
         .select("mahasiswa_id", "prodi_id", "angkatan", "jalur_masuk", "asal_provinsi", "jenis_kelamin")
         .dropDuplicates(["mahasiswa_id"])
     )
@@ -184,12 +189,13 @@ def _target(tahun: int, iku: str) -> float:
 
 def build_fact_iku1(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     """IKU-1: % lulusan bekerja/studi/wirausaha."""
-    if not spark.catalog.tableExists("lakehouse.silver.silver_lulusan"):
+    slulusan = silver_table(_AQE_SCENARIO, "silver_lulusan")
+    if not spark.catalog.tableExists(slulusan):
         raise RuntimeError(
-            "Tabel lakehouse.silver.silver_lulusan tidak ada — "
-            "jalankan ulang bronze_to_silver (cek quality gate / log Airflow)."
+            f"Tabel {slulusan} tidak ada — "
+            "jalankan ulang bronze_to_silver untuk skenario AQE yang sama."
         )
-    lls = spark.table("lakehouse.silver.silver_lulusan")
+    lls = spark.table(slulusan)
 
     agg = (
         lls
@@ -221,12 +227,12 @@ def build_fact_iku1(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
 
 def build_fact_iku2(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
     """IKU-2: % mahasiswa ≥20 SKS luar kampus / prestasi nasional."""
-    mhs = spark.table("lakehouse.silver.silver_mahasiswa")
-    prestasi = spark.table("lakehouse.bronze.raw_prestasi_mahasiswa")
+    mhs = _silver(spark, "silver_mahasiswa")
+    prestasi = _bronze(spark, "raw_prestasi_mahasiswa")
 
     if "status_aktif" not in mhs.columns:
         mhs = mhs.join(
-            spark.table("lakehouse.bronze.raw_mahasiswa").select("mahasiswa_id", "status_aktif"),
+            _bronze(spark, "raw_mahasiswa").select("mahasiswa_id", "status_aktif"),
             on="mahasiswa_id",
             how="left",
         )
@@ -271,8 +277,8 @@ def build_fact_iku2(spark: SparkSession, dim_waktu: DataFrame) -> DataFrame:
 
 def build_fact_iku3(spark: SparkSession) -> DataFrame:
     """IKU-3: % dosen aktif tridarma luar / industri / bina prestasi."""
-    dosen = spark.table("lakehouse.silver.silver_dosen")
-    kegiatan = spark.table("lakehouse.bronze.raw_kegiatan_dosen")
+    dosen = _silver(spark, "silver_dosen")
+    kegiatan = _bronze(spark, "raw_kegiatan_dosen")
 
     kg_agg = (
         kegiatan.groupBy("dosen_id", "tahun", "jenis_kegiatan")
@@ -319,7 +325,7 @@ def build_fact_iku3(spark: SparkSession) -> DataFrame:
 
 def build_fact_iku4(spark: SparkSession) -> DataFrame:
     """IKU-4: % dosen S3/sertifikat/praktisi."""
-    dosen = spark.table("lakehouse.silver.silver_dosen")
+    dosen = _silver(spark, "silver_dosen")
 
     return (
         dosen
@@ -345,11 +351,11 @@ def build_fact_iku4(spark: SparkSession) -> DataFrame:
 
 def build_fact_iku5(spark: SparkSession) -> DataFrame:
     """IKU-5: rasio output penelitian rekognisi intl per dosen."""
-    pkm = spark.table("lakehouse.silver.silver_penelitian_pkm")
-    dosen = spark.table("lakehouse.silver.silver_dosen")
+    pkm = _silver(spark, "silver_penelitian_pkm")
+    dosen = _silver(spark, "silver_dosen")
 
     if "jurusan_id" not in dosen.columns:
-        prodi_jur = spark.table("lakehouse.bronze.raw_prodi").select("prodi_id", "jurusan_id")
+        prodi_jur = _bronze(spark, "raw_prodi").select("prodi_id", "jurusan_id")
         dosen = dosen.join(prodi_jur, on="prodi_id", how="left")
 
     output = (
@@ -379,8 +385,8 @@ def build_fact_iku5(spark: SparkSession) -> DataFrame:
 
 def build_fact_iku6(spark: SparkSession) -> DataFrame:
     """IKU-6: % prodi yang bekerjasama dengan mitra."""
-    kjs = spark.table("lakehouse.silver.silver_kerjasama_aktif")
-    prodi = spark.table("lakehouse.bronze.raw_prodi").filter(F.col("jenjang") == "S1")
+    kjs = _silver(spark, "silver_kerjasama_aktif")
+    prodi = _bronze(spark, "raw_prodi").filter(F.col("jenjang") == "S1")
 
     total_prodi = prodi.count()
     prodi_ks = kjs.filter(F.col("prodi_id") != "").select("prodi_id").distinct().count()
@@ -401,7 +407,7 @@ def build_fact_iku7(spark: SparkSession) -> DataFrame:
     """IKU-7: % MK case method / team-based (simulasi)."""
     import random
     random.seed(42)
-    prodi = spark.table("lakehouse.bronze.raw_prodi").filter(F.col("jenjang") == "S1").collect()
+    prodi = _bronze(spark, "raw_prodi").filter(F.col("jenjang") == "S1").collect()
 
     rows = []
     for tahun in range(2021, 2026):
@@ -423,8 +429,8 @@ def build_fact_iku7(spark: SparkSession) -> DataFrame:
 
 def build_fact_iku8(spark: SparkSession) -> DataFrame:
     """IKU-8: % prodi akreditasi/sertifikat internasional."""
-    akr = spark.table("lakehouse.silver.silver_akreditasi_aktif")
-    prodi = spark.table("lakehouse.bronze.raw_prodi").filter(F.col("jenjang") == "S1")
+    akr = _silver(spark, "silver_akreditasi_aktif")
+    prodi = _bronze(spark, "raw_prodi").filter(F.col("jenjang") == "S1")
 
     total_prodi = prodi.count()
     intl = akr.filter(F.col("is_internasional")).select("prodi_id").distinct().count()
@@ -443,7 +449,7 @@ def build_fact_iku8(spark: SparkSession) -> DataFrame:
 
 def build_fact_tata_kelola(spark: SparkSession) -> DataFrame:
     """Sasaran 4: SAKIP & kinerja anggaran."""
-    keu = spark.table("lakehouse.bronze.raw_keuangan")
+    keu = _bronze(spark, "raw_keuangan")
 
     agg = (
         keu.groupBy("tahun")
@@ -601,14 +607,20 @@ GOLD_TABLES = [
 
 def run_silver_to_gold(aqe_context: str | None = None) -> dict:
     """Entry-point: build star schema Gold layer."""
+    global _AQE_SCENARIO
     from spark.pipeline_metrics import persist_pipeline_run_metrics, utc_now
 
+    _AQE_SCENARIO = resolve_aqe_scenario(aqe_context)
+    os.environ["SPARK_AQE_SCENARIO"] = _AQE_SCENARIO
     started_at = utc_now()
-    spark = get_spark_session()
+    logger.info("Silver → Gold | AQE scenario=%s | silver=%s | gold schema=%s",
+                _AQE_SCENARIO,
+                silver_table(_AQE_SCENARIO, "silver_mahasiswa").rsplit(".", 1)[0],
+                f"lakehouse.gold_aqe_{_AQE_SCENARIO.lower()}")
+
+    spark = get_spark_session(_AQE_SCENARIO)
 
     try:
-        spark.sql("CREATE NAMESPACE IF NOT EXISTS gold")
-
         dim_waktu = build_dim_waktu(spark)
         results = {}
         all_facts = {}
@@ -622,8 +634,7 @@ def run_silver_to_gold(aqe_context: str | None = None) -> dict:
             ("dim_topik_penelitian", build_dim_topik_penelitian(spark), ["generated"]),
         ]
         for name, df, sources in dims:
-            tbl = f"lakehouse.gold.{name}"
-            df.writeTo(tbl).using("iceberg").createOrReplace()
+            tbl = write_iceberg_table(df, _AQE_SCENARIO, "gold", name)
             results[name] = profile_gold_table(df, name, "dimension", sources)
             results[name]["written"] = True
             logger.info("  ✅ %s → %s rows", tbl, f"{results[name]['row_count']:,}")
@@ -644,8 +655,7 @@ def run_silver_to_gold(aqe_context: str | None = None) -> dict:
         for name, builder, sources in fact_builders:
             try:
                 df = builder()
-                tbl = f"lakehouse.gold.{name}"
-                df.writeTo(tbl).using("iceberg").createOrReplace()
+                tbl = write_iceberg_table(df, _AQE_SCENARIO, "gold", name)
                 results[name] = profile_gold_table(df, name, "fact", sources)
                 results[name]["written"] = True
                 all_facts[name] = df
@@ -657,8 +667,7 @@ def run_silver_to_gold(aqe_context: str | None = None) -> dict:
         # ── Rekap IKU ──
         try:
             rekap = build_fact_rekap_iku(spark, all_facts)
-            tbl = "lakehouse.gold.fact_rekap_iku_institusi"
-            rekap.writeTo(tbl).using("iceberg").createOrReplace()
+            tbl = write_iceberg_table(rekap, _AQE_SCENARIO, "gold", "fact_rekap_iku_institusi")
             results["fact_rekap_iku_institusi"] = profile_gold_table(
                 rekap, "fact_rekap_iku_institusi", "fact", ["all_iku_facts"])
             results["fact_rekap_iku_institusi"]["written"] = True

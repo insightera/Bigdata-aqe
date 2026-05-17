@@ -74,6 +74,8 @@ Provisioning Grafana sudah ada di [`../../monitoring/grafana/provisioning/`](../
 
 Lokasi: [`../../metrics/`](../../metrics/) (volume Docker: `/opt/airflow/metrics`).
 
+**Penyimpanan lakehouse:** Silver/Gold OFF dan ON tidak saling timpa di MinIO (`warehouse-aqe-off` vs `warehouse-aqe-on`). File metrik tetap per skenario (`bronze_to_silver_aqe_OFF_*.json`, `workloads_trino_ctx_ON_*.json`). Validasi audit baris lewat Trino — lihat [`../eksperimen/README.md`](../eksperimen/README.md) §1.1 dan [`../gold-to-serving/README.md`](../gold-to-serving/README.md) §2.4.
+
 ### 2.2 Shuffle metrics
 
 | Metrik | Definisi | Sumber |
@@ -218,7 +220,18 @@ Buat folder dashboard **Lakehouse AQE** dengan panel berikut.
 | Shuffle write (MB) | Idem |
 | Partition CV / Gini | Input dari analisis notebook |
 
-### Row 4 — AQE effectiveness (§11 AQE)
+### Row 4 — Audit data OFF vs ON (Trino)
+
+Panel **Infinity** atau catatan manual dari query:
+
+```sql
+SELECT 'OFF' AS aqe, COUNT(*) AS n FROM lakehouse.gold_aqe_off.dim_mahasiswa
+UNION ALL SELECT 'ON', COUNT(*) FROM lakehouse.gold_aqe_on.dim_mahasiswa;
+```
+
+Nilai `n` harus sama (transform identik); yang dibandingkan di penelitian tetap **durasi** pipeline/query di panel Row 1–3.
+
+### Row 5 — AQE effectiveness (§11 AQE)
 
 | Panel | Metrik |
 |-------|--------|
@@ -226,7 +239,7 @@ Buat folder dashboard **Lakehouse AQE** dengan panel berikut.
 | DPP reduction % | ON only |
 | Skew reduction | Perbandingan task skew |
 
-### Row 5 — Resource (§11 Resource)
+### Row 6 — Resource (§11 Resource)
 
 | Panel | Sumber |
 |-------|--------|

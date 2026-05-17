@@ -99,6 +99,8 @@ services:
         mc mb --ignore-existing local/silver;
         mc mb --ignore-existing local/gold;
         mc mb --ignore-existing local/warehouse;
+        mc mb --ignore-existing local/warehouse-aqe-off;
+        mc mb --ignore-existing local/warehouse-aqe-on;
         mc mb --ignore-existing local/airflow-logs;
         mc mb --ignore-existing local/spark-event-logs;
         echo 'MinIO buckets ready';

@@ -15,7 +15,7 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from benchmark._common import metrics_dir, utc_now, write_json
-from benchmark.workloads import SPARK_SILVER_WORKLOADS
+from benchmark.workloads import spark_silver_workloads
 from spark.aqe_config import read_applied_aqe_configs, resolve_aqe_scenario
 from spark.bronze_to_silver import get_spark_session
 
@@ -32,7 +32,7 @@ def run_workloads(aqe_scenario: str, warmup: int = 0) -> dict:
     results: dict = {}
 
     try:
-        for wl in SPARK_SILVER_WORKLOADS:
+        for wl in spark_silver_workloads(scenario):
             wid = wl["id"]
             sql = wl["sql"].strip()
             logger.info("Workload %s (%s) | AQE=%s", wid, wl["name"], scenario)

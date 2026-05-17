@@ -37,6 +37,11 @@ from spark.aqe_config import (
     resolve_aqe_scenario,
     _utc_now,
 )
+from spark.lakehouse_catalog import (
+    bronze_table,
+    configure_spark_catalog,
+    write_iceberg_table,
+)
 from spark.spark_python import apply_cluster_resource_configs, apply_pyspark_python_configs
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
@@ -103,29 +108,11 @@ def get_spark_session(aqe_scenario: str | None = None):
         spark_master = "local[*]"
         logger.warning("Spark master unreachable — falling back to %s", spark_master)
 
-    builder = (
+    builder = configure_spark_catalog(
         SparkSession.builder
         .appName(app_name_with_aqe("bronze_to_silver", scenario))
-        .master(spark_master)
-        .config(
-            "spark.sql.extensions",
-            "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
-        )
-        .config("spark.sql.catalog.lakehouse", "org.apache.iceberg.spark.SparkCatalog")
-        .config("spark.sql.catalog.lakehouse.type", "hive")
-        .config("spark.sql.catalog.lakehouse.uri", "thrift://hive-metastore:9083")
-        .config("spark.sql.catalog.lakehouse.warehouse", "s3a://warehouse/")
-        .config("spark.sql.defaultCatalog", "lakehouse")
-        .config("spark.hadoop.fs.s3a.endpoint", "http://minio:9000")
-        .config("spark.hadoop.fs.s3a.access.key", "minioadmin")
-        .config("spark.hadoop.fs.s3a.secret.key", "minioadmin123")
-        .config("spark.hadoop.fs.s3a.path.style.access", "true")
-        .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-        .config("spark.hadoop.fs.s3a.connection.ssl.enabled", "false")
-        .config(
-            "spark.hadoop.fs.s3a.aws.credentials.provider",
-            "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider",
-        )
+        .master(spark_master),
+        scenario,
     )
 
     local_jars = _resolve_jars()
@@ -230,8 +217,8 @@ def transform_silver_mahasiswa(spark: SparkSession) -> tuple[DataFrame, dict]:
     silver_mahasiswa: JOIN raw_mahasiswa + raw_prodi
     → tambah nama_prodi, nama_jurusan, is_mbkm
     """
-    mhs = spark.table("lakehouse.bronze.raw_mahasiswa")
-    prodi = spark.table("lakehouse.bronze.raw_prodi")
+    mhs = spark.table(bronze_table("raw_mahasiswa"))
+    prodi = spark.table(bronze_table("raw_prodi"))
 
     quality = compute_quality_metrics(mhs, "raw_mahasiswa")
     if quality["status"] == "REJECT":
@@ -260,7 +247,7 @@ def transform_silver_lulusan(spark: SparkSession) -> tuple[DataFrame, dict]:
     """
     silver_lulusan: enrichment flag employment.
     """
-    lls = spark.table("lakehouse.bronze.raw_lulusan")
+    lls = spark.table(bronze_table("raw_lulusan"))
 
     quality = compute_quality_metrics(lls, "raw_lulusan")
     if quality["status"] == "REJECT":
@@ -285,8 +272,8 @@ def transform_silver_dosen(spark: SparkSession) -> tuple[DataFrame, dict]:
     """
     silver_dosen: enrichment kualifikasi + cek tridarma dari kegiatan.
     """
-    dosen = spark.table("lakehouse.bronze.raw_dosen")
-    kegiatan = spark.table("lakehouse.bronze.raw_kegiatan_dosen")
+    dosen = spark.table(bronze_table("raw_dosen"))
+    kegiatan = spark.table(bronze_table("raw_kegiatan_dosen"))
 
     quality = compute_quality_metrics(dosen, "raw_dosen")
     if quality["status"] == "REJECT":
@@ -327,8 +314,8 @@ def transform_silver_penelitian_pkm(spark: SparkSession) -> tuple[DataFrame, dic
     """
     silver_penelitian_pkm: UNION penelitian + pengabdian, flag rekognisi.
     """
-    pen = spark.table("lakehouse.bronze.raw_penelitian")
-    pkm = spark.table("lakehouse.bronze.raw_pengabdian")
+    pen = spark.table(bronze_table("raw_penelitian"))
+    pkm = spark.table(bronze_table("raw_pengabdian"))
 
     quality_pen = compute_quality_metrics(pen, "raw_penelitian")
     quality_pkm = compute_quality_metrics(pkm, "raw_pengabdian")
@@ -380,7 +367,7 @@ def transform_silver_kerjasama_aktif(spark: SparkSession) -> tuple[DataFrame, di
     """
     silver_kerjasama_aktif: filter status Aktif + flag MBKM.
     """
-    kjs = spark.table("lakehouse.bronze.raw_kerjasama")
+    kjs = spark.table(bronze_table("raw_kerjasama"))
 
     quality = compute_quality_metrics(kjs, "raw_kerjasama")
     if quality["status"] == "REJECT":
@@ -403,7 +390,7 @@ def transform_silver_akreditasi_aktif(spark: SparkSession) -> tuple[DataFrame, d
     """
     silver_akreditasi_aktif: akreditasi terakhir per prodi yang masih berlaku.
     """
-    akr = spark.table("lakehouse.bronze.raw_akreditasi")
+    akr = spark.table(bronze_table("raw_akreditasi"))
 
     quality = compute_quality_metrics(akr, "raw_akreditasi")
     if quality["status"] == "REJECT":
@@ -572,8 +559,6 @@ def run_bronze_to_silver(aqe_scenario: str | None = None) -> dict:
     applied_configs = read_applied_aqe_configs(spark)
 
     try:
-        spark.sql("CREATE NAMESPACE IF NOT EXISTS silver")
-
         results = {}
 
         for t in SILVER_TRANSFORMS:
@@ -613,8 +598,7 @@ def run_bronze_to_silver(aqe_scenario: str | None = None) -> dict:
                 continue
 
             df = _select_unique_columns(df)
-            iceberg_table = f"lakehouse.silver.{name}"
-            df.writeTo(iceberg_table).using("iceberg").createOrReplace()
+            iceberg_table = write_iceberg_table(df, scenario, "silver", name)
 
             row_count = df.count()
             logger.info("  Written → %s (%s rows)", iceberg_table, f"{row_count:,}")

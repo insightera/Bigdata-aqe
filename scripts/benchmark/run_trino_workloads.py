@@ -19,7 +19,9 @@ from typing import Any
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from benchmark._common import metrics_dir, utc_now, write_json
-from benchmark.workloads import TRINO_GOLD_WORKLOADS
+from benchmark.workloads import trino_gold_workloads
+from spark.lakehouse_catalog import trino_catalog_for_scenario, trino_gold_schema
+from spark.aqe_config import resolve_aqe_scenario
 
 logger = logging.getLogger("benchmark.trino_workloads")
 
@@ -89,11 +91,15 @@ class TrinoClient:
 
 
 def run_workloads(aqe_context: str = "unknown") -> dict:
+    scenario = resolve_aqe_scenario(aqe_context)
     started_at = utc_now()
-    client = TrinoClient()
+    catalog = trino_catalog_for_scenario(scenario)
+    schema = trino_gold_schema(scenario)
+    client = TrinoClient(catalog=catalog, schema=schema)
+    workloads = trino_gold_workloads(scenario)
     results: dict = {}
 
-    for wl in TRINO_GOLD_WORKLOADS:
+    for wl in workloads:
         wid = wl["id"]
         logger.info("Trino workload %s (%s) | silver_context=%s", wid, wl["name"], aqe_context)
         try:
@@ -125,6 +131,8 @@ def run_workloads(aqe_context: str = "unknown") -> dict:
         "engine": "trino",
         "layer": "gold",
         "aqe_context_silver": ctx,
+        "trino_catalog": catalog,
+        "trino_schema": schema,
         "started_at": started_at.isoformat(),
         "ended_at": ended_at.isoformat(),
         "duration_sec_total": round((ended_at - started_at).total_seconds(), 3),

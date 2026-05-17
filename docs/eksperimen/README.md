@@ -69,6 +69,47 @@ flowchart TD
 | **Dependen** | Performa query & pipeline | Durasi, throughput, metrik partisi, efektivitas AQE |
 | **Kontrol** | Dataset, cluster, query | Profil data sama; stack Docker sama; SQL workload sama |
 
+### 1.1 Penyimpanan ganda OFF/ON (audit SQL)
+
+Satu run `aqe_full_experiment` menulis **dua salinan** Silver & Gold; Bronze hanya sekali.
+
+| Lapisan | Hive/Iceberg schema | MinIO (bucket) | Trino |
+|---------|---------------------|----------------|---------|
+| Bronze (bersama) | `lakehouse.bronze.*` | `warehouse/` | `lakehouse.bronze` |
+| Silver/Gold **OFF** | `lakehouse.silver_aqe_off.*`, `lakehouse.gold_aqe_off.*` | `warehouse-aqe-off/` | `lakehouse_aqe_off` atau `lakehouse.gold_aqe_off` |
+| Silver/Gold **ON** | `lakehouse.silver_aqe_on.*`, `lakehouse.gold_aqe_on.*` | `warehouse-aqe-on/` | `lakehouse_aqe_on` atau `lakehouse.gold_aqe_on` |
+
+Implementasi: [`../../scripts/spark/lakehouse_catalog.py`](../../scripts/spark/lakehouse_catalog.py).
+
+**Audit side-by-side (Trino):**
+
+```sql
+-- Bandingkan jumlah baris Silver (harus identik logika transform)
+SELECT 'OFF' AS skenario, COUNT(*) AS n
+FROM lakehouse.silver_aqe_off.silver_mahasiswa
+UNION ALL
+SELECT 'ON', COUNT(*)
+FROM lakehouse.silver_aqe_on.silver_mahasiswa;
+
+-- Bandingkan fakta Gold
+SELECT 'OFF' AS skenario, AVG(nilai_capaian) AS avg_capaian
+FROM lakehouse.gold_aqe_off.fact_rekap_iku_institusi
+UNION ALL
+SELECT 'ON', AVG(nilai_capaian)
+FROM lakehouse.gold_aqe_on.fact_rekap_iku_institusi;
+```
+
+Katalog Trino terpisah (metastore sama, path MinIO berbeda):
+
+```bash
+docker exec lhaqe-trino trino --catalog lakehouse_aqe_off --execute \
+  "SHOW TABLES FROM gold_aqe_off"
+docker exec lhaqe-trino trino --catalog lakehouse_aqe_on --execute \
+  "SHOW TABLES FROM gold_aqe_on"
+```
+
+> Schema lama `lakehouse.silver` / `lakehouse.gold` (tanpa suffix `_aqe_*`) tidak dipakai lagi setelah upgrade ini. Run baru tidak menimpa salinan OFF saat menulis ON.
+
 ---
 
 ## 2. Ringkasan fase → Metodologi → Hasil
@@ -186,7 +227,7 @@ Template: [`templates/03-runtime-pipeline.md`](templates/03-runtime-pipeline.md)
 
 **Tujuan metodologi:** §3.5.1 Variasi konfigurasi AQE; §3.4.3 Implementasi AQE di Silver.
 
-> **Penting:** Untuk perbandingan adil, **ulang hanya tahap Silver** (atau full refresh Silver dari Bronze yang sama). Opsi A: dua run Silver berturut pada Bronze yang sama. Opsi B: dua lingkungan run terpisah dengan snapshot Bronze identik.
+> **Penting:** DAG `aqe_full_experiment` menjalankan OFF lalu ON pada **Bronze yang sama**, lalu menulis ke **warehouse MinIO terpisah** (`warehouse-aqe-off` / `warehouse-aqe-on`). Kedua salinan Silver/Gold tetap ada untuk audit SQL; perbandingan performa tetap dari `metrics/*.json` dan Spark UI.
 
 ### 6.1 Run A — AQE OFF (baseline)
 
@@ -240,7 +281,7 @@ PYTHONPATH=scripts AQE_METRICS_DIR=metrics \
 PYTHONPATH=scripts AQE_METRICS_DIR=metrics \
   python3 scripts/benchmark/run_spark_workloads.py --aqe-scenario ON
 
-# Setelah Gold terisi (OFF lalu ON — lihat alur DAG aqe_full_experiment):
+# Setelah Gold terisi (schema gold_aqe_off / gold_aqe_on):
 python3 scripts/benchmark/run_trino_workloads.py --aqe-context OFF --trino-url http://localhost:18088
 python3 scripts/benchmark/run_trino_workloads.py --aqe-context ON --trino-url http://localhost:18088
 
@@ -263,16 +304,16 @@ Detail: [`../bronze-to-silver/README.md`](../bronze-to-silver/README.md)
 ### 7.2 Workload di Trino (Gold) — dampak downstream
 
 ```sql
--- W4 Join (Gold)
+-- W4 Join (Gold OFF — ganti gold_aqe_on untuk skenario ON)
 SELECT p.nama_prodi, COUNT(*) n
-FROM lakehouse.gold.fact_iku1_lulusan f
-JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+FROM lakehouse.gold_aqe_off.fact_iku1_lulusan f
+JOIN lakehouse.gold_aqe_off.dim_prodi p ON f.prodi_id = p.prodi_id
 GROUP BY p.nama_prodi;
 
 -- W5 Aggregation
 SELECT w.tahun, AVG(r.nilai_capaian)
-FROM lakehouse.gold.fact_rekap_iku_institusi r
-JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_rekap_iku_institusi r
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON r.waktu_id = w.waktu_id
 GROUP BY w.tahun;
 ```
 
@@ -310,7 +351,14 @@ Catat execution time per tahap → **§4.1.5**.
 
 ## 9. Fase 6 — Serving layer & validasi bisnis
 
-Setelah task **`silver_to_gold_on`** di DAG `aqe_full_experiment` sukses, layer Gold di MinIO (`warehouse` → namespace `gold`) biasanya memuat:
+Setelah DAG `aqe_full_experiment` sukses, ada **dua** layer Gold di MinIO:
+
+| Skenario | Bucket MinIO | Schema Trino |
+|----------|--------------|--------------|
+| AQE OFF | `warehouse-aqe-off/` | `lakehouse.gold_aqe_off` atau katalog `lakehouse_aqe_off` |
+| AQE ON | `warehouse-aqe-on/` | `lakehouse.gold_aqe_on` atau katalog `lakehouse_aqe_on` |
+
+Isi tipikal per salinan:
 
 | Layer | Tabel (tipikal) |
 |-------|-----------------|
@@ -321,14 +369,15 @@ Setelah task **`silver_to_gold_on`** di DAG `aqe_full_experiment` sukses, layer 
 Verifikasi:
 
 ```bash
-docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold_aqe_off"
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold_aqe_on"
 ```
 
 ### 9.1 Trino & Superset
 
 Panduan lengkap: [`../gold-to-serving/README.md`](../gold-to-serving/README.md)
 
-1. Koneksi Superset → `trino://admin@trino:8080/lakehouse`
+1. Koneksi Superset **dua database** (audit): `trino://admin@trino:8080/lakehouse_aqe_off` dan `.../lakehouse_aqe_on` — atau satu koneksi `lakehouse` dengan schema `gold_aqe_off` / `gold_aqe_on`
 2. Buat **dataset fisik** per tabel yang ada (§5.3.2)
 3. Buat **dataset virtual** SQL untuk join fact–dim (§6)
 

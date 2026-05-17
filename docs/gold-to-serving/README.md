@@ -10,15 +10,23 @@ Panduan menyajikan data **Gold Layer** ke lapisan konsumsi (serving) melalui **T
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  GOLD LAYER (Iceberg / Parquet di MinIO)                        │
-│  Star schema: 5 dimensi + 10 fakta IKU                          │
-│  Namespace Hive/Iceberg: lakehouse.gold.*                       │
+│  BRONZE (satu salinan) — lakehouse.bronze.* → warehouse/        │
 └────────────────────────────┬────────────────────────────────────┘
-                             │ metadata (Hive Metastore)
-                             ▼
+                             │
+         ┌───────────────────┴───────────────────┐
+         ▼                                       ▼
+┌─────────────────────────┐           ┌─────────────────────────┐
+│ GOLD AQE OFF            │           │ GOLD AQE ON             │
+│ gold_aqe_off.*          │           │ gold_aqe_on.*         │
+│ MinIO warehouse-aqe-off │           │ MinIO warehouse-aqe-on│
+└────────────┬────────────┘           └────────────┬────────────┘
+             │                                     │
+             └──────────────────┬──────────────────┘
+                                │ metadata (Hive Metastore)
+                                ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  SERVING — QUERY ENGINE                                         │
-│  Trino (katalog: lakehouse, connector: Iceberg + Hive MS)       │
+│  Trino: lakehouse | lakehouse_aqe_off | lakehouse_aqe_on      │
 │  Port: http://localhost:18088                                   │
 └────────────────────────────┬────────────────────────────────────┘
                              │ SQL (JDBC / sqlalchemy-trino)
@@ -32,10 +40,10 @@ Panduan menyajikan data **Gold Layer** ke lapisan konsumsi (serving) melalui **T
 
 | Lapisan | Komponen | Peran |
 |---------|----------|--------|
-| **Storage** | MinIO `s3a://warehouse/` | File Parquet/Iceberg fisik |
-| **Catalog** | Hive Metastore + Iceberg | Definisi tabel `gold.*` |
-| **Query** | **Trino** | Eksekusi SQL interaktif & untuk Superset |
-| **Visualisasi** | **Superset** | KPI dashboard, drill-down, laporan |
+| **Storage** | MinIO `warehouse/` (bronze), `warehouse-aqe-off/`, `warehouse-aqe-on/` | Dua salinan Gold untuk audit AQE |
+| **Catalog** | Hive Metastore + Iceberg | Schema `gold_aqe_off`, `gold_aqe_on` |
+| **Query** | **Trino** | Katalog `lakehouse`, `lakehouse_aqe_off`, `lakehouse_aqe_on` |
+| **Visualisasi** | **Superset** | Satu atau dua koneksi Trino per skenario |
 
 Spark **tidak** dipakai untuk query BI rutin setelah Gold terbentuk; konsumen membaca lewat Trino (pola *query federation* pada lakehouse).
 
@@ -78,7 +86,24 @@ Operasi OLAP yang didukung lewat SQL Trino + Superset:
 
 Optimasi **AQE** terjadi utama di **Silver** (Spark). Gold dan query Trino **menerima manfaat tidak langsung**: data sudah terkurasi dan agregasi lebih ringan. Untuk BAB IV, ukur juga **waktu query Trino** pada tabel Gold setelah pipeline dijalankan dengan AQE OFF vs ON di Silver.
 
+### 2.4 Dua salinan Gold (audit OFF vs ON)
+
+| Skenario | Schema Iceberg | Katalog Trino (disarankan) | URI Superset (contoh) |
+|----------|----------------|----------------------------|------------------------|
+| AQE OFF | `lakehouse.gold_aqe_off` | `lakehouse_aqe_off` | `trino://admin@trino:8080/lakehouse_aqe_off` |
+| AQE ON | `lakehouse.gold_aqe_on` | `lakehouse_aqe_on` | `trino://admin@trino:8080/lakehouse_aqe_on` |
+| Semua schema | — | `lakehouse` | `trino://admin@trino:8080/lakehouse` |
+
+Contoh audit baris identik:
+
+```sql
+SELECT 'OFF' AS aqe, COUNT(*) FROM lakehouse.gold_aqe_off.dim_mahasiswa
+UNION ALL
+SELECT 'ON', COUNT(*) FROM lakehouse.gold_aqe_on.dim_mahasiswa;
+```
+
 ---
+
 
 ## 3. Verifikasi Gold sebelum serving
 
@@ -87,7 +112,8 @@ Optimasi **AQE** terjadi utama di **Silver** (Spark). Gold dan query Trino **men
 **Disarankan — Trino** (tanpa Ivy/JAR di Spark CLI):
 
 ```bash
-docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold_aqe_off"
+docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold_aqe_on"
 ```
 
 **Alternatif — Spark SQL** (butuh JAR di `lib/`; unduh dulu):
@@ -98,7 +124,7 @@ docker compose up -d spark-master spark-worker-1 spark-worker-2
 
 # Wrapper (menonaktifkan spark.jars.packages / Ivy)
 chmod +x scripts/spark-sql-lakehouse.sh
-./scripts/spark-sql-lakehouse.sh "SHOW TABLES IN lakehouse.gold"
+./scripts/spark-sql-lakehouse.sh "SHOW TABLES IN lakehouse.gold_aqe_off"
 ```
 
 > Jangan memanggil `spark-sql` mentah tanpa JAR lokal — error `FileNotFoundException` di `/home/spark/.ivy2/cache` artinya Spark mencoba unduh paket Maven dan cache tidak writable.
@@ -113,28 +139,36 @@ docker exec -it lhaqe-trino trino --server http://localhost:8080
 
 ```sql
 SHOW SCHEMAS FROM lakehouse;
-SHOW TABLES FROM lakehouse.gold;
+SHOW TABLES FROM lakehouse.gold_aqe_off;
+SHOW TABLES FROM lakehouse.gold_aqe_on;
 
-SELECT COUNT(*) FROM lakehouse.gold.fact_rekap_iku_institusi;
-SELECT COUNT(*) FROM lakehouse.gold.dim_prodi;
+SELECT COUNT(*) FROM lakehouse.gold_aqe_off.fact_rekap_iku_institusi;
+SELECT COUNT(*) FROM lakehouse.gold_aqe_on.fact_rekap_iku_institusi;
 ```
 
-Jika schema `gold` tidak muncul, pastikan Hive Metastore sudah mendaftar namespace dan pipeline `silver_to_gold_pipeline` sukses.
+Jika schema `gold_aqe_off` / `gold_aqe_on` tidak muncul, pastikan DAG `aqe_full_experiment` (task `silver_to_gold_off` / `silver_to_gold_on`) sukses dan bucket MinIO `warehouse-aqe-off` / `warehouse-aqe-on` terisi.
 
 ---
 
 ## 4. Konfigurasi Trino (sudah di repo)
 
-Katalog `lakehouse` didefinisikan di [`../../trino/etc/catalog/lakehouse.properties`](../../trino/etc/catalog/lakehouse.properties):
+| Katalog | File properties | Dipakai untuk |
+|---------|-----------------|---------------|
+| `lakehouse` | [`lakehouse.properties`](../../trino/etc/catalog/lakehouse.properties) | Semua schema: `bronze`, `silver_aqe_off`, `silver_aqe_on`, `gold_aqe_*` |
+| `lakehouse_aqe_off` | [`lakehouse_aqe_off.properties`](../../trino/etc/catalog/lakehouse_aqe_off.properties) | Audit / Superset khusus run AQE OFF |
+| `lakehouse_aqe_on` | [`lakehouse_aqe_on.properties`](../../trino/etc/catalog/lakehouse_aqe_on.properties) | Audit / Superset khusus run AQE ON |
 
-- Connector: **Iceberg**
-- Metastore: **Hive** (`thrift://hive-metastore:9083`)
-- Storage: **MinIO** (`s3://warehouse/`)
+Semua katalog memakai connector **Iceberg** + **Hive Metastore** (`thrift://hive-metastore:9083`) ke MinIO. Data fisik Gold OFF/ON ada di bucket terpisah (lihat [`lakehouse_catalog.py`](../../scripts/spark/lakehouse_catalog.py)).
 
-Tidak perlu langkah tambahan jika stack dari `docker-compose.yml` sudah naik.
+```bash
+# CLI dengan katalog eksplisit
+docker exec lhaqe-trino trino --catalog lakehouse_aqe_off --schema gold_aqe_off \
+  --execute "SELECT COUNT(*) FROM fact_iku4_kualifikasi_dosen"
+```
 
-**Akses dari host:** http://localhost:18088  
-**UI Trino (jika diaktifkan):** coordinator di port yang sama.
+Setelah menambah file `.properties`, restart Trino: `docker compose restart trino`.
+
+**Akses dari host:** http://localhost:18088
 
 ---
 
@@ -153,7 +187,9 @@ Tidak perlu langkah tambahan jika stack dari `docker-compose.yml` sudah naik.
 |-------|----------------------------------|---------------------------|
 | **Supported databases** | Trino | Trino |
 | **Display name** | `Lakehouse Trino` | sama |
-| **SQLAlchemy URI** | `trino://admin@trino:8080/lakehouse` | `trino://admin@localhost:18088/lakehouse` |
+| **SQLAlchemy URI (semua schema)** | `trino://admin@trino:8080/lakehouse` | `trino://admin@localhost:18088/lakehouse` |
+| **URI khusus Gold OFF** | `trino://admin@trino:8080/lakehouse_aqe_off` | `trino://admin@localhost:18088/lakehouse_aqe_off` |
+| **URI khusus Gold ON** | `trino://admin@trino:8080/lakehouse_aqe_on` | `trino://admin@localhost:18088/lakehouse_aqe_on` |
 
 Parameter opsional di URI:
 
@@ -167,7 +203,7 @@ Klik **Test connection** → **Connect**.
 
 ### 5.3 Buat dataset
 
-Sesuaikan dengan **tabel yang benar-benar ada** setelah pipeline Gold (`silver_to_gold` / task `silver_to_gold_on` di DAG [`aqe_full_experiment`](../../scripts/dags/aqe_full_experiment.py)). Cek dulu:
+Sesuaikan dengan **tabel yang benar-benar ada** setelah pipeline Gold (`silver_to_gold_off` / `silver_to_gold_on` di DAG [`aqe_full_experiment`](../../scripts/dags/aqe_full_experiment.py)). Cek dulu (ganti schema jika memakai satu koneksi `lakehouse`):
 
 ```bash
 docker exec lhaqe-trino trino --execute "SHOW TABLES FROM lakehouse.gold"
@@ -244,8 +280,8 @@ SELECT
   f.persen_iku4,
   f.target_iku,
   f.capaian_iku
-FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
-JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+FROM lakehouse.gold_aqe_off.fact_iku4_kualifikasi_dosen f
+JOIN lakehouse.gold_aqe_off.dim_prodi p ON f.prodi_id = p.prodi_id
 ORDER BY f.persen_iku4 DESC;
 ```
 
@@ -317,23 +353,23 @@ Menggantikan rekap 8 IKU jika `fact_rekap_iku_institusi` belum terbentuk:
 
 ```sql
 SELECT w.tahun, 'IKU-4' AS iku_kode, AVG(f.persen_iku4) AS nilai_capaian, AVG(f.target_iku) AS nilai_target, AVG(f.capaian_iku) AS capaian_iku
-FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_iku4_kualifikasi_dosen f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun
 UNION ALL
 SELECT w.tahun, 'IKU-6', AVG(f.persen_iku6), AVG(f.target_iku), AVG(f.capaian_iku)
-FROM lakehouse.gold.fact_iku6_kerjasama_prodi f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_iku6_kerjasama_prodi f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun
 UNION ALL
 SELECT w.tahun, 'IKU-7', AVG(f.persen_iku7), AVG(f.target_iku), AVG(f.capaian_iku)
-FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun
 UNION ALL
 SELECT w.tahun, 'IKU-8', AVG(f.persen_iku8), AVG(f.target_iku), AVG(f.capaian_iku)
-FROM lakehouse.gold.fact_iku8_akreditasi_internasional f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_iku8_akreditasi_internasional f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun
 ORDER BY tahun, iku_kode;
 ```
@@ -352,8 +388,8 @@ SELECT
   f.persen_iku7,
   f.target_iku,
   f.capaian_iku
-FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
-JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+FROM lakehouse.gold_aqe_off.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold_aqe_off.dim_prodi p ON f.prodi_id = p.prodi_id
 ORDER BY f.capaian_iku DESC;
 ```
 
@@ -370,8 +406,8 @@ SELECT
   f.predikat_sakip,
   f.nilai_sakip,
   f.target_kinerja_anggaran
-FROM lakehouse.gold.fact_tata_kelola f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_tata_kelola f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 ORDER BY w.tahun;
 ```
 
@@ -381,8 +417,8 @@ Chart: **line** (`tahun` × `persen_realisasi`) + **big number** predikat SAKIP.
 
 ```sql
 SELECT w.tahun, r.iku_kode, r.iku_nama, r.nilai_capaian, r.nilai_target, r.status_capaian
-FROM lakehouse.gold.fact_rekap_iku_institusi r
-JOIN lakehouse.gold.dim_waktu w ON r.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_rekap_iku_institusi r
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON r.waktu_id = w.waktu_id
 ORDER BY w.tahun, r.iku_kode;
 ```
 
@@ -390,8 +426,8 @@ ORDER BY w.tahun, r.iku_kode;
 
 ```sql
 SELECT p.nama_prodi, f.total_lulusan, f.persen_terserap, f.target_iku, f.capaian_iku
-FROM lakehouse.gold.fact_iku1_lulusan f
-JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+FROM lakehouse.gold_aqe_off.fact_iku1_lulusan f
+JOIN lakehouse.gold_aqe_off.dim_prodi p ON f.prodi_id = p.prodi_id
 ORDER BY f.capaian_iku DESC;
 ```
 
@@ -434,19 +470,19 @@ Jalankan setelah pipeline Silver **AQE OFF** lalu **ON** (task `trino_workloads_
 ```sql
 -- W4 Join (Gold) — IKU-4 + dim_prodi
 SELECT p.nama_prodi, AVG(f.persen_iku4) AS avg_iku4
-FROM lakehouse.gold.fact_iku4_kualifikasi_dosen f
-JOIN lakehouse.gold.dim_prodi p ON f.prodi_id = p.prodi_id
+FROM lakehouse.gold_aqe_off.fact_iku4_kualifikasi_dosen f
+JOIN lakehouse.gold_aqe_off.dim_prodi p ON f.prodi_id = p.prodi_id
 GROUP BY p.nama_prodi;
 
 -- W5 Aggregation — IKU-7 per tahun
 SELECT w.tahun, AVG(f.persen_iku7) AS avg_iku7
-FROM lakehouse.gold.fact_iku7_metode_pembelajaran f
-JOIN lakehouse.gold.dim_waktu w ON f.waktu_id = w.waktu_id
+FROM lakehouse.gold_aqe_off.fact_iku7_metode_pembelajaran f
+JOIN lakehouse.gold_aqe_off.dim_waktu w ON f.waktu_id = w.waktu_id
 GROUP BY w.tahun;
 
 -- W6 Filtering — prodi capaian IKU-8 di bawah target
 SELECT *
-FROM lakehouse.gold.fact_iku8_akreditasi_internasional
+FROM lakehouse.gold_aqe_off.fact_iku8_akreditasi_internasional
 WHERE capaian_iku < 100;
 ```
 
@@ -460,7 +496,7 @@ Otomatis: `python3 scripts/benchmark/run_trino_workloads.py --aqe-context ON --t
 |--------|----------|--------|
 | Spark: `ivy2/cache` Permission denied / FileNotFoundException | `spark.jars.packages` + folder `lib/` kosong | `./scripts/download-jars.sh`; restart Spark; pakai `./scripts/spark-sql-lakehouse.sh` atau Trino |
 | `Schema gold not found` | Pipeline Gold belum jalan | Trigger `silver_to_gold_pipeline` |
-| Trino: table not found | Metastore belum sync | `SHOW TABLES FROM lakehouse.gold`; restart hive-metastore |
+| Trino: table not found | Metastore belum sync | `SHOW TABLES FROM lakehouse.gold_aqe_off`; restart trino/hive-metastore |
 | Superset: connection failed | URI salah / Trino down | Pakai `trino:8080` dari dalam Docker |
 | Query lambat | Data besar, no partition | Filter `waktu_id` / `tahun`; pertimbangkan partition Iceberg |
 | Chart kosong | Dataset schema salah | Cek preview dataset di Superset |
@@ -471,7 +507,7 @@ Otomatis: `python3 scripts/benchmark/run_trino_workloads.py --aqe-context ON --t
 
 1. [ ] `./start.sh` — Trino + Superset healthy  
 2. [ ] Pipeline Gold selesai (`aqe_full_experiment` → `silver_to_gold_on` atau `silver_to_gold_pipeline`)  
-3. [ ] `SHOW TABLES FROM lakehouse.gold` — minimal 5 dim + 5 fakta (IKU-4,6,7,8, tata kelola)  
+3. [ ] `SHOW TABLES FROM lakehouse.gold_aqe_off` dan `gold_aqe_on` — minimal 5 dim + 5 fakta per salinan  
 4. [ ] Koneksi Superset → Trino (`Lakehouse Trino`)  
 5. [ ] Dataset fisik §5.3.2 + virtual SQL §6  
 6. [ ] Dashboard **Executive IKU (subset)** + opsional **Prodi SD**  
