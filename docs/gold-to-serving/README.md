@@ -147,7 +147,7 @@ trino://admin@trino:8080/lakehouse?source=superset&session_properties=query_max_
 
 Klik **Test connection** → **Connect**.
 
-> Driver `sqlalchemy-trino` sudah dipasang di image [`../../superset/Dockerfile`](../../superset/Dockerfile).
+> Driver `trino` (trino-python-client, termasuk dialect SQLAlchemy) sudah dipasang di image [`../../superset/Dockerfile`](../../superset/Dockerfile).
 
 ### 5.3 Buat dataset
 
